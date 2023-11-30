@@ -1,0 +1,70 @@
+\documentclass[oneside]{style}
+
+\title{Versión 01}
+\principal{Examen 14}
+\author{Tania Michelle Rubí Rojas}
+\semester{Semestre 2023-1}
+
+\begin{document}
+\maketitle
+
+Para cada uno de los siguientes ejercicios, \textbf{justifica ampliamente} tu 
+respuesta:
+
+\begin{questions}[label=\protect\circled{\bfseries\arabic*}]
+    % Ejercicio 01
+    \question
+    {
+        Definimos el conjunto de árboles binarios no vacíos $\mathcal{T}$ 
+        cuyos nodos están etiquetados por elementos de un conjunto $A$
+        como sigue:
+        \begin{itemize}
+            \item Si $r \in A$, entonces \texttt{tree(void,r,void)} $\in 
+            \mathcal{T}$.
+
+            \item Si $T_1, T_2 \in \mathcal{T}$ y $e \in A$, entonces 
+            \texttt{tree($T_1$,e,$T_2$)} $\in \mathcal{T}$.
+
+            \item Estos y sólo estos elementos pertenecen a $\mathcal{T}$. 
+        \end{itemize}
+
+        Dada esta definición, \textbf{demuestra usando inducción estructural} 
+        que el número de vértices ($|V|$) de un árbol binario no vacío $T$ es 
+        igual al número de aristas ($|E|$) de $T$ más una unidad. 
+    }
+
+    % Ejercicio 02
+    \question
+    {
+        Definimos el conjunto de cadenas $\mathcal{L}$ como sigue:
+        \begin{itemize}
+            \item $\epsilon \in \mathcal{L}$, es decir, la cadena vacía 
+            pertenece al conjunto $\mathcal{L}$. 
+            
+            \item Si $w \in \mathcal{L}$, entonces $0w0, 1w1 \in \mathcal{L}$.
+            
+            \item Estos y sólo estos elementos pertenecen a $\mathcal{L}$. 
+        \end{itemize}
+
+        Dada esta definición, \textbf{demuestra usando inducción estructural}
+        que $\forall \sigma \in \mathcal{L}, \; |\sigma|$ es par. 
+    }text
+
+    % Ejercicio 03
+    \question
+    {
+        Definimos el conjunto $S \subseteq \mathbb{Z}^2$ como sigue:
+        \begin{itemize}
+            \item $(0,0) \in S$ 
+
+            \item Si $(x,y) \in S$, entonces $(x,y+1), (x+1,y+1), (x+2,y+1) 
+            \in S$
+
+            \item Estos y sólo estos elementos pertenecen a $S$. 
+        \end{itemize}
+
+        Dada esta definición, \textbf{demuestra usando inducción estructural}
+        que $\forall(a,b) \in S, \; a \leq 2b$. 
+    }
+\end{questions}
+\end{document}

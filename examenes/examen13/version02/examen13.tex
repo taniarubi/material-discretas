@@ -1,0 +1,91 @@
+\documentclass[oneside]{style}
+
+\title{Versión 02}
+\principal{Examen 13}
+\author{Tania Michelle Rubí Rojas}
+\semester{Semestre 2023-1}
+
+\begin{document}
+\maketitle
+
+\vspace{2.5mm}
+\noindent
+Nombre y número de cuenta: \hrulefill\
+
+\vspace{5mm}
+\noindent
+\textbf{Indicaciones especiales:}
+{\small
+\begin{multicols}{2}
+\begin{itemize}
+  \item No se pueden utilizar resultados que resuelvan directamente los 
+  ejercicios. 
+
+  \item Para cada ejercicio, si así lo requiere, se debe indicar claramente
+  sobre cuál variable se está realizando la inducción. 
+
+  \item Para cada ejercicio, si así lo requiere, se debe indicar claramente 
+  cuál es el caso base, la hipótesis de inducción y el paso inductivo; 
+  además de indicar cuál es la conclusión obtenida de la demostración. 
+
+  \item Se debe justicar cada uno de los pasos que se realicen. 
+
+  \item La letra debe ser lo más clara posible. En caso de que sea ilegible, 
+  la calificación automática será de cero. 
+\end{itemize}
+\end{multicols}
+}
+
+\begin{questions}[label=\protect\circled{\bfseries\arabic*}]
+    % Ejercicio 01
+    \question
+    {
+        En cualquier grupo de $k \geq 1$ personas, cada persona debe dar la 
+        mano a todas las demás. \textbf{Encuentra} una fórmula para el número 
+        de apretones de manos y \textbf{demuestra} que la fórmula es correcta 
+        usando \textbf{inducción}. 
+    }
+
+    % Ejercicio 02
+    \question
+    {
+        En una granja con mucho folklore se discute acerca del siguiente 
+        razonamiento: 
+        \begin{tcolorbox}
+            El día que nace un becerro, cualquiera lo puede cargar con 
+            facilidad. Y los becerros no crecen demasiado en un día, entonces 
+            si puedes cargar a un becerro un día, lo puedes cargar también al 
+            día siguiente. Siguiendo con este razonamiento, entonces también 
+            debería serte posible cargar al becerro el día siguiente y el 
+            siguiente y así sucesivamente. Pero después de un año, el becerro 
+            se va a convertir en una vaca adulta de 1000kg, algo que claramente 
+            ya no puedes cargar.
+        \end{tcolorbox}
+
+        \textbf{Demuestra}, si es posible, que el argumento es correcto 
+        usando \textbf{inducción matemática}. En caso contrario, \textbf{justifica 
+        ampliamente} en dónde está el error en el razonamiento inductivo. 
+    }
+
+    % Ejercicio 03
+    \question
+    {
+        Sea $\{b_i\}_{i \in \mathbb{N}}$ la sucesión definida por 
+        \begin{align*}
+            s_0 &= 2 \\ 
+            s_1 &= 3 \\ 
+            s_n &= s_{n-1} \cdot s_{n-2} 
+            && \textbf{para toda } n \geq 3 \in \mathbb{N}
+        \end{align*}
+        
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Encuentra} una fórmula explícita para 
+            $s_n$. 
+
+            \item \textbf{Demuestra} usando \textbf{inducción fuerte} 
+            que tu fórmula funciona. 
+        \end{itemize}
+    }
+\end{questions}
+\end{document}
