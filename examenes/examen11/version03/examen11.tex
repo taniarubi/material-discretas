@@ -1,0 +1,638 @@
+\documentclass[12pt, a4paper]{exam}
+
+% Soporte para cambiar la fecha que sale en el examen
+\usepackage{advdate}
+% Soporte para escribir en varias columnas
+\usepackage{multicol}
+% Soporte para los acentos.
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}    
+% Idioma español.
+\usepackage[spanish,mexico,es-tabla]{babel}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{verbatim} % comentarios
+\usepackage{tasks}
+\usepackage{color}
+% Cambiamos los márgenes del documento. 
+\usepackage[top=1.5cm,left=1.5cm,right=1.5cm]{geometry}
+
+% Pie de página
+\cfoot{Página \thepage\ de \numpages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\thechoice}{\alph{choice}}
+
+\makeatletter
+\renewenvironment{checkboxes}%
+   {\setcounter{choice}{0}\list{\checkbox@char}%
+      {%
+        \settowidth{\leftmargin}{W.\hskip\labelsep\hskip 2.5em}%
+        \def\choice{%
+          \if@correctchoice
+            \color@endgroup \endgroup
+          \fi
+          \stepcounter{choice}
+          \item[\checked@char]
+          \do@choice@pageinfo
+        } % choice
+        \def\CorrectChoice{%
+          \if@correctchoice
+            \color@endgroup \endgroup
+          \fi
+          \ifprintanswers
+            % We can't say \choice here, because that would
+            % insert an \endgroup.
+            % 2016/05/10: We say \color@begingroup in addition to
+            % \begingroup in case \CorrectChoiceEmphasis involves color
+            % and the text exactly fills the line (which would
+            % otherwise create a blank line after this choice):
+            % 2016/05/11: We leave hmode if we're in it,
+            % i.e., if there's no blank line preceding this
+            % \CorrectChoice command.  (Without this, the
+            % \special created by a \color{whatever} command that might
+            % be inserted by \CorrectChoice@Emphasis would be appended 
+            % to the previous \choice, which could cause an extra
+            % (blank) line to be inserted before this \CorrectChoice.)
+            % Since \par and \endgraf seem to cancel \@totalleftmargin
+            % (for reasons I don't understand), we'll do the following:
+            % Motivated by  the def of \leavevmode, 
+            %      \def\leavevmode{\unhbox\voidb@x}
+            % we will now leave hmode (if we're in hmode):
+            \ifhmode \unskip\unskip\unvbox\voidb@x \fi
+            \begingroup \color@begingroup \@correctchoicetrue
+            \CorrectChoice@Emphasis
+            \stepcounter{choice}
+            \item[\checked@char]
+          \else
+            \stepcounter{choice}
+            \item[\checked@char]
+          \fi
+          \do@choice@pageinfo
+        } % CorrectChoice
+        \let\correctchoice\CorrectChoice
+        \labelwidth\leftmargin\advance\labelwidth-\labelsep
+        \topsep=0pt
+        \partopsep=0pt
+        \checkboxeshook
+      }%
+   }%
+   {\if@correctchoice \color@endgroup \endgroup \fi \endlist}
+ \makeatother
+
+% Make checkbox character a circle with the letter
+\checkboxchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=4mm,draw] at (0,0) {\thechoice};}
+% Make checked box character bold WITH surd
+%\checkedchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=8mm,draw] at (0,0) {} node at (0,0) {\thechoice\llap{$\surd$}};}
+% Make checked box character bold
+\checkedchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=4mm,draw] at (0,0) {} node at (0,0) {\thechoice};}
+\printanswers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ENCABEZADO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \centering
+    \hrule \hrule \hrule 
+    \vspace{5mm}
+    \begin{minipage}[c]{0.8\textwidth}
+        \begin{center}
+            {\large\textbf{Mission 11, Start!} \par
+            \large \textbf{Estructuras Discretas} \par
+            \large \textbf{Semestre 2023-1} \par
+            \large \textbf{\today}	\par}
+        \end{center}
+    \end{minipage}
+
+    \vspace{0.2in}
+    \noindent
+    \textbf{Tania Michelle Rubí Rojas}
+    \vspace{2mm}
+    \hrule \hrule \hrule 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \vspace{5mm}
+    \noindent
+    Nombre y número de cuenta: \hrulefill\
+
+    \begin{questions}
+        % Question 01
+        \question
+        {
+            ¿Para cuál o cuáles de los siguientes argumentos es posible 
+            capturar su sentido usando solo lógica proposicional?
+        }
+        \begin{checkboxes}
+            \choice Alberto es más alto que Luis. Canadá está al norte de 
+            EE.UU. Las personas que son más altas que Luis viven al norte 
+            de los EE.UU. Por lo tanto, Alberto vive en Canadá. 
+
+            \choice Escuché el concierto de Bad Bunny y el concierto de Ricky 
+            Martin. Tengo los tímpanos inflamados. Por lo tanto, escuché el 
+            concierto de Bad Bunny y tengo los tímpanos inflamados, o bien, 
+            escuché el concierto de Ricky Martin y no tengo los tímpanos 
+            inflamados. % Correcta 
+
+            \choice Es ilegal que cualquier persona tenga más de tres perritos 
+            y tres gatitos en su propiedad en el pueblito ¨Sin Nombre¨. Yo 
+            vivo en el pueblito ¨Sin Nombre¨ y tengo cuatro perritos pero 
+            ningún gato. Por lo tanto, cumplo con alguna ley del pueblito 
+            ¨Sin Nombre¨.
+
+            \choice Una computadora puede correr como ¨Flash¨, pero antes 
+            tiene que tener 32 megabytes de almacenamiento. Si la computadora 
+            puede correr como ¨Flash¨, entonces el sonido al reproducir la 
+            canción “Culpable o no” será impresionante. Por lo tanto, si 
+            la computadora tiene 32 megabytes de almacenamiento, entonces 
+            el sonido al reproducir la canción “Culpable o no” será 
+            impresionante. % Correcta 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 02
+        \question
+        {
+            Sea el conjunto de los alumnos de la Facultad de Ciencias unido 
+            con el conjunto de todas las materias que se imparten en la 
+            Facultad de Ciencias el universo de discurso. Si consideramos los 
+            siguientes predicados y constantes:
+            \begin{tasks}(2)
+                \task $A(x,y):$ el alumno $x$ ha aprobado la materia $y$
+                \task $R(x): x$ es un alumno regular 
+                \task $F(x): x$ es un alumno feliz 
+                \task la constante $ed$ para Estructuras Discretas 
+            \end{tasks}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $\forall x (A(x,ed) \rightarrow F(x))$ es 
+            verdadero. 
+
+            \choice $\exists x (F(x) \land \forall y (A(x,ed) \rightarrow R(x)))$
+            es falso. 
+
+            \choice $\exists x (F(x) \land \exists y (R(y) \land A(x,y)))$ es 
+            verdadero. 
+
+            \choice $\exists x (R(x) \land \exists y (\neg A(x,y) \land F(x)))$ es 
+            verdadero. % Correcta 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        \newpage
+        % Question 03
+        \question{¿Cuál o cuáles de las siguientes fórmulas son enunciados?}
+        \begin{checkboxes}
+            \choice $\forall x \forall y ((P(x) \land P(y) \land E(x,y) \land 
+            E(y,x)) \rightarrow I(x,y))$ % Correcta 
+
+            \choice $\forall x (P(x) \rightarrow M(x)) \land \exists y 
+            (P(y) \lor M(y) \lor E(x,y))$
+
+            \choice $\forall x (M(x) \land D(0,x))$ % Correcta
+
+            \choice $\exists y (M(x) \land \neg P(x))$
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 04
+        \question
+        {
+            Sea el conjunto de los programadores el universo de discurso. Si 
+            consideramos los siguientes predicados:
+            \begin{tasks}(2)
+                \task $P(x): x$ es un programador profesional 
+                \task $J(x): x$ programa en Java 
+            \end{tasks}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $\forall x (P(x) \rightarrow J(x))$ es falso. % Correcta 
+
+            \choice $\forall y (J(y) \rightarrow P(y))$ es verdadero. 
+
+            \choice $\exists x (P(x) \lor J(x))$ es falso. 
+
+            \choice $\exists x (P(x) \land J(x))$ es verdadero. % Correcta 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 05
+        \question
+        {
+            Sea el conjunto de todas las personas el universo de discurso. Si 
+            consideramos los siguientes predicados:
+            \begin{tasks}(2)
+                \task $S(x): x$ es una persona soltera 
+                \task $A(x,y): y$ tiene más pretendientes que $x$ 
+            \end{tasks}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $\exists x \forall y (A(x,y) \rightarrow S(x))$ es 
+            verdadero. % Correcta
+
+            \choice $\exists x \exists y (S(x) \land S(y) \land A(x,y) 
+            \land x \neq y)$ es verdadero. % Correcta
+
+            \choice $\exists x \exists y (A(x,y) \rightarrow S(x))$ es 
+            verdadero. % Correcta 
+
+            \choice $\forall x \forall y (S(x) \rightarrow A(x,y))$ es 
+            verdadero.  
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+        }
+
+        % Question 06
+        \question
+        {
+            ¿Para cuál o cuáles de los siguientes argumentos es posible 
+            capturar su sentido usando solo lógica proposicional?
+        }
+        \begin{checkboxes}
+            \choice Cuando había un juego de pelota, transportarse era 
+            complicado. Si llegaban a tiempo, entonces no era complicado 
+            transportarse. Llegaron a tiempo. Por lo tanto, no había un 
+            juego de pelota. % Correcta 
+
+            \choice Todos los perritos que conozco son adorables. El perro 
+            del vecino no es adorable. Conozco al perro del vecino. Por lo 
+            tanto, hay un perro cuyo pelaje es de color blanco.
+
+            \choice Si Alejandro trabaja muy duro, entonces Tania o Luis se 
+            divertirán. Si Tania se divierte, entonces Alejandro no trabajará 
+            duro. Si Adriana se divierte, entonces Luis no. Por lo tanto, si 
+            Alejandro trabaja duro, Adriana no se divertirá. % Correcta
+
+            \choice Él está sentado entre Rafael y Tatiana. Sergio y Lucía 
+            juegan billar contra Carlos y Óscar. Rafael es un experto en 
+            matemáticas. Por lo tanto, si Rafael y Carlos juegan billar contra 
+            él y Óscar, entonces el equipo de Rafael ganará.
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        \newpage
+        % Question 07
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Es posible definir recursivamente el conjunto de todas 
+            las expresiones de Lógica de Primer Orden, pero dicha definición 
+            es tan complicada que queda fuera del alcance de este curso. 
+
+            \choice $P(x,y,z)$ es un predicado, pero no un enunciado. 
+            % Correcta
+
+            \choice Si $\forall x P(x)$ es falso y el universo de discurso 
+            es diferente del vacío, entonces es posible encontrar 
+            una interpretación que haga que $\exists x \neg P(x)$ sea verdadero. 
+            % Correcta 
+
+            \choice Si $a,b,c$ son constantes dentro de un universo de discurso 
+            diferente del vacío, entonces $P(a,b,c)$ es un enunciado. % Correcta
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 08
+        \question
+        {
+            Sea $\mathbb{Z}$ el universo de discurso. Si consideramos los 
+            siguientes predicados:
+            \begin{tasks}(3)
+                \task $I(x): x$ es impar 
+                \task $L(x): x < 10$ 
+                \task $G(x): x > 9$ 
+            \end{tasks}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $\exists x (I(x) \land L(x))$ es falso. 
+
+            \choice $\forall x (I(x) \rightarrow G(x))$ es verdadero. 
+
+            \choice $\forall x (L(x) \land G(x))$ es falso. % Correcta
+
+            \choice $\exists x (L(x) \land G(x))$ es falso. % Correcta 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 09
+        \question
+        {
+            Si $\forall x \exists y P(x,y)$ es verdadero y el universo de 
+            discurso es diferente del vacío, ¿cuál o cuáles de las 
+            siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $\forall x \forall y P(x,y)$ es verdadero.
+
+            \choice $\exists x \exists y P(x,y)$ es verdadero. % Correcta 
+
+            \choice $\exists x \exists y P(y,x)$ es falso. 
+
+            \choice $\exists y \forall x P(x,y)$ es verdadero. % Correcta
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+        
+        % Question 10
+        \question
+        {
+            Sea el conjunto de todas las personas el universo de discurso. 
+            Si consideramos los siguientes predicados:
+            \begin{tasks}(2)
+                \task $M(x,y): x$ es madre de $y$ 
+                \task $F(x): x$ es una mujer 
+                \task $H(x): x$ es un hombre  
+            \end{tasks}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $\forall x \exists y F(y,x)$ es falso. % Correcta
+
+            \choice $\exists x \exists y (M(x,y) \land F(y) \land x \neq y)$ 
+            es verdadero. % Correcta 
+
+            \choice $\forall x \forall y (M(x,y) \rightarrow H(x))$ es 
+            verdadero. 
+
+            \choice $\exists x \exists y (M(x,y) \land F(y))$ es falso. 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 11
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice La fórmula
+            \begin{equation*}
+                \forall x \exists y (P(x, g(w,y)) \land R(a,v,f(w))) 
+                \rightarrow \neg Q(a,z) \lor \forall z T(z,y,x,a)
+            \end{equation*}
+
+            tiene como variables ligadas a $\{x,y,z\}$ y tiene como variables 
+            libres a $\{w,a,v\}$.
+
+            \choice La fórmula
+            \begin{equation*}
+                \forall w T(w,x,g(y)) \rightarrow \neg \exists z R(x,f(w,y))
+            \end{equation*}
+
+            tiene como variables ligadas a $\{w,z\}$ y tiene como variables 
+            libres a $\{x, g(y), f(w,y)\}$. 
+
+            \choice La fórmula
+            \begin{equation*}
+                C(f(x,y), z) \land \exists y C(f(y,x), z) \rightarrow 
+                \forall x (L(x) \land L(y) \land I(x,y))
+            \end{equation*}
+
+            tiene como variables ligadas a $\{x,y\}$ y tiene como variables 
+            libres a $\{x,y,z\}$. % Correcta  
+
+            \choice La fórmula
+            \begin{equation*}
+                \forall x (L(x) \rightarrow R(f(x,y), x) \land C(f(x,y), y))
+            \end{equation*}
+
+            tiene como variables ligadas a $\{x\}$ y tiene como variables 
+            libres a $\{x,y\}$.
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 12
+        \question
+        {
+            Si $\exists x \exists y P(x,y)$ es verdadero y el universo de 
+            discurso es diferente del vacío, ¿cuál o cuáles de las 
+            siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $\forall x \exists y P(x,y)$ es verdadero. 
+
+            \choice $\exists y \exists x P(x,y)$ es falso. 
+
+            \choice $\exists x \exists y P(y,x)$ es verdadero. % Correcta 
+
+            \choice $\forall x \forall y P(x,y)$ es verdadero.
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 13
+        \question{¿Cuál o cuáles de las siguientes fórmulas son enunciados?}
+        \begin{checkboxes}
+            \choice $\forall x (P(x) \Leftrightarrow Q(x) \land \exists x 
+            R(x)) \land S(x)$
+
+            \choice $(\forall x (P(x) \land \exists y Q(y))) \lor (\forall z 
+            P(z) \rightarrow Q(z))$
+
+            \choice $\forall x (P(x) \land R(x)) \rightarrow \forall y (P(y)
+            \land Q(y))$ % Correcta 
+
+            \choice $\forall x (P(x) \rightarrow \forall y (P(y) \land L(y) 
+            \rightarrow R(x,y)))$ % Correcta 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 14
+        \question
+        {
+            Si $\forall x \forall y P(x,y)$ es verdadero y el universo de 
+            discurso es diferente del vacío, ¿cuál o cuáles de las 
+            siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $\forall y \forall x P(x,y)$ es falso.  
+
+            \choice $\exists x \forall y P(x,y)$ es verdadero. % Correcta
+
+            \choice $\forall x \forall y P(y,x)$ es verdadera. % Correcta 
+
+            \choice $\forall x \exists y P(y,x)$ es falso. 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 15
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Es falso que todas las ocurrencias de la letra $u$ en 
+            \textit{¨Matemáticas Discretas¨} estén en minúsculas. 
+
+            \choice Si el universo de discurso es el conjunto de todas las 
+            flores y tenemos el predicado
+            \begin{equation*}
+                P(x): x \text{ es amarillo}
+            \end{equation*}
+            
+            entonces $\forall x P(x)$ es falso. % Correcta
+
+            \choice Si Nubecita dice \textit{¨Todos los unos que aparecen 
+            en el número 8502 están a la izquierda de todos los ceros de 
+            dicho número¨}, podemos afirmar que dicha oración es verdadera. 
+            % Correcta 
+
+            \choice Si el universo de discurso es $\mathbb{Z}$ y tenemos los 
+            predicados 
+            \begin{align*}
+                P(x)&: \; x \text{ es par} \\ 
+                I(x)&: \; x \text{ es impar}
+            \end{align*}
+
+            entonces $\neg \exists x (\neg P(x) \land \neg I(x))$ es verdadero.
+            % Correcta 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 16
+        \question{¿Cuál o cuáles de las siguientes fórmulas son enunciados?}
+        \begin{checkboxes}
+            \choice $\forall x P(x) \rightarrow \exists y Q(y)$ % Correcta
+
+            \choice  $\forall y \forall x Q(x) \rightarrow P(y)$
+
+            \choice $\exists x \exists y (A(x,y) \land B(y,z) 
+            \rightarrow A(a,z))$
+
+            \choice $\exists x (P(f(x)) \land \exists y (Q(x, 
+            g(x,y)) \land R(x,x,y)))$ % Correcta 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 17
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Cuando dos variables están designadas por el mismo símbolo 
+            (misma letra) entonces son la misma variable si están bajo el 
+            alcance del mismo cuantificador o si las dos son libres. % Correcta 
+
+            \choice Si el universo de discurso es $\mathbb{Z}$ y tenemos los 
+            predicados 
+            \begin{align*}
+                A(x) &: \; x > 0 \\ 
+                B(x,y) &: \; x > y \\ 
+                C(y) &: y \leq 0
+            \end{align*}
+
+            entonces $\exists x (A(x) \land \forall y (B(x,y) \rightarrow 
+            C(y)))$ es verdadero. % Correcta 
+
+            \choice Dada la siguiente fórmula
+            \begin{equation*}
+                \forall x \exists y (S(x,y) \land L(y,a))
+            \end{equation*}
+
+            entonces el alcance del cuantificador $\exists y$ es $(S(x,y) 
+            \land L(y,a))$, mientras que el alcance del cuantificador 
+            $\forall x$ es $\exists y (S(x,y) \land L(y,a))$. % Correcta 
+
+            \choice Si el universo de discurso es diferente del vacío, entonces 
+            es posible encontrar una interpretación en la que $\forall x P(x)$
+            sea falsa y $\exists x P(x)$ sea verdadera. % Correcta  
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        \newpage
+        % Question 18
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Si el universo de discurso es diferente del vacío, entonces 
+            es posible encontrar una interpretación en la que $\forall x P(x)$
+            sea verdadera y $\exists x P(x)$ sea falsa. 
+
+            \choice Dada la siguiente fórmula
+            \begin{equation*}
+                \exists x (D(x) \land \forall y \neg R(y) \lor C(x,y))
+            \end{equation*}
+
+            entonces el alcance del cuantificador $\exists x$ es 
+            $(D(x) \land \forall y \neg R(y) \lor C(x,y))$ y el alcance del 
+            cuantificador $\forall y$ es $(\neg R(y) \lor C(x,y))$
+
+            \choice Cuando dos variables están designadas por el mismo símbolo 
+            (misma letra) entonces son variables diferentes si están bajo el 
+            alcance de cuantificadores distintos, o si una es libre y la otra 
+            no. % Correcta 
+
+            \choice Cuando todas las variables que aparecen en una fórmula son 
+            ligadas, entonces la fórmula es un enunciado. % Correcta 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 19
+        \question
+        {
+            Sea $\mathbb{Z}$ el universo de discurso. ¿Cuál o cuáles de las 
+            siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $\forall x \exists y (x + y = x)$ es verdadero. % Correcta 
+
+            \choice $\forall x (x^2 > 0)$ es falso. % Correcta 
+
+            \choice $\forall x (x < 0 \rightarrow \exists y (y > 0 \land 
+            x + y = 0))$ es falso. 
+
+            \choice $\exists x \exists y (x^2 = y)$ es falso. 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 20
+        \question
+        {
+            Sea el conjunto de todas las personas el universo de discurso. 
+            Si consideramos el siguiente predicado: 
+            \begin{equation*}
+                A(x,y): x \text{ ama a } y 
+            \end{equation*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $\exists x \forall y \neg A(x,y)$ es falso. 
+
+            \choice $\forall x \forall y A(x,y)$ es verdadero. 
+
+            \choice $\exists x \exists y A(x,y)$ es falso. 
+
+            \choice $\forall x \exists y \neg A(x,y)$ es falso. 
+
+            \choice Ninguna de las anteriores. % Correcta 
+        \end{checkboxes}
+    \end{questions}
+\end{document}

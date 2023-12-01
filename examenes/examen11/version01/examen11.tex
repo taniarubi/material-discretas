@@ -1,0 +1,112 @@
+\documentclass[oneside]{style}
+
+\title{Versión 01}
+\principal{Examen 11}
+\author{Tania Michelle Rubí Rojas}
+\semester{Semestre 2023-1}
+
+\begin{document}
+\maketitle
+
+\vspace{5mm}
+\noindent
+Nombre y número de cuenta: \hrulefill\
+
+\vspace*{5mm}
+Para cada uno de los siguientes ejercicios, \textbf{justifica ampliamente} tu 
+respuesta:
+
+\begin{questions}[label=\protect\circled{\bfseries\arabic*}]
+
+    % Ejercicio 01
+    \question
+    {
+        Considera los siguientes predicados:
+        \begin{itemize}
+            \item $P(x): x$ es un número par
+            \item $M(x,y): x$ es menor a $y$
+            \item $D(x,y):$ la división de $x$ entre $y$ está dentro del 
+            conjunto. 
+        \end{itemize}
+
+        Para cada uno de los siguientes enunciados, evalúa su valor de 
+        verdad con respecto a los universos del discurso $\mathbb{N}$, 
+        $\mathbb{R}$ y $\mathbb{Z}$. Además, \textbf{da} una interpretación 
+        donde la fórmula sea verdadera y una donde sea falsa (si es que 
+        existe):
+
+        \begin{itemize}
+            \item $\forall x \forall y (M(x,y) \rightarrow \exists z
+            (M(x,z) \land M(z,y))$
+
+            \item $\forall x (P(x) \rightarrow M(0,x))$
+            
+            \item $\forall x \forall y (x \neq 0 \land y \neq 0 
+            \rightarrow (D(x,y) \land D(y,x)))$
+
+            \item La negación del inciso anterior. 
+        \end{itemize}
+    }    
+    
+    % Ejercicio 02
+    \question
+    {
+        Supongamos que nuestro universo del discurso es el conjunto de todas 
+        las personas y todos los perritos. Considera los siguientes predicados:
+        \begin{itemize}
+            \item $H(x): x$ es una persona
+            \item $P(y): y$ es un perrito 
+            \item $A(x,y): x$ ama a $y$
+        \end{itemize}
+    }
+
+    Para cada uno de los siguientes enunciados, \textbf{determina} su 
+    valor de verdad:
+    \begin{itemize}
+        \item $\neg (\exists x (H(x) \land \exists y (A(x,y) \land P(y))))$
+        \item $\forall x (H(x) \rightarrow \exists y (P(y) \land 
+        \neg A(x,y)))$
+        \item $\exists x (H(x) \land \forall y (A(x,y) \rightarrow P(y)))$
+        \item $\neg (\forall x (H(x) \rightarrow \forall y (P(y) \rightarrow 
+        A(x,y))))$
+    \end{itemize}
+
+    % Ejercicio 03
+    \question
+    {
+        Para cada una de las siguientes fórmulas:
+        \begin{itemize}
+            \item $\forall x (A(x) \lor B(x)) \land (A(x) \land (B(x)))$
+            \item $\forall x (P(x) \rightarrow \exists Q(x,y))$
+            \item $\forall x \forall y ((P(x) \land P(y) \land E(x,y) \land 
+            E(y,x)) \rightarrow I(x,y))$
+            \item $\forall y \forall x Q(x) \rightarrow P(y)$        
+            \item $\forall x \forall y (P(x,y) \rightarrow \exists x P(y,x))$
+        \end{itemize}
+
+        \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Indica} con diferentes colores el alcance de cada uno 
+            de los cuantificadores  
+            \item \textbf{Subraya} las variables ligadas y libres con diferentes 
+            colores. 
+            \item \textbf{Indica} cuáles fórmulas son enunciados y explica
+            por qué. 
+        \end{itemize}
+    }
+
+     % Ejercicio 04
+     \question
+     {
+        \textbf{Determina} si es posible capturar el sentido del siguiente 
+        argumento usando únicamente lógica proposicional. En caso de que sea 
+        posible, da su respectiva traducción a lógica proposicional:
+        \begin{verbatim}
+        Es ilegal que cualquier persona tenga más de 3 perros y 3 gatos en su 
+        propiedad en el pueblito “Sin Nombre”. Yo vivo en el pueblito “Sin 
+        Nombre” y tengo 4 perritos pero ningún gato. Por lo tanto, cumplo con 
+        alguna ley del pueblito “Sin Nombre”.
+        \end{verbatim}
+     }
+\end{questions}
+\end{document}

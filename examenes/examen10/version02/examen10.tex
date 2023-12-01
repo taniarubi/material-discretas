@@ -1,0 +1,125 @@
+\documentclass[oneside]{style}
+
+\title{Versión 02}
+\principal{Examen 10}
+\author{Tania Michelle Rubí Rojas}
+\semester{Semestre 2023-1}
+
+\begin{document}
+\maketitle
+
+\vspace{5mm}
+\noindent
+Nombre y número de cuenta: \hrulefill\
+
+\vspace*{5mm}
+Para cada uno de los siguientes ejercicios, \textbf{justifica ampliamente} tu 
+respuesta:
+
+\begin{questions}[label=\protect\circled{\bfseries\arabic*}]
+
+    % Ejercicio 01
+    \question
+    {
+        \textbf{Analiza} el siguiente argumento:
+        \begin{verbatim}
+            Maura no logró despertar sólo si las personas en el barco Kerberos
+            cometieron el mismo error que las del barco Prometheus. Elliot es 
+            el responsable de los asesinatos en el barco Kerberos o Daniel 
+            invirtió los códigos de la simulación o Maura logró recordar.  
+            Además, el hecho de que las personas en el barco Kerberos no 
+            cometieran el mismo error que las del barco Prometheus es una 
+            condición necesaria para que Daniel haya invertido los códigos de 
+            la simulación. Luego, el hecho de que las personas en el barco 
+            Kerberos cometieran el mismo error que las del barco Prometheus es 
+            una condición suficiente para que Maura no lograra recordar. Por 
+            lo tanto, Maura logró despertar o Elliot es el responsable de los 
+            asesinatos en el barco Kerberos.   
+        \end{verbatim}
+
+        Para el texto anterior, \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} el argumento al lenguaje de la Lógica 
+            Proposicional. \textbf{Indica} claramente cuáles son las premisas 
+            y cuál es la conclusión. 
+            
+            \item Utiliza \textbf{deducción natural} y \textbf{tu 
+            traducción del inciso anterior} para indicar si el argumento es 
+            correcto o no. 
+        \end{itemize}
+    }   
+    
+    % Ejercicio 02
+    \question
+    {
+        \textbf{Analiza} el siguiente argumento:
+        \begin{verbatim}
+            Si A ganó la carrera, entonces B fue el segundo lugar o C fue el 
+            segundo lugar. Si B fue el segundo lugar, entonces A no ganó la 
+            carrera. Si D fue el segundo, entonces C no fue el segundo lugar. 
+            Afirmamos que A ganó la carrera. Por lo tanto, D no fue el 
+            segundo lugar. 
+        \end{verbatim}
+
+        Para el texto anterior, \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} el argumento al lenguaje de la Lógica 
+            Proposicional. \textbf{Indica} claramente cuáles son las premisas y
+            cuál es la conclusión. 
+            
+            \item Utiliza \textbf{Funciones de Interpretación} y \textbf{tu 
+            traducción del inciso anterior} para indicar si el argumento es 
+            correcto o no. 
+        \end{itemize}
+
+    } 
+
+    % Ejercicio 03
+    \question
+    {
+        \textbf{Demuestra} la siguiente equivalencia lógica usando la 
+        \textbf{regla de Leibniz}.
+        \begin{equation*}
+            (p \lor q) \land (\neg p \land (\neg p \land q)) \equiv 
+            (\neg p \land q)
+        \end{equation*}
+    }
+
+    \textbf{Nota:} Debes mostrar claramente quiénes son $E[z \; := \; X]$, 
+    $E[z \; := \; Y]$, además de decir quiénes son $X$ y $Y$. 
+
+    \newpage
+    % Ejercicio 04
+    \question
+    {
+        \textit{Proposición:} Para cualesquiera dos conjuntos $A$ y $B$ se tiene 
+        que 
+        \begin{equation*}
+            A - B = A \Leftarrow A \cap B = \varnothing
+        \end{equation*}
+
+        \textsc{Demostración}: Sean $A$ y $B$ conjuntos cualesquiera. 
+        Supongamos que $A \cap B = \varnothing$ y veamos que entonces 
+        $A - B = A$. Mostraremos que se cumplen ambas contenciones. Claramente, 
+        $A - B \subseteq A$, pues siempre que $x \in A$ y $x \in B$, se tiene 
+        particularmente que $x \in A$. Para la contención recíproca, supongamos 
+        que $x \in A$. Por hipótesis, $A \cap B$ no tiene elementos y, como $x \in A$, entonces $x$ no 
+        puede pertenecer a $B$. Así, $x \in A$ y $x \notin B$; por lo que 
+        $x \in A - B$. Por lo tanto, $A - B = A$. Concluimos entonces que 
+        $A - B = A \Leftarrow A \cap B = \varnothing$.
+
+        \vspace*{5mm}
+
+        Para el texto anterior, \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} el argumento al lenguaje de la Lógica 
+            Proposicional (puedes parafresear algunas frases en caso de que sea 
+            necesario). \textbf{Indica} claramente cuáles son las premisas y
+            cuál es la conclusión.
+            
+            \item Utiliza \textbf{Tableaux} y \textbf{tu traducción del inciso 
+            anterior} para indicar si el argumento es correcto o no. 
+        \end{itemize}
+    }
+\end{questions}
+\end{document}

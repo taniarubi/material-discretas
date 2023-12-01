@@ -1,0 +1,125 @@
+\documentclass[oneside]{style}
+
+\title{Versión 05}
+\principal{Examen 10}
+\author{Tania Michelle Rubí Rojas}
+\semester{Semestre 2023-1}
+
+\begin{document}
+\maketitle
+
+\vspace{5mm}
+\noindent
+Nombre y número de cuenta: \hrulefill\
+
+\vspace*{5mm}
+Para cada uno de los siguientes ejercicios, \textbf{justifica ampliamente} tu 
+respuesta:
+
+\begin{questions}[label=\protect\circled{\bfseries\arabic*}]
+
+    % Ejercicio 01
+    \question
+    {
+        \textit{Proposición:} Para cualesquiera dos conjuntos $A$ y $B$ se tiene 
+        que 
+        \begin{equation*}
+            A - B = A \Rightarrow A \cap B = \varnothing
+        \end{equation*}
+
+        \textsc{Demostración}: Sean $A$ y $B$ conjuntos cualesquiera. Supongamos 
+        que $A-B = A$. Queremos llegar a que $A \cap B = \varnothing$, es decir, 
+        a que $A \cap B$ no tiene elementos. Llegaremos a esto haciendo un tipo 
+        de demostración que se denomina \textit{por contradicción}. La idea es 
+        suponer que $A \cap B$ no es vacío y llegar a un absurdo, es decir, a algo 
+        que simplemente no puede ser cierto. Entonces, para llegar a una 
+        contradicción supongamos que existe $x \in A \cap B$. Como $x \in A \cap B$, 
+        tenemos que $x \in A$ y $x \in B$. Por hipótesis, $A - B = A$ y como 
+        $x \in A$, entonces $x \in A - B$. Así, $x \in A$ y $x \notin B$, pero esto 
+        contradice que $x \in A \cap B$. Por lo tanto, dicha $x$ no puede existir y 
+        $A \cap B$ no tiene elementos. 
+
+        \vspace*{5mm}
+
+        Para el texto anterior, \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} el argumento al lenguaje de la Lógica 
+            Proposicional. \textbf{Indica} claramente cuáles son las premisas y
+            cuál es la conclusión.
+            
+            \item Utiliza \textbf{Tableaux} y \textbf{tu traducción del inciso 
+            anterior} para indicar si el argumento es correcto o no. 
+        \end{itemize}
+    }
+
+    % Ejercicio 02
+    \question
+    {
+        \textbf{Demuestra} la siguiente equivalencia lógica usando la 
+        \textbf{regla de Leibniz}.
+        \begin{equation*}
+            p \land (p \lor q) \equiv p
+        \end{equation*}
+
+        \textbf{Nota:} Debes mostrar claramente quiénes son $E[z \; := \; X]$, 
+        $E[z \; := \; Y]$, además de decir quiénes son $X$ y $Y$. 
+    }
+
+    % Ejercicio 03
+    \question
+    {
+        Para el siguiente texto:
+        \begin{verbatim}
+            Maura no logró despertar sólo si las personas en el barco Kerberos
+            cometieron el mismo error que las del barco Prometheus. Elliot es 
+            el responsable de los asesinatos en el barco Kerberos o Daniel 
+            invirtió los códigos de la simulación o Maura logró recordar.  
+            Además, el hecho de que las personas en el barco Kerberos no 
+            cometieran el mismo error que las del barco Prometheus es una 
+            condición necesaria para que Daniel haya invertido los códigos de 
+            la simulación. Luego, el hecho de que las personas en el barco 
+            Kerberos cometieran el mismo error que las del barco Prometheus es 
+            una condición suficiente para que Maura no lograra recordar. Por 
+            lo tanto, Maura logró despertar o Elliot es el responsable de los 
+            asesinatos en el barco Kerberos. 
+        \end{verbatim}
+
+        \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} el argumento al lenguaje de la Lógica 
+            Proposicional. \textbf{Indica} claramente cuáles son las premisas 
+            y cuál es la conclusión. 
+            
+            \item Utiliza \textbf{deducción natural} y \textbf{tu 
+            traducción del inciso anterior} para indicar si el argumento es 
+            correcto o no. 
+        \end{itemize}
+    }   
+
+    \newpage
+    % Ejercicio 04
+    \question
+    {
+        \textbf{Analiza} el siguiente argumento:
+        \begin{verbatim}
+            Si Sebastián me extraña, entonces él fue mi novio hace siete 
+            meses o él vive lejos de mí. Si Sebastián fue mi novio hace siete
+            meses, me extraña o me ama. Afirmamos que Sebastián no me ama. 
+            Por otro lado, Sebastián me extraña o no fue mi novio hace siete 
+            meses. Por consiguiente, Sebastián me extraña o él vive lejos de 
+            mí. 
+        \end{verbatim}
+
+        Para el texto anterior, \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} el argumento al lenguaje de la Lógica 
+            Proposicional. \textbf{Indica} claramente cuáles son las premisas y
+            cuál es la conclusión. 
+            
+            \item Utiliza \textbf{Funciones de Interpretación} y \textbf{tu 
+            traducción del inciso anterior} para indicar si el argumento es 
+            correcto o no. 
+        \end{itemize}
+    }  
+\end{questions}
+\end{document}

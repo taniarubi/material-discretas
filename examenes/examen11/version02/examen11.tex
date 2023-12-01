@@ -1,0 +1,129 @@
+\documentclass[oneside]{style}
+
+\title{Versión 02}
+\principal{Examen 11}
+\author{Tania Michelle Rubí Rojas}
+\semester{Semestre 2023-1}
+
+\begin{document}
+\maketitle
+
+\vspace{5mm}
+\noindent
+Nombre y número de cuenta: \hrulefill\
+
+\vspace*{5mm}
+Para cada uno de los siguientes ejercicios, \textbf{justifica ampliamente} tu 
+respuesta:
+
+\begin{questions}[label=\protect\circled{\bfseries\arabic*}]
+
+    % Ejercicio 01
+    \question
+    {
+        El micromundo de figuras tiene los siguientes predicados:
+        \begin{tasks}(3)
+            \task $T(x): x$ es un triángulo. 
+            \task $C(x): x$ es un cuadrado.
+            \task $S(x): x$ es un círculo.
+            \task $P(x): x$ es pequeño.
+            \task $M(x): x$ es mediano.
+            \task $G(x): x$ es grande. 
+            \task $Su(x,y): x$ está al sur de $y$.
+            \task $N(x,y): x$ está al norte de $y$.
+            \task $E(x,y): x$ está al este de $y$.
+            \task $O(x,y): x$ está al oeste de $y$.
+            \task $Co(x,y): x$ está en la misma columna que $y$.
+            \task $R(x,y): x$ está en el mismo renglón que $y$.
+        \end{tasks}
+
+        Para cada uno de los siguientes enunciados, da un 
+        micromundo no vacío donde el enunciado sea verdadero y 
+        uno donde sea falso. 
+        \begin{itemize}
+            \item $\neg \forall x (C(x) \rightarrow G(x)) \land \exists 
+            z (P(z) \land \neg \exists y (T(y) \land O(y,z)))$
+
+            \item $\forall x (S(x) \rightarrow \neg G(x)) \land 
+            \forall x (C(x) \rightarrow \exists y (Co(x,y) \land 
+            T(x) \land P(x)))$
+
+            \item $\neg (\forall x \exists y (R(x,y) \rightarrow 
+            (M(x) \lor G(y))))$
+
+            \item $\exists x (C(x) \land \forall y (N(y,x) \rightarrow 
+            P(y) \lor S(y))) \land \forall w (C(w) \rightarrow \exists 
+            y G(y) \land E(y,w))$
+        \end{itemize}
+    }    
+    
+    % Ejercicio 02
+    \question
+    {
+        Para cada una de las siguientes fórmulas:
+        \begin{itemize}
+            \item $\forall x (L(x) \rightarrow R(f(x,a), x) \land 
+            C(f(x,a), a))$
+            \item $\neg \exists x \exists y (T(x) \land T(y) \land Z(x,y)) 
+            \land \forall z (T(z) \land G(z) \rightarrow \exists w (C(w) 
+            \land P(w) \land E(w,z)))$
+            \item $C(f(x,y),z) \land \exists y C(f(y,x),z) \rightarrow 
+            \forall x (L(x) \land L(y) \land I(x,y))$
+            \item $\forall x (S(x) \land P(x) \rightarrow \forall y 
+            (T(y) \rightarrow C(x,y)))$
+        \end{itemize}
+
+        \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Indica} con diferentes colores el alcance de cada uno 
+            de los cuantificadores  
+            \item \textbf{Subraya} las variables ligadas y libres con diferentes 
+            colores. 
+            \item \textbf{Indica} cuáles fórmulas son enunciados y explica
+            por qué. 
+        \end{itemize}
+
+        \textbf{Extra:} ¿Una constante es una variable libre? 
+    }
+
+    % Ejercicio 03
+    \question
+    {
+        Considera los siguientes predicados:
+        \begin{itemize}
+            \item $A(x,y):$ el alumno $x$ ha aprobado la materia $y$. 
+            \item $R(x):$ $x$ es un alumno regular. 
+            \item $F(x)$: $x$ es un alumno feliz. 
+        \end{itemize}
+
+        y la constante $ed: $ Estructuras Discretas, cuyo universo del 
+        discurso es el conjunto de alumnos de la Facultad de Ciencias unido 
+        con el conjunto de todas las materias que se imparten en dicha facultad.
+        
+        Dado lo anterior, \textbf{determina} el valor de verdad de las 
+        siguientes fórmulas:
+        \begin{tasks}(3)
+            \task $\forall x (F(x) \rightarrow \exists y A(x,y))$
+            \task $\exists x (F(x) \land \forall y (A(x,ed) \rightarrow R(x)))$
+            \task $\forall x (A(x,ed) \rightarrow F(x))$
+            \task $\forall x \neg \forall y (A(x,y) \rightarrow R(x))$
+            \task $\exists x(R(x) \land \exists y (\neg A(x,y) \land F(x)))$
+            \task $\exists x (F(x) \land \exists y (R(y) \land A(x,y)))$
+        \end{tasks}
+    }
+
+    % Ejercicio 04
+    \question
+    {
+        \textbf{Determina} si es posible capturar el sentido del siguiente 
+        argumento usando únicamente lógica proposicional. En caso de que sea 
+        posible, da su respectiva traducción a lógica proposicional:
+        \begin{verbatim}
+        Nubecita es más alta que Cuchis. Canadá está al norte de EE.UU. Las 
+        personas que son más altas que Cuchis viven al norte de los EE.UU. 
+        Por lo tanto, Nubecita vive en Canadá. 
+        \end{verbatim}
+    }
+
+\end{questions}
+\end{document}

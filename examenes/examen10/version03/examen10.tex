@@ -1,0 +1,107 @@
+\documentclass[oneside]{style}
+
+\title{Versión 03}
+\principal{Examen 10}
+\author{Tania Michelle Rubí Rojas}
+\semester{Semestre 2023-1}
+
+\begin{document}
+\maketitle
+
+\vspace{5mm}
+\noindent
+Nombre y número de cuenta: \hrulefill\
+
+\vspace*{5mm}
+Para cada uno de los siguientes ejercicios, \textbf{justifica ampliamente} tu 
+respuesta:
+
+\begin{questions}[label=\protect\circled{\bfseries\arabic*}]
+
+    % Ejercicio 01
+    \question
+    {
+        Utiliza \textbf{Funciones de Interpretación} para determinar la 
+        correctud del siguiente argumento:
+        \begin{equation*}
+            \{p \lor q, q \rightarrow r, p \land s \rightarrow t, \neg r, 
+            \neg q \rightarrow u \land s\} \models t
+        \end{equation*} 
+
+    }  
+    
+    % Ejercicio 02
+    \question
+    {
+        \textbf{Demuestra} la siguiente equivalencia lógica usando la 
+        \textbf{regla de Leibniz}.
+        \begin{equation*}
+            p \rightarrow q \rightarrow p \equiv \neg p \rightarrow 
+            p \rightarrow q
+        \end{equation*}
+
+        \textbf{Nota:} Debes mostrar claramente quiénes son $E[z \; := \; X]$, 
+        $E[z \; := \; Y]$, además de decir quiénes son $X$ y $Y$. 
+    }
+
+    % Ejercicio 03
+    \question
+    {
+        \begin{verbatim}
+            Para que estemos en una película romántica es suficiente que el amor esté 
+            basado en pensamiento mágico. El amor es sano sólo si el amor se construye 
+            o el amor esta basado en pensamiento mágico. Afirmamos que el amor es sano.
+            Luego, el hecho de que el amor no se construya es una condición necesaria
+            para que no estemos en una película romántica. Para que el amor no sea sano 
+            o el amor se encuentre es necesario que el amor se construya o el amor esté 
+            basado en pensamiento mágico o el amor se encuentre. Por lo tanto, estamos en 
+            una película romántica y el amor se encuentra.
+        \end{verbatim}
+
+        Para el texto anterior, \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} el argumento al lenguaje de la Lógica 
+            Proposicional. \textbf{Indica} claramente cuáles son las premisas 
+            y cuál es la conclusión. 
+            
+            \item Utiliza \textbf{deducción natural} y \textbf{tu 
+            traducción del inciso anterior} para indicar si el argumento es 
+            correcto o no. 
+        \end{itemize}
+    }   
+
+    % Ejercicio 04
+    \question
+    {
+        \textit{Proposición:} Para cualesquiera dos conjuntos $A$ y $B$ se tiene 
+        que 
+        \begin{equation*}
+            A - B = A \Rightarrow A \cap B = \varnothing
+        \end{equation*}
+
+        \textsc{Demostración}: Sean $A$ y $B$ conjuntos cualesquiera. Supongamos 
+        que $A-B = A$. Queremos llegar a que $A \cap B = \varnothing$, es decir, 
+        a que $A \cap B$ no tiene elementos. Llegaremos a esto haciendo un tipo 
+        de demostración que se denomina \textit{por contradicción}. La idea es 
+        suponer que $A \cap B$ no es vacío y llegar a un absurdo, es decir, a algo que simplemente no puede ser cierto. 
+        Entonces, para llegar a una contradicción supongamos que existe 
+        $x \in A \cap B$. Como $x \in A \cap B$, tenemos que $x \in A$ y 
+        $x \in B$. Por hipótesis, $A - B = A$ y como $x \in A$, entonces 
+        $x \in A - B$. Así, $x \in A$ y $x \notin B$, pero esto contradice que 
+        $x \in A \cap B$. Por lo tanto, dicha $x$ no puede existir y $A \cap B$
+        no tiene elementos. 
+
+        Para el texto anterior, \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} el argumento al lenguaje de la Lógica 
+            Proposicional (puedes parafresear algunas frases en caso de que sea 
+            necesario). \textbf{Indica} claramente cuáles son las premisas y
+            cuál es la conclusión.
+            
+            \item Utiliza \textbf{Tableaux} y \textbf{tu traducción del inciso 
+            anterior} para indicar si el argumento es correcto o no. 
+        \end{itemize}
+    
+    }
+\end{questions}
+\end{document}

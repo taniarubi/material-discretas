@@ -1,0 +1,111 @@
+\documentclass[oneside]{style}
+
+\title{Versión 07}
+\principal{Examen 10}
+\author{Tania Michelle Rubí Rojas}
+\semester{Semestre 2023-1}
+
+\begin{document}
+\maketitle
+
+\vspace{2.5mm}
+\noindent
+Nombre y número de cuenta: \hrulefill\
+
+\vspace{5mm}
+\noindent
+\textbf{Indicaciones especiales:}
+{\small
+\begin{multicols}{2}
+\begin{itemize}
+  \item No se pueden utilizar resultados que resuelvan directamente los 
+  ejercicios. 
+
+  \item Para cada ejercicio, se debe indicar claramente cuál es la conclusión 
+  obtenida de la demostración. 
+
+  \item Para cada demostración, se debe indicar si se está utilizando 
+  el método directo o indirecto (contradicción).  
+
+  \item Se deben justificar cada uno de los pasos que se realicen. 
+  
+  \item Para el ejercicio $2$, absolutamente todo debe demostrarse mediante la 
+  regla de Leibniz. No se permiten pasos mágicos o demostraciones al lector. 
+
+  \item Para el ejercicio $3$, únicamente se pueden utilizar las reglas que 
+  se les sean dadas (entre ellas no están Modus Tollens o Silogismo 
+  Disyuntivo). En caso de que quieran utilizar alguna regla que no se les haya 
+  brindado, deberán demostrarla usando deducción natural para poder usarla. 
+  
+  \item Debe existir orden y limpieza en la resolución de cada uno de los 
+  ejercicios. 
+
+  \item La letra debe ser lo más clara posible. En caso de que sea ilegible, 
+  la calificación automática será de cero. 
+\end{itemize}
+\end{multicols}
+}
+
+\begin{questions}[label=\protect\circled{\bfseries\arabic*}]
+
+    % Ejercicio 01
+    \question
+    {
+        Utiliza \textbf{tableaux} para determinar la correctud del siguiente 
+        argumento:
+        \begin{equation*}
+            \{\neg p \lor \neg q \rightarrow r \land s, \neg s\} 
+            \models q
+        \end{equation*}
+    } 
+
+    % Ejercicio 02
+    \question
+    {
+        \textbf{Demuestra} la siguiente equivalencia lógica usando la 
+        \textbf{regla de Leibniz}.
+        \begin{equation*}
+            (\neg p \land (p \rightarrow q)) \rightarrow \neg q 
+            \equiv p \lor \neg q
+        \end{equation*}
+
+        \textbf{Nota:} Debes mostrar claramente quiénes son $E[z \; := \; X]$, 
+        $E[z \; := \; Y]$, además de decir quiénes son $X$ y $Y$. 
+    }
+
+    % Ejercicio 03
+    \question
+    {
+        Para el siguiente texto:
+        \begin{verbatim}
+            Netflix canceló la serie 1899 o la canción más escuchada de Lady 
+            Gaga en 2022 fue Bloody Mary. Netflix no canceló la serie 1899 o 
+            mi ex novio me pidió permiso para seguirme en Instagram. Por lo 
+            tanto, la canción más escuchada de Lady Gaga en 2022 fue Bloody
+            Mary o mi ex novio me pidió permiso para seguirme en Instagram. 
+        \end{verbatim}
+
+        \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} el argumento al lenguaje de la Lógica 
+            Proposicional. \textbf{Indica} claramente cuáles son las premisas 
+            y cuál es la conclusión. 
+            
+            \item Utiliza \textbf{deducción natural} y \textbf{tu 
+            traducción del inciso anterior} para indicar si el argumento es 
+            correcto o no. 
+        \end{itemize}
+    }   
+
+    % Ejercicio 04
+    \question
+    {
+        Utiliza \textbf{funciones de interpretación} para determinar la 
+        correctud del siguiente argumento:
+        \begin{equation*}
+            \{p \lor (q \land r), \neg r \lor s, s \rightarrow \neg t\} \models 
+            t \rightarrow p
+        \end{equation*}
+    } 
+\end{questions}
+\end{document}

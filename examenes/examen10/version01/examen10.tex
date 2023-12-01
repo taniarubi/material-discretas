@@ -1,0 +1,222 @@
+\documentclass[oneside]{style}
+
+\title{Versión 01}
+\principal{Examen 10}
+\author{Tania Michelle Rubí Rojas}
+\semester{Semestre 2023-1}
+
+\begin{document}
+\maketitle
+
+\vspace{5mm}
+\noindent
+Nombre y número de cuenta: \hrulefill\
+
+\vspace*{5mm}
+Para cada uno de los siguientes ejercicios, \textbf{justifica ampliamente} tu 
+respuesta:
+
+\begin{questions}[label=\protect\circled{\bfseries\arabic*}]
+
+    % Ejercicio 01
+    \question
+    {
+        \textbf{Analiza} el siguiente argumento:
+        \begin{verbatim}
+            Si Akise no es capaz de asesinar a Yukkiteru o Yuno sí es capaz 
+            de hacerlo, entonces el juego de supervivencia se está llevando a 
+            cabo en el segundo mundo. Yuno fue la ganadora del juego de 
+            supervivencia del primer mundo o ella no es capaz de asesinar a 
+            Yukkiteru. Akise no es un simple humano. Así, Akise es capaz de 
+            asesinar a Yukkiteru sólo si Akise es un simple ser humano. Luego, 
+            Yuno no fue la ganadora del juego de supervivencia del primer mundo 
+            si Akise no es capaz de asesinar a Yukkiteru y el juego de 
+            supervivencia se está llevando a cabo en el segundo mundo. Entonces 
+            el hecho de que Deus Ex Machina salvara a Minene de la explosión de 
+            una bomba es una condición necesaria para que Minene usara su 
+            muerte para intentar abrir la bóveda donde se escondía el undécimo 
+            usuario de diario. Así, Muru muru amañó el juego de supervivencia 
+            clandestinamente o la sexta usuaria de diario es la líder del culto 
+            Omekata. Como los padres del quinto usuario de diario están muertos, 
+            esto implica que la sexta usuaria de diario es la líder del culto 
+            Omekata. Entonces, Deus Ex Machina no salvó a Minene de la explosión
+            de una bomba o la sexta usuaria de diario es la líder del culto 
+            Omekata. Afirmamos que la sexta usuaria de diario es la líder del 
+            culto Omekata. Así, los hechos de que Minene no usara su muerte para 
+            intentar abrir la bóveda donde se escondía el undécimo usuario de 
+            diario y que Muru muru amañara clandestinamente el juego de 
+            supervivencia son condiciones suficientes para que Deus Ex Machina 
+            le concediera a Minene la mitad de su poder. Luego, Akise muere a 
+            manos de Yuno o los padres del quint usuario del diario están 
+            muertos. Por lo tanto, Yuno no es capaz de asesinar a Yukkiteru y 
+            Deus Ex Machina le concedió a Minene la mitad de su poder, además 
+            de que Akise muere a manos de Yuno.  
+        \end{verbatim}
+
+        Para el texto anterior, \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} el argumento al lenguaje de la Lógica 
+            Proposicional. \textbf{Indica} claramente cuáles son las premisas y
+            cuál es la conclusión. 
+            
+            \item Utiliza \textbf{Tableaux} y \textbf{tu traducción del inciso 
+            anterior} para indicar si el argumento es correcto o no. 
+        \end{itemize}
+
+    }    
+    
+    % Ejercicio 02
+    \question
+    {
+        \textbf{Demuestra} la siguiente equivalencia lógica usando la regla de 
+        Leibniz.
+        \begin{equation*}
+            \neg p \lor s \rightarrow q \land r \equiv s \lor \neg p 
+            \rightarrow \neg (q \rightarrow \neg r)
+        \end{equation*}
+
+        \textbf{Nota}: Para este ejercicio, sólo puedes usar las equivalencias 
+        \begin{equation*}
+            p\lor q \equiv q \lor p \quad \quad \quad \quad 
+            p \rightarrow q \equiv \neg p \lor q \quad \quad \quad \quad 
+            \neg (p \land q) \equiv \neg p \lor \neg q \quad \quad \quad \quad 
+            \neg (p \lor q) \equiv \neg p \land \neg q \quad \quad \quad \quad
+            \neg \neg p \equiv p 
+        \end{equation*}
+
+        \textbf{Hint:} Recuerda que es más fácil desaparecer cosas que hacerlas aparecer. 
+    }
+
+    \newpage
+    % Ejercicio 03
+    \question
+    {
+
+        Para cualesquiera dos conjuntos $A$ y $B$ se cumple que $\mathcal{P}(A 
+        \cap B) = \mathcal{P}(A) \cap \mathcal{P}(B)$.
+
+        \textit{Demostración:} Tenemos que 
+        \begin{align*}
+            \mathcal{P}(A \cap B) &\Leftrightarrow X \subseteq A \cap B \\ 
+            &\Leftrightarrow X \subseteq A \text{ y } X \subseteq B \\ 
+            &\Leftrightarrow X \in \mathcal{P}(A) \text{ y } X \in \mathcal{P}(B) \\
+            &\Leftrightarrow X \in \mathcal{P}(A) \cap \mathcal{P}(B)  
+        \end{align*}
+
+        Concluimos entonces que $\mathcal{P}(A \cap B) = \mathcal{P}(A) \cap 
+        \mathcal{P}(B)$. 
+
+        \vspace{5mm}
+
+        Para el texto anterior, \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} el argumento principal al lenguaje de la Lógica 
+            Proposicional. \textbf{Indica} claramente cuáles son las premisas y
+            cuál es la conclusión. 
+            
+            \item Utiliza \textbf{funciones de interpretación} y \textbf{tu 
+            traducción del inciso anterior} para indicar si el argumento es 
+            correcto o no. 
+        \end{itemize}
+    
+    }
+
+    % Ejercicio 04
+    \question
+    {
+        \textbf{Analiza} el siguiente argumento:
+        \begin{verbatim}
+            El hecho de que David le escribiera una canción a la chica 
+            misteriosa es una condición necesaria para que ella se enamorara 
+            de él y ella no eligiera salir con otro muchacho. Si la 
+            chica misteriosa tiene un amor platónico o David quiere una 
+            relación seria, entonces la chica misteriosa se enamoró de 
+            David. El hecho de que la chica misteriosa eligiera salir con 
+            otro muchacho es una condición suficiente para que David se 
+            pusiera triste. Además, la chica misteriosa tiene un amor platónico
+            sólo si David no está triste. Pero la chica misteriosa tiene 
+            un amor platónico. Por lo tanto, David le escribió una canción 
+            a la chica misteriosa. 
+        \end{verbatim}
+
+        Para el texto anterior, \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} el argumento al lenguaje de la Lógica 
+            Proposicional. \textbf{Indica} claramente cuáles son las premisas y
+            cuál es la conclusión. 
+            
+            \item Utiliza \textbf{deducción natural} y \textbf{tu 
+            traducción del inciso anterior} para indicar si el argumento es 
+            correcto o no. 
+        \end{itemize}
+
+    }
+
+    % Ejercicio 05
+    \question
+    {
+        \textbf{Demuestra} la correctud del argumento utilizando los hints
+        brindados en este ejercicio:
+        \begin{equation*}
+            \models ((((\neg b \lor \neg c) \rightarrow (f \land m) \land 
+            (f \rightarrow d) \land \neg d) \rightarrow b) \land \neg b) 
+            \rightarrow \neg (((\neg b \lor \neg c) \rightarrow (f \land m) \land 
+            (f \rightarrow d) \land \neg d) \rightarrow b)
+        \end{equation*}
+
+        \textbf{Hints:}
+        \begin{itemize}
+            \item Debes asumir que $\{p \rightarrow q, \neg q\} 
+            \models \neg p$ es correcto. 
+
+            \item Puedes utilizar la propiedad $\Gamma \models p \rightarrow q
+            \Leftrightarrow \Gamma \cup \{p\} \models q$
+        \end{itemize}
+    }
+
+    % Ejercicio 06
+    \question
+    {
+        \textbf{Ejercicio Opcional (Hasta 2.5 puntos extras).} 
+        
+        \textbf{Analiza} el siguiente argumento:
+        \begin{verbatim}
+            Cuchis es el mejor detective del condado y fue llamado para resolver 
+            un misterio muy misterioso relacionado con un asesinato. Después de 
+            un par de entrevistas con los sospechosos, Cuchis determinó los 
+            siguientes hechos:
+                1. Frijolito fue asesinado por un golpe en la cabeza con una 
+                guitarra. 
+                2. Juan Carlos Bodoque o Nubecita estaban en el comedor principal 
+                en el momento del asesinato. 
+                3. Si Hanna estaba en el jardín en el momento del asesinato, 
+                entonces Chucho, el dragoncito, asesinó a Frijolito con una 
+                dosis letal de amor. 
+                4. Si Juan Carlos Botoque estaba en el comedor principal en el 
+                momento del asesinato, entonces Kike asesinó a Frijolito. 
+                5. Si Hanna no estaba en el jardín en el momento del asesinato, 
+                entonces Nubecita no estaba en el comedor principal cuando 
+                se cometió el homicidio. 
+                6. Si Nubecita estaba en el comedor principal en el momento 
+                del asesinato, entonces Jessy, La Diabla, asesinó a Frijolito. 
+        \end{verbatim}
+
+        Para el texto anterior, \textbf{realiza} lo siguiente:
+        \begin{itemize} 
+            \item \textbf{Traduce} el argumento al lenguaje de la Lógica 
+            Proposicional. \textbf{Indica} claramente cuáles son las premisas y
+            cuál es la conclusión. 
+
+            \item ¿Es posible que Cuchis pueda deducir quién es el asesino de 
+            Frijolito? En caso afirmativo, \textbf{escribe} el nombre del 
+            asesino y utiliza cualquier método de demostración visto en clase y 
+            \textbf{tu traducción del inciso anterior} para determinar si tu 
+            conclusión es correcta o no. En caso contrario, explica por qué no 
+            es posible determinar quién es la persona que nos privó de la 
+            existencia de Frijolito :(
+        \end{itemize}
+
+        \textbf{Nota}: Puedes suponer que sólo hay una causa de muerte. 
+    }
+\end{questions}
+\end{document}

@@ -1,0 +1,106 @@
+\documentclass[oneside]{style}
+
+\title{Versión 06}
+\principal{Examen 10}
+\author{Tania Michelle Rubí Rojas}
+\semester{Semestre 2023-1}
+
+\begin{document}
+\maketitle
+
+\vspace{2.5mm}
+\noindent
+Nombre y número de cuenta: \hrulefill\
+
+\vspace{5mm}
+\noindent
+\textbf{Indicaciones especiales:}
+{\small
+\begin{multicols}{2}
+\begin{itemize}
+  \item No se pueden utilizar resultados que resuelvan directamente los 
+  ejercicios. 
+
+  \item Para cada ejercicio, se debe indicar claramente cuál es la conclusión 
+  obtenida de la demostración. 
+
+  \item Para cada demostración, se debe indicar si se está utilizando 
+  el método directo o indirecto.  
+
+  \item Se deben justificar cada uno de los pasos que se realicen. 
+  
+  \item Para el ejercicio $3$, absolutamente todo debe demostrarse mediante la 
+  regla de Leibniz. No se permiten pasos mágicos o demostraciones al lector. 
+
+  \item La letra debe ser lo más clara posible. En caso de que sea ilegible, 
+  la calificación automática será de cero. 
+\end{itemize}
+\end{multicols}
+}
+
+\begin{questions}[label=\protect\circled{\bfseries\arabic*}]
+
+    % Ejercicio 01
+    \question
+    {
+        Utiliza \textbf{funciones de interpretación} para determinar la 
+        correctud del siguiente argumento:
+        \begin{equation*}
+            \{\neg p \rightarrow r \land \neg s, t \rightarrow s, 
+            u \rightarrow \neg p, \neg w, u \lor w\} \models \neg t
+        \end{equation*}
+    }  
+
+    % Ejercicio 02
+    \question
+    {
+        Utiliza \textbf{tableaux} para determinar la correctud del siguiente 
+        argumento:
+        \begin{equation*}
+            \{p \rightarrow \neg q, r \lor s \rightarrow t, 
+            t \rightarrow q\} \models p \rightarrow \neg r \land \neg s
+        \end{equation*}
+    }
+
+    % Ejercicio 03
+    \question
+    {
+        \textbf{Demuestra} la siguiente equivalencia lógica usando la 
+        \textbf{regla de Leibniz}.
+        \begin{equation*}
+            \neg (p \land q) \land (p \lor \neg q) \equiv \neg q
+        \end{equation*}
+
+        \textbf{Nota:} Debes mostrar claramente quiénes son $E[z \; := \; X]$, 
+        $E[z \; := \; Y]$, además de decir quiénes son $X$ y $Y$. 
+    }
+
+    % Ejercicio 04
+    \question
+    {
+        Para el siguiente texto:
+        \begin{verbatim}
+            Para que estemos en una película romántica es suficiente que el amor esté 
+            basado en pensamiento mágico. El amor es sano sólo si el amor se construye 
+            o el amor esta basado en pensamiento mágico. Afirmamos que el amor es sano.
+            Luego, el hecho de que el amor no se construya es una condición necesaria
+            para que no estemos en una película romántica. El hecho de que el amor no 
+            sea sano o el amor se encuentre es una condición necesaria para que el amor 
+            se construya o el amor esté basado en pensamiento mágico o el amor se 
+            encuentre. Por lo tanto, estamos en una película romántica y el amor se 
+            encuentra.
+        \end{verbatim}
+
+        \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} el argumento al lenguaje de la Lógica 
+            Proposicional. \textbf{Indica} claramente cuáles son las premisas 
+            y cuál es la conclusión. 
+            
+            \item Utiliza \textbf{deducción natural} y \textbf{tu 
+            traducción del inciso anterior} para indicar si el argumento es 
+            correcto o no. 
+        \end{itemize}
+    }   
+\end{questions}
+\end{document}
