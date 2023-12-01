@@ -1,0 +1,1074 @@
+\documentclass[12pt, a4paper]{exam}
+
+% Soporte para cambiar la fecha que sale en el examen
+\usepackage{advdate}
+% Soporte para escribir en varias columnas
+\usepackage{multicol}
+% Soporte para los acentos.
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}    
+% Idioma español.
+\usepackage[spanish,mexico,es-tabla]{babel}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{verbatim} % comentarios
+% Cambiamos los márgenes del documento. 
+\usepackage[top=1.5cm,left=1.5cm,right=1.5cm]{geometry}
+
+% Pie de página
+\cfoot{Página \thepage\ de \numpages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\thechoice}{\alph{choice}}
+
+\makeatletter
+\renewenvironment{checkboxes}%
+   {\setcounter{choice}{0}\list{\checkbox@char}%
+      {%
+        \settowidth{\leftmargin}{W.\hskip\labelsep\hskip 2.5em}%
+        \def\choice{%
+          \if@correctchoice
+            \color@endgroup \endgroup
+          \fi
+          \stepcounter{choice}
+          \item[\checked@char]
+          \do@choice@pageinfo
+        } % choice
+        \def\CorrectChoice{%
+          \if@correctchoice
+            \color@endgroup \endgroup
+          \fi
+          \ifprintanswers
+            % We can't say \choice here, because that would
+            % insert an \endgroup.
+            % 2016/05/10: We say \color@begingroup in addition to
+            % \begingroup in case \CorrectChoiceEmphasis involves color
+            % and the text exactly fills the line (which would
+            % otherwise create a blank line after this choice):
+            % 2016/05/11: We leave hmode if we're in it,
+            % i.e., if there's no blank line preceding this
+            % \CorrectChoice command.  (Without this, the
+            % \special created by a \color{whatever} command that might
+            % be inserted by \CorrectChoice@Emphasis would be appended 
+            % to the previous \choice, which could cause an extra
+            % (blank) line to be inserted before this \CorrectChoice.)
+            % Since \par and \endgraf seem to cancel \@totalleftmargin
+            % (for reasons I don't understand), we'll do the following:
+            % Motivated by  the def of \leavevmode, 
+            %      \def\leavevmode{\unhbox\voidb@x}
+            % we will now leave hmode (if we're in hmode):
+            \ifhmode \unskip\unskip\unvbox\voidb@x \fi
+            \begingroup \color@begingroup \@correctchoicetrue
+            \CorrectChoice@Emphasis
+            \stepcounter{choice}
+            \item[\checked@char]
+          \else
+            \stepcounter{choice}
+            \item[\checked@char]
+          \fi
+          \do@choice@pageinfo
+        } % CorrectChoice
+        \let\correctchoice\CorrectChoice
+        \labelwidth\leftmargin\advance\labelwidth-\labelsep
+        \topsep=0pt
+        \partopsep=0pt
+        \checkboxeshook
+      }%
+   }%
+   {\if@correctchoice \color@endgroup \endgroup \fi \endlist}
+ \makeatother
+
+% Make checkbox character a circle with the letter
+\checkboxchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=4mm,draw] at (0,0) {\thechoice};}
+% Make checked box character bold WITH surd
+%\checkedchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=8mm,draw] at (0,0) {} node at (0,0) {\thechoice\llap{$\surd$}};}
+% Make checked box character bold
+\checkedchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=4mm,draw] at (0,0) {} node at (0,0) {\thechoice};}
+\printanswers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ENCABEZADO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \centering
+    \hrule \hrule \hrule 
+    \vspace{5mm}
+    \begin{minipage}[c]{0.8\textwidth}
+        \begin{center}
+            {\large\textbf{Mission 09, Start!} \par
+            \large \textbf{Estructuras Discretas} \par
+            \large \textbf{Semestre 2023-1} \par
+            \large \textbf{\today}	\par}
+        \end{center}
+    \end{minipage}
+
+    \vspace{0.2in}
+    \noindent
+    \textbf{Tania Michelle Rubí Rojas}
+    \vspace{2mm}
+    \hrule \hrule \hrule 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \vspace{5mm}
+    \noindent
+    Nombre y número de cuenta: \hrulefill\
+
+    \textbf{Notación y convenciones para el examen:}
+    {\tiny
+    \begin{multicols}{2}
+    \begin{itemize}\setlength\itemsep{0em}  
+      \item En este examen, los antónimos serán complementarios.
+
+      \item Los errores de escritura en las funciones son {\bf intencionales}, 
+      por lo que cualquier afirmación que contenga una expresión mal escrita 
+      es falsa.
+    \end{itemize}
+    \end{multicols}
+    }
+
+    \begin{questions}
+        % Question 01
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Si no ocurre que un objeto flota en el agua, 
+                entonces es menos denso que el agua.''}
+            \end{center}
+
+            es $\neg q \rightarrow p$, donde 
+            \begin{align*}
+                p &= \text{Un objeto flota en el agua} \\ 
+                q &= \text{Un objeto es menos denso que el agua} 
+            \end{align*} %Correcta
+
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Mi mamá me dio permiso de ir a una fiesta, pero debo 
+                bañar antes a mi perro llamado Hércules''}
+            \end{center}
+
+            es $p \land q$, donde 
+            \begin{align*}
+                p &: \text{Mi mamá me dio permiso de ir a una fiesta} \\ 
+                q &: \text{Debo bañar antes a mi perro llamado Hércules}
+            \end{align*}
+
+            \choice La negación de la proposición
+            \begin{center}
+                \textbf{''Si el usuario no ha introducido una contraseña 
+                válida pero ha pagado la cuota de suscripción, entonces se 
+                le concede el acceso.''}
+            \end{center}
+
+            es \texttt{''El usuario ha introducido una contraseña válida o 
+            no ha pagado la cuota de suscripción o se le concede el acceso''}.
+
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Si pudiera volver a empezar, cambiaría todo aquello 
+                que olvidé por querer sobrevivir''}
+            \end{center}
+
+            \textbf{no} es $\neg q \rightarrow \neg p$, donde 
+            \begin{align*}
+                p &= \text{Yo puedo volver a empezar} \\ 
+                q &= \text{Yo cambio todo aquello que olvidé por querer 
+                sobrevivir}
+            \end{align*}
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 02
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Para pasar el examen es necesario que los alumnos 
+                estudien, hagan la tarea y asistan a clase.''}
+            \end{center}
+
+            es $q \land r \land s \rightarrow p$, donde 
+            \begin{align*}
+                p &= \text{Los alumnos pasan el examen} \\
+                q &= \text{Los alumnos estudian} \\ 
+                r &= \text{Los alumnos hacen la tarea} \\ 
+                s &= \text{Los alumnos asisten a clase}
+            \end{align*}
+
+            \choice La formalización del argumento 
+            \begin{center}
+                \textbf{''Si mi ascenso es un éxito, entonces podré comprar un 
+                departamento. O bien, mi ascenso es un éxito o me despedirán.
+                No podré comprar un departamento. Por lo tanto, me despedirán.''}
+            \end{center}
+
+            es $\Gamma = \{p \rightarrow q, p \lor r, \neg q\} \models r$, donde 
+            \begin{align*}
+                p &= \text{Mi ascenso es un éxito} \\ 
+                q &= \text{Podré comprar un departamento} \\ 
+                r &= \text{Me despedirán}
+            \end{align*} % Correcta
+
+            \choice La formalización de la proposición:
+            \begin{center}
+                \textbf{''Si lo que siento es amor, me siento feliz. Si no 
+                lo siento, lo sentiré mañana''}
+            \end{center}
+
+            es $(p \rightarrow q) \land (\neg p \rightarrow r)$, donde 
+            \begin{align*}
+                p &= \text{Lo que siento es amor} \\
+                q &= \text{Me siento feliz} \\ 
+                r &= \text{Mañana sentiré amor}
+            \end{align*} % Correcta
+
+            \choice La formalización del argumento
+            \begin{center}
+                \textbf{''Si el amor duele o sana, entonces he aprendido. El 
+                amor duele. Pero tener amor propio es necesario para aprender.
+                Así, tengo amor propio o el amor sana. ''}
+            \end{center}
+
+            es $\Gamma = \{p \lor q \rightarrow s, p, s \rightarrow r\} 
+            \models r \lor q$, donde 
+            \begin{align*}
+                p &= \text{El amor duele} \\
+                q &= \text{El amor sana} \\ 
+                r &= \text{Tengo amor propio} \\ 
+                s &= \text{Aprendo}
+            \end{align*} % Correcta 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 03
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Si yo hubiera estado allí, si lo hubiera encontrado 
+                antes, no habría hecho alguna diferencia''}
+            \end{center}
+
+            es $p \land q \rightarrow \neg r$, donde 
+            \begin{align*}
+                p &= \text{Yo estuve allí} \\ 
+                q &= \text{Yo lo encontré antes} \\ 
+                r &= \text{Yo habría hecho alguna diferencia}
+            \end{align*} % Correcta 
+
+            \choice $s \rightarrow p \land t$ es consecuencia lógica de 
+            $p \rightarrow q \land p \land (s \lor t) \land \neg (q \lor \neg p)$
+
+            \choice $t \lor u$ es consecuencia lógica de 
+            $(p \lor q) \land (r \land s) \land (r \rightarrow p \rightarrow t) \land 
+            (s \rightarrow q \rightarrow u)$ % Correcta
+
+            \choice $((p \rightarrow q) \land (q \rightarrow p) \land q)
+            \rightarrow (\neg q \rightarrow \neg p)$ es una tautología. % Correcta 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 04
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice $\neg (p \leftrightarrow (q \rightarrow (r \lor p))) 
+            \equiv p \land q \land \neg r \land \neg p \lor (\neg p \land 
+            (\neg q \lor \neg r \lor p))$
+
+            \choice La negación de una proposición compuesta insatisfacible es 
+            una tautología. % Correcta
+
+            \choice Dos fórmulas proposicionales $p$ y $q$ son lógicamente 
+            equivalentes si y sólo si $p \leftrightarrow q$ es satisfacible. 
+
+            \choice La fórmula $p \land q \lor p \land \neg q \lor \neg p$ es 
+            una tautología. % Correcta 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 05
+        \question
+        {
+            Tania tiene cuatro computadoras $A,B,C$ y $D$ en su casa 
+            conectadas a una misma red. Ella estaba buscando la tarea de 
+            Criptografía y Seguridad en internet en sitios de dudosa procedencia.
+            La encontró, pero al momento de descargarla y abrir el documento, 
+            se da cuenta de que éste traía premio (¡un malware!). Ahora ella 
+            teme que su red haya sido infectada. Desesperada, Tania hace las 
+            siguientes afirmaciones:
+            \begin{itemize}
+                \item Si $D$ está infectada, entonces $C$ también lo está. 
+                \item Si $C$ está infectada, entonces también lo está $A$. 
+                \item Si $D$ no está infectada, entonces $B$ no está infectada 
+                pero $C$ está infectada. 
+                \item Si $A$ está infectada, entonces $B$ está infectada o 
+                $C$ no está infectada. 
+            \end{itemize}
+
+            De acuerdo a lo anterior, ¿cuál o cuáles de las siguientes 
+            expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{''A está infectada''} y \texttt{''C está infectada''}
+            no pueden ser consecuencia lógica de las cuatro premisas anteriormente 
+            mencionadas.
+
+            \choice Solo algunas computadoras de Tania están infectadas. 
+
+            \choice Todas las computadoras $A,B,C,D$ están infectadas. % Correcta
+
+            \choice \texttt{''B está infectada''} y \texttt{''D está infectada''} 
+            son consecuencia lógica de las cuatro premisas anteriormente 
+            mencionadas. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 06
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Si mi primo no regresó a casa temprano o si Sara no se 
+                llevó su comida, entonces Laura lo hizo.''}
+            \end{center}
+
+            es $\neg p \lor (\neg q \rightarrow r)$, donde 
+            \begin{align*}
+                p &= \text{Mi primo regresó a casa temprano} \\ 
+                q &= \text{Sara se llevó su comida} \\ 
+                r &= \text{Laura se llevó su comida}
+            \end{align*}
+
+            \choice El argumento 
+            \begin{center}
+                \textbf{Si el programa es eficiente, entonces se ejecuta 
+                rápidamente. O bien, el programa es eficiente o éste tiene 
+                un bug. Sin embargo, el programa no se ejecuta rápidamente. 
+                Por lo tanto, éste tiene un bug. }
+            \end{center}
+
+            es correcto. % Correcta  
+
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Si pudiera volver a empezar, cambiaría todo aquello 
+                que olvidé por querer sobrevivir''}
+            \end{center}
+
+            \textbf{no} es $\neg q \rightarrow \neg p$, donde 
+            \begin{align*}
+                p &= \text{Yo puedo volver a empezar} \\ 
+                q &= \text{Yo cambio todo aquello que olvidé por querer 
+                sobrevivir}
+            \end{align*} 
+
+            \choice La formalización de la proposición
+            \begin{center}
+              \textbf{No es cierto que Nubecita no sea mayor que Chucho, tampoco
+                que Lentejita no hable desde el corazón}
+            \end{center}
+
+            es $p \lor q$
+            \begin{align*}
+                p &= \text{Nubecita es mayor a Chucho} \\ 
+                q &= \text{Lentejita habla desde el corazón} 
+            \end{align*}
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 07
+        \question
+        {
+            Supongamos que el siguiente enunciado es verdadero:
+            \begin{center}
+                \textbf{''Si mi agüita está hirviendo, entonces su temperatura
+                debe ser de al menos 80°C''}
+            \end{center}
+
+            De acuerdo a lo anterior, ¿cuál o cuáles de los siguientes 
+            enunciados deben ser también \textbf{verdaderos}?
+        }
+
+        \begin{checkboxes}
+            \choice Si la temperatura de mi agüita es al menos de $80$°C, 
+            mi agüita está hirviendo. 
+            
+            \choice Si la temperatura de mi agüita es menor que $80$°C, 
+            entonces mi agüita no está hirviendo. % Correcta 
+
+            \choice Mi agüita hierve sólo si su temperatura es de al menos 
+            $80$°C. % Correcta
+
+            \choice Si mi agüita no está hirviendo, entonces su temperatura 
+            es inferior a $80$°C. 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        \newpage
+        % Question 08
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice La negación de la proposición
+            \begin{equation*}
+                \textbf{''Si está lloviendo, entonces no puedo ir a clase''}
+            \end{equation*}
+
+            es \texttt{''Está lloviendo y puedo ir a clase''} % Correcta
+
+            \choice La formalización de la proposición
+            \begin{align*}
+                \textbf{Si el verano era un libro, entonces yo iba a escribir 
+                algo hermoso en él}
+            \end{align*}
+
+            es $\neg q \rightarrow \neg p$, donde 
+            \begin{align*}
+                p &= \text{El verano es un libro} \\ 
+                q &= \text{Voy a escribir algo hermoso en el libro}
+            \end{align*} % Correcta
+
+            \choice $((p \lor p) \lor (q \lor q)) \land (p \land q) \equiv \lnot(p \land q)$ 
+
+            \choice $((p \lor p) \lor (q \lor q)) \land (p \land q) \equiv 
+            p \land q$ % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 09
+        \question
+        {
+            Liliana está haciendo su práctica de sistemas operativos y su 
+            programa no logra hacer lo que ella quiere. Cansada, decepcionada
+            y triste de la situación (y de la vida), decide recurrir a los 
+            aprendizajes que adquirió en el curso de Estructuras Discretas y 
+            decide escribir las siguientes afirmaciones:
+            \begin{itemize}
+                \item El procesador C está funcionando y el procesador B no 
+                está funcionando. 
+                \item El procesador A está funcionando si y sólo si el 
+                procesador B no está funcionando. 
+                \item Al menos uno de los dos procesadores A y B no está 
+                funcionando. 
+            \end{itemize} 
+
+            De acuerdo a lo anterior, ¿cuál o cuáles de las siguientes 
+            expresiones son \textbf{verdaderas}?
+
+        }
+        \begin{checkboxes}
+            \choice \texttt{''Los procesadores A y B están funcionando''} 
+            \textbf{no} es consecuencia lógica de las tres hipótesis mencionadas 
+            anteriormente. % Correcta
+
+            \choice \texttt{''Los procesadores D y B están funcionando''} es 
+            consecuencia lógica de las tres hipótesis mencionadas anteriormente.
+
+            \choice \texttt{''Los procesadores A y C están funcionando''} es 
+            consecuencia lógica de las tres hipótesis mencionadas anteriormente. % Correcta
+
+            \choice \texttt{''Los procesadores A y B están funcionando''} 
+            es consecuencia lógica de las tres hipótesis mencionadas 
+            anteriormente. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 10
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Las proposiciones
+            \begin{align*}
+                p &= \text{Mi equipo favorito ganará si le grito a la TV} \\ 
+                q &= \text{Mi equipo favorito ganará sólo si le grito a la TV} \\ 
+            \end{align*}
+
+            son lógicamente equivalentes. 
+
+            \choice $(p \lor q) \lor (p \lor r) \equiv \neg r \rightarrow 
+            (p \lor q)$ % Correcta 
+
+            \choice La negación de la proposición
+            \begin{align*}
+                \textbf{''Si no te arrepientes tu alma se condenará''}
+            \end{align*}
+
+            es ''Te arrepientes y tu alma se condenará''. 
+
+            \choice Si $\phi \equiv \varphi$ y unimos ambas fórmulas mediante un 
+            conectivo condicional, entonces la fórmula resultante es una 
+            contingencia. 
+
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+        
+        % Question 11
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice El argumento 
+            \begin{equation*}
+                p \rightarrow q, p \lor r, \neg (r \land s) / \therefore
+                (p \rightarrow q) \rightarrow q \lor \neg s
+            \end{equation*}
+
+            es correcto, y esto es gracias a la siguiente justificación: Para 
+            que una interpretación $\mathcal{I}$ haga falsa a la conclusión, 
+            debe cumplir con que $\mathcal{I}(p) = \mathcal{I}(q) = 0$ e 
+            $\mathcal{I}(s) = 1$. Entonces, para que $\mathcal{I}$ haga 
+            verdadera a $p \lor r$, se necesita que $\mathcal{I}(r) = 1$. Pero 
+            entonces $\neg (r \land s)$ evalúa a falso. Así, toda interpretación
+            que haga falsa a la conclusión debe de hacer falsa a almenos una 
+            de las premisas. % Correcta
+
+            \choice El argumento 
+            \begin{equation*}
+                p \lor q, \neg (p \land r), \neg q / \therefore 
+                r \rightarrow s
+            \end{equation*}
+
+            es incorrecto, y esto es gracias a la siguiente justificación: 
+            Cualquier interpretación $\mathcal{I}$ que haga falsa a la 
+            conclusión debe de cumplir que $\mathcal{I}(r) = 1$ e 
+            $\mathcal{I}(s) = 0$. En este caso, para que $\neg (p \land r)$
+            evalúe a verdadero, se necesita que $\mathcal{I}(p) = 0$.
+            Además, para que $p \lor q$ evalúe a verdadero, tiene que suceder 
+            que $\mathcal{I}(q) = 1$. Sin embargo, esto último implica que 
+            $\neg q$ evalúa a falso, y por lo tanto, este argumento es 
+            incorrecto.
+
+            \choice El enunciado 
+            \begin{center}
+                \textbf{''Dormir a las 10:30 es una condición necesaria para 
+                que yo pueda levantarme temprano''}
+            \end{center}
+
+            es lógicamente equivalente al enunciado
+            \begin{center}
+                \textbf{''Si me duermo a las 10:30 entonces yo podré 
+                levantarme temprano''}
+            \end{center}
+
+            \choice El conjunto 
+            \begin{equation*}
+                \Gamma = \{p \lor q \lor r, \neg (r \lor \neg s), 
+                s \leftrightarrow t, p \rightarrow \neg t, q \rightarrow
+                p \lor \neg t\}
+            \end{equation*}
+
+            es insatisfacible, y esto es gracias a la siguiente justificación: 
+            Supongamos que existe una interpretación $\mathcal{I}$ que 
+            satisface a $\Gamma$. Entonces se tiene que $\mathcal{I}(\neg (r 
+            \lor \neg s)) = 1$, por lo que $\mathcal{I}(r) = 0$ e 
+            $\mathcal{I}(s) = 1$. Así, $\mathcal{I}(t) = 1$ por 
+            $\mathcal{I}(s \leftrightarrow t) = 1$. Además, $\mathcal{I}(p)
+            = 0$ por $\mathcal{I}(p \rightarrow \neg t) = 1$. Luego, 
+            $\mathcal{I}(q) = 0$ por $\mathcal{I}(q \rightarrow p \lor \neg t)
+            = 1$. Pero con estos valores, $\mathcal{I}(p \lor q \lor r) = 0$. 
+            Por lo tanto, nuestro conjunto no es satisfacible. % Correcta 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 12
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice La negación del enunciado
+            \begin{center}
+                \textbf{''Las flores florecerán sólo si llueve''}
+            \end{center}
+
+            es \texttt{''Las flores florecen y no llueve''} % Correcta
+
+            \choice Si la negación de una fórmula $\varphi$ es una tautología, entonces
+            $\varphi$ tiene que ser lógicamente equivalente con $p \land \neg p$. 
+            % Correcta
+
+            \choice La contrapositiva del enunciado
+            \begin{center}
+                \textbf{''La impresora está lenta solo si el archivo está 
+                dañado''}
+            \end{center}
+
+            es \texttt{''Si la impresora está lenta, entonces el archivo 
+            está dañado'}
+
+            \choice La negación del enunciado
+            \begin{center}
+                \textbf{''Si aún te amo, volveré a extrañarte''}
+            \end{center}
+
+            es \texttt{''Si no vuelvo a extrañarte, entonces ya no te amo''} 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 13
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Nubecita le pregunta al profesor Odín si aprobó el examen 
+            y el profesor le responde:
+            \begin{center}
+                \textbf{''Tanto Iván como Silvia son buenos o Carlos es bueno.
+                Iván es malo o Silvia no es buena. Carlos es malo o Nubecita 
+                aprobó el examen.''}
+            \end{center} 
+
+            Después de pensarlo por unos instantes, Nubecita deduce que 
+            efectivamente aprobó el examen y este razonamiento es correcto. 
+            % Correcta 
+
+            \choice El argumento 
+            \begin{equation*}
+                p \rightarrow q, r \lor s, \neg s \rightarrow \neg t, \neg q 
+                \lor s, \neg s, \neg p \land r \rightarrow u, w \lor t / \therefore
+                u \land w
+            \end{equation*}
+
+            es correcto, y esto es gracias a la siguiente justificación (usando el método de refutación): 
+            De las premisas abemos que $\mathcal{I}(\neg s) 
+            = 1$, lo que implica que $\mathcal{I}(r) = \mathcal{I}(\neg q) 
+            = 1$ por $\mathcal{I}(r \lor s) = 1$ y $\mathcal{I}(\neg q \lor 
+            s) = 1$, respectivamente. Así, $\mathcal{I}(p) = 0$ por 
+            $\mathcal{I}(p \rightarrow q) = 1$ y esto obliga a que 
+            $\mathcal{I}(u) = 1$ por $\mathcal{I}(\neg p \land r \rightarrow
+            u) = 1$. Luego, $\mathcal{I}(\neg t) = 1$ por $\mathcal{I}(\neg s 
+            \rightarrow \neg t) = 1$, lo que hace que $\mathcal{I}(w) = 1$, 
+            por $\mathcal{I}(w \lor t)$; pero esto obliga a que 
+            $(\neg u \lor \neg w) = 0$, lo cual es una contradicción. Por 
+            lo tanto, el argumento es correcto. % Correcta 
+
+            \choice El argumento 
+            \begin{equation*}
+                \neg p \rightarrow r \land \neg s, t \rightarrow s, 
+                u \rightarrow \neg p, \neg w, u \lor w / \therefore
+                \neg t
+            \end{equation*}
+
+            es correcto, y esto es gracias a la siguiente justificación:
+            Cualquier interpretación $\mathcal{I}$ que haga falsa a la 
+            conclusión debe de cumplir que $\mathcal{I}(t) = 1$. En este
+            caso, para que $u \lor w$ evalúe a verdadero se necesita que 
+            $\mathcal{I}(u) = 1$, pues $\mathcal{I}(\neg w) = 1$. Luego, 
+            $\mathcal{I}(s) = \mathcal{I}(\neg p) = 1$ pues 
+            $\mathcal{I}(t \rightarrow s) = 1$ y $\mathcal{I}(u \rightarrow
+            \neg p) = 1$. Esto implica que $\mathcal{I}(s) = 0$, por 
+            $\mathcal{I}(\neg p \rightarrow r \land \neg s) = 1$, exhibiendo una
+            contradicción. Así, toda interpretación que haga falsa a la
+            conclusión debe de hacer 
+            falsa a almenos una de las premisas. % Correcta 
+
+            \choice Si $\phi \equiv \varphi$, entonces $\neg (\phi \leftrightarrow 
+            \varphi)$ tiene por lo menos un modelo que la satisface. 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        \newpage
+        % Question 14
+        \question
+        {
+            Supongamos que el siguiente enunciado es verdadero:
+            \begin{center}
+                \textbf{''Si mi agüita está hirviendo, entonces su temperatura
+                debe ser de al menos 80°C''}
+            \end{center}
+
+            De acuerdo a lo anterior, ¿cuál o cuáles de los siguientes 
+            enunciados deben ser también \textbf{verdaderos}?
+        }
+
+        \begin{checkboxes}
+            \choice Una condición necesaria para que mi agüita hierva es que 
+            su temperatura sea por lo menos de $80$°C. % Correcta
+            
+            \choice Una condición suficiente para que mi agüita hierva es que 
+            su temperatura sea por lo menos de $80$°C. 
+            
+            \choice La negación del enunciado es 
+            \begin{center}
+                ''Mi agüita no está hierviendo porque su temperatura no es 
+                de $80$°C''
+            \end{center}
+
+            \choice La negación de la contrapositiva del enunciado es 
+            \begin{center}
+                ''Mi agüita está hirviendo y su temperatura es menor que 
+                $80$°C''
+            \end{center} % Correcta 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 15
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice El enunciado 
+            \begin{center}
+                \textbf{''Ser divisible entre tres es una condición 
+                necesaria para que un número sea divisible entre nueve''}
+            \end{center}
+
+            es lógicamente equivalente al enunciado 
+            \begin{center}
+                \textbf{''Si un número es divisible entre nueve, entonces 
+                también es divisible entre tres.''}
+            \end{center} % Correcta 
+
+            \choice El enunciado 
+            \begin{center}
+                \textbf{''No estudiar con regularidad es una 
+                condición suficiente para que Nubecita no apruebe el curso''}
+            \end{center}
+
+            es lógicamente equivalente al enunciado 
+            \begin{center}
+                \textbf{''Si Nubecita aprueba el curso, entonces estudió 
+                con regularidad''}
+            \end{center} % Correcta 
+
+            \choice El enunciado 
+            \begin{center}
+                \textbf{''Una condición suficiente para que Laura tome el 
+                curso de Análisis de Algoritmos es que apruebe el curso 
+                de Estructuras Discretas''}
+            \end{center}
+
+            es lógicamente equivalente al enunciado 
+            \begin{center}
+                \textbf{''Si Laura no aprueba el curso de estructuras 
+                discretas, entonces no puede tomar el curso de Análisis de 
+                Algoritmos''}
+            \end{center}
+
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Si hoy es lunes o no está lloviendo ni hace calor y 
+                no es lunes, entonces hoy es lunes o no hace calor ni está 
+                lloviendo''}
+            \end{center}
+
+            es $(p \lor (\neg p \land \neg (q \lor r))) \rightarrow (p \lor 
+            \neg (r \lor q))$, donde 
+            \begin{align*}
+                p &= \text{Hoy es lunes} \\ 
+                q &= \text{Está lloviendo} \\ 
+                r &= \text{Hace calor}
+            \end{align*} % Correcta
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+    \end{questions}
+\end{document}
+
+\begin{comment}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \question
+    {
+        Tenemos el siguiente argumento:
+        \begin{center}
+            \textbf{''Si hoy me siento sola y Pedro me terminó, entonces 
+            Pedro es un imbécil; y si hoy no me siento sola entonces 
+            me quiero mucho. Más aún, sabemos que no me quiero mucho 
+            y que Pedro me terminó; luego entonces Pedro es un 
+            imbécil.''}
+        \end{center}
+
+        y las siguientes proposiciones:
+        \begin{align*}
+            p &= \text{Hoy me siento sola} \\ 
+            q &= \text{Pedro me terminó} \\ 
+            r &= \text{Pedro es un imbécil} \\ 
+            s &= \text{Me quiero mucho}
+        \end{align*}
+
+        De acuerdo a lo anterior, ¿cuál o cuáles de las siguientes 
+        expresiones son \textbf{verdaderas}?
+    }
+    \begin{checkboxes}
+        \choice La formalización del argumento es $\Gamma = \{(p \land q 
+        \rightarrow r) \land (\neg p \rightarrow s), \neg s \land q, r\}$. 
+        Y como no tenemos una conclusión explícita, entonces no es posible 
+        determinar si el argumento es correcto o falso. 
+
+        \choice La formalización del argumento es $\Gamma = \{p \land q 
+        \rightarrow r, \neg p \rightarrow s, \neg s \land q\} \models r$.
+        Usando el método de refutación, mostraremos que el argumento es 
+        incorrecto. Como $\mathcal{I}(\neg s \land q) = 1$, entonces 
+        $\mathcal{I}(s) = 0$ y $\mathcal{I}(q) = 1$. Así, $\mathcal{I}(p) 
+        = 1$ ya que $\mathcal{I}(\neg p \rightarrow s) = 1$. Esto implica 
+        que $\mathcal{I}(p \land q) = 1$ y $\mathcal{I}(r) = 0$, por 
+        $\mathcal{I}(p \land q \rightarrow r) = 1$. Y como no hemos 
+        logrado encontrar una contradicción (pues llegamos a que el 
+        valor de verdad de $r$ es efectivamente falso), entonces el 
+        argumento es incorrecto. 
+
+        \choice La formalización del argumento es $\Gamma = \{p \land q 
+        \rightarrow r, \neg p \rightarrow s, \neg s \land q\} \models r$. 
+        Usando el método de refutación, mostraremos que el argumento es 
+        correcto. Como $\mathcal{I}(\neg s \land q) = 1$, entonces 
+        $\mathcal{I}(s) = 0$ y $\mathcal{I}(q) = 1$. Así, $\mathcal{I}(p) 
+        = 1$ ya que $\mathcal{I}(\neg p \rightarrow s) = 1$. Luego, 
+        $\mathcal{I}(p \land q \rightarrow r) = 1$ y como $\mathcal{I}(r)
+        = 0$, entonces $p \land q$ debería de evaluar a falso, pero 
+        sabemos que $\mathcal{I}(p) = \mathcal{I}(q) = 1$, lo cual nos 
+        genera una contradicción. Por lo tanto, el argumento es 
+        correcto. % Correcta 
+
+        \choice La formalización del argumento es $\Gamma = \{(p \land q 
+        \rightarrow r) \land (\neg p \rightarrow s), \neg s \land q\} 
+        \models r$. Usando el método de refutación, mostraremos que el
+        argumento es incorrecto. Como $\mathcal{I}((p \land q 
+        \rightarrow r) \land (\neg p \rightarrow s)) = 1$, entonces 
+        $\mathcal{I}(p \land q \rightarrow r) = \mathcal{I}(\neg p 
+        \rightarrow s) = 1$. Como $\mathcal{I}(r) = 0$, entonces 
+        $\mathcal{I}(p) = \mathcal{I}(q) = 0$ ya que $\mathcal{I}(p 
+        \land q \rightarrow r) = 1$. Luego $\mathcal{I}(s) = 1$ por 
+        $\mathcal{I}(\neg p \rightarrow s) = 1$ y aún así se sigue 
+        cumpliendo que $\mathcal{I}(\neg s \land q) = 1$. Por lo 
+        tanto, como no hemos podido encontrar alguna contradicción, 
+        entonces el argumento es incorrecto.  
+        
+        \choice Ninguna de las anteriores. 
+    \end{checkboxes}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \question{¿Cuál o cuáles de las siguientes expresiones son 
+    \textbf{verdaderas}?}
+    \begin{checkboxes}
+        \choice El conjunto
+        \begin{equation*}
+            \Gamma = \{p \rightarrow q, p \lor r \land s, q \rightarrow t\}
+        \end{equation*}
+
+        es satisfacible. El modelo $\mathcal{I}(p) = \mathcal{I}(q) = 
+        \mathcal{I}(r) = \mathcal{I}(s) = \mathcal{I}(t) = 1$ % Correcta
+
+        \choice La fórmula $(p \lor q) \land \neg p \land \neg q$ es una 
+        contradicción. % Correcta
+
+        \choice La fórmula
+        \begin{equation*}
+            \neg p \lor q \rightarrow (p \land r \leftrightarrow s \land t 
+            \rightarrow u \lor p)
+        \end{equation*} 
+        
+        es satisfacible. El modelo $\mathcal{I}$ tal que $\mathcal{I}(p) = 1, 
+        \mathcal{I}(q) = \mathcal{I}(r) = \mathcal{I}(s) = \mathcal{I}(t)
+        = \mathcal{I}(u) = 0$ hace que la expresión evalúe a verdadero. 
+        % Correcta
+
+        \choice 
+        
+        \choice Ninguna de las anteriores. 
+    \end{checkboxes}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \question{¿Cuál o cuáles de las siguientes expresiones son 
+    \textbf{verdaderas}?}
+    \begin{checkboxes}
+        \choice $((p \land q) \lor (q \lor r)) \equiv (((p \land q) \lor q)
+        \lor r)$ % Correcta
+
+        \choice La fórmula $\neg p \lor q \rightarrow q$ es una 
+        tautología.
+
+        \choice Dos fórmulas proposicionales $p$ y $q$ son lógicamente 
+        equivalentes si y sólo si $p \leftrightarrow q$ es satisfacible. 
+
+        \choice El valor de verdad de una proposición compuesta depende 
+        del valor de verdad de cada una de las proposiciones atómicas 
+        que la componen. % Correcta
+        
+        \choice Ninguna de las anteriores. 
+    \end{checkboxes}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \question{¿Cuál o cuáles de las siguientes expresiones son 
+    \textbf{verdaderas}?}
+    \begin{checkboxes}
+        \choice Existe una fórmula proposicional que incluye las variables 
+        proposicionales $p,q$ y $r$ que cumpla con la siguiente condición:
+        \begin{center}
+            <<La fórmula debe ser satisfacible cuando únicamente una de 
+            $p,q$ y $r$ es verdadera. En caso contrario, la proposición
+            no es satisfacible.>>
+        \end{center} % Correcta
+
+        \choice Existe una fórmula proposicional que incluye las variables 
+        proposicionales $p,q$ y $r$ que cumpla con la siguiente condición:
+        \begin{center}
+            <<La fórmula debe ser satisfacible cuando $p,q$ y $r$ sean 
+            falsas. En caso contrario, la proposición no es satisfacible.>>
+        \end{center} % Correcta 
+
+        \choice La fórmula $p \lor \neg p$ es una tautología. % Correcta
+
+        \choice $p \rightarrow q \lor r \equiv p \land \neg q 
+        \rightarrow r$ % Correcta 
+        
+        \choice Ninguna de las anteriores. 
+    \end{checkboxes}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \question{¿Cuál o cuáles de las siguientes expresiones son 
+    \textbf{verdaderas}?}
+    \begin{checkboxes}
+        \choice La fórmula $p \lor \neg r \rightarrow p \land q \lor r$
+        es una contingencia. % Correcta
+
+        \choice La fórmula $(p \lor q) \land \neg p \land \neg q$ es una 
+        contradicción. % Correcta
+
+        \choice La fórmula $p \rightarrow q \leftrightarrow \neg p 
+        \lor q$ es una tautología. % Correcta
+
+        \choice La fórmula $p \lor q \lor \neg p$ es una contradicción. 
+
+        \choice Existe una fórmula proposicional que incluye las variables 
+        proposicionales $p,q$ y $r$ que cumpla con la siguiente condición:
+        \begin{center}
+            <<La fórmula debe ser satisfacible cuando exactamente dos de 
+            $p,q$ y $r$ sean verdaderas.>>
+        \end{center} % Correcta 
+
+        \choice Existe una fórmula proposicional que incluye las variables 
+        proposicionales $p,q$ y $r$ que cumpla con la siguiente condición:
+        \begin{center}
+            <<La fórmula debe ser satisfacible cuando $p$ y $q$ sean 
+            verdaderas y $r$ falsa.>>
+        \end{center} % Correcta 
+        
+        \choice Ninguna de las anteriores. 
+    \end{checkboxes}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \question{¿Cuál o cuáles de las siguientes expresiones son 
+    \textbf{verdaderas}?}
+    \begin{checkboxes}
+        \choice La fórmula $p \leftrightarrow \neg p$ es una 
+        contradicción. % Correcta 
+
+        \choice $p \lor q \equiv \neg (\neg p \lor \neg q)$
+
+        \choice La fórmula $p \land q \lor p \land \neg q \lor \neg p$ es 
+        una tautología. % Correcta 
+        
+        \choice Ninguna de las anteriores. 
+    \end{checkboxes}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \question{¿Cuál o cuáles de las siguientes expresiones son 
+    \textbf{verdaderas}?}
+    \begin{checkboxes}
+        \choice Una fórmula proposicional $\varphi$ tiene $2^n$ valores 
+        de verdad, donde $n$ es el número de variables proposicionales 
+        que contenga $\varphi$. % Correcta  
+
+        \choice $(p \rightarrow q) \rightarrow (r \rightarrow s) \equiv 
+        (p \rightarrow r) \rightarrow (q \rightarrow s)$
+
+        \choice $p \land q \rightarrow r \equiv (p \rightarrow r) \land 
+        (q \rightarrow r)$
+
+        \choice La negación de una proposición compuesta que es una 
+        tautología es insatisfacible. % Correcta 
+        
+        \choice Ninguna de las anteriores. 
+    \end{checkboxes}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \question{¿Cuál o cuáles de las siguientes expresiones son 
+    \textbf{verdaderas}?}
+    \begin{checkboxes}
+        \choice $\neg (p \leftrightarrow q) \equiv \neg p \leftrightarrow q$
+        % Correcta 
+
+        \choice $p \land (q \lor r) \equiv \neg (p \land q) \rightarrow 
+        (p \land r)$
+
+        \choice La fórmula $(p \lor q) \land \neg p \rightarrow q$ es 
+        una contradicción. 
+
+        \choice La fórmula $((p \lor q) \land (p \rightarrow r) \land 
+        (q \rightarrow r)) \rightarrow r$ es una tautología. % Correcta 
+        
+        \choice Ninguna de las anteriores. 
+    \end{checkboxes}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \question
+    {
+        Pablo está preocupado porque perdió el dinero que su mamá le había 
+        dado para comprar las tortillas. Él se puso a pensar en el recorrido 
+        de su casa a la tortillería, y llegó a las siguientes conclusiones 
+        que son verdaderas:
+        \begin{itemize}
+            \item[i.] Si yo estaba a un lado de la casa de mi vecina Adela, 
+            entonces el dinero no está cerca de la tortillería. 
+
+            \item[ii.] Si la fila de la tortillería era muy larga, entonces 
+            el dinero está cerca de la tortillería.
+
+            \item[iii.] Yo estaba a un lado de la casa de mi vecina Adela.
+
+            \item[iv.] La fila de la tortillería era muy larga o el dinero 
+            está cerca de mi casa. 
+
+            \item[v.] Si en la fila de la tortillería estaba mi primo, 
+            entonces el dinero está a un lado del árbol que está afuera 
+            de mi casa. 
+        \end{itemize}
+
+        La formalización de estas proposiciones en forma de un conjunto de 
+        premisas es
+        \begin{equation*}
+            \Gamma = \{p \rightarrow \neg q, r \rightarrow q, p, r \lor s, 
+            t \rightarrow u\}
+        \end{equation*}
+
+        donde 
+        \begin{align*}
+            p &: \text{Yo estaba a un lado de la casa de mi vecina Adela} \\
+            q &: \text{El dinero está cerca de la tortillería}\\ 
+            r &: \text{La fila de la tortillería era muy larga} \\
+            s &: \text{El dinero está cerca de mi casa} \\ 
+            t &: \text{En la fila de la tortillería estaba mi primo} \\ 
+            u &: \text{El dinero está a un lado del árbol que está afuera 
+            de mi casa}
+        \end{align*}
+
+        De acuerdo a lo anterior, ¿cuál o cuáles de las siguientes 
+        afirmaciones es \textbf{verdadera}?
+    }
+    \begin{checkboxes}
+        \choice El dinero está cerca de la tortillería. 
+
+        \choice El dinero está cerca de la casa de Pablo. % Correcta
+
+        \choice El dinero no está cerca de la tortillería. % Correcta
+
+        \choice El dinero está a un lado del árbol que está afuera de la 
+        casa de Pablo. 
+        
+        \choice Ninguna de las anteriores.
+    \end{checkboxes}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \end{comment}
