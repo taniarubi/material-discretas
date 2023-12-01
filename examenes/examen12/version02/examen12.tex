@@ -1,0 +1,744 @@
+\documentclass[12pt, a4paper]{exam}
+
+% Soporte para cambiar la fecha que sale en el examen
+\usepackage{advdate}
+% Soporte para escribir en varias columnas
+\usepackage{multicol}
+% Soporte para los acentos.
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}    
+% Idioma español.
+\usepackage[spanish,mexico,es-tabla]{babel}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{verbatim} % comentarios
+\usepackage{tasks}
+% Cambiamos los márgenes del documento. 
+\usepackage[top=1.5cm,left=1.5cm,right=1.5cm]{geometry}
+
+% Pie de página
+\cfoot{Página \thepage\ de \numpages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\thechoice}{\alph{choice}}
+
+\makeatletter
+\renewenvironment{checkboxes}%
+   {\setcounter{choice}{0}\list{\checkbox@char}%
+      {%
+        \settowidth{\leftmargin}{W.\hskip\labelsep\hskip 2.5em}%
+        \def\choice{%
+          \if@correctchoice
+            \color@endgroup \endgroup
+          \fi
+          \stepcounter{choice}
+          \item[\checked@char]
+          \do@choice@pageinfo
+        } % choice
+        \def\CorrectChoice{%
+          \if@correctchoice
+            \color@endgroup \endgroup
+          \fi
+          \ifprintanswers
+            % We can't say \choice here, because that would
+            % insert an \endgroup.
+            % 2016/05/10: We say \color@begingroup in addition to
+            % \begingroup in case \CorrectChoiceEmphasis involves color
+            % and the text exactly fills the line (which would
+            % otherwise create a blank line after this choice):
+            % 2016/05/11: We leave hmode if we're in it,
+            % i.e., if there's no blank line preceding this
+            % \CorrectChoice command.  (Without this, the
+            % \special created by a \color{whatever} command that might
+            % be inserted by \CorrectChoice@Emphasis would be appended 
+            % to the previous \choice, which could cause an extra
+            % (blank) line to be inserted before this \CorrectChoice.)
+            % Since \par and \endgraf seem to cancel \@totalleftmargin
+            % (for reasons I don't understand), we'll do the following:
+            % Motivated by  the def of \leavevmode, 
+            %      \def\leavevmode{\unhbox\voidb@x}
+            % we will now leave hmode (if we're in hmode):
+            \ifhmode \unskip\unskip\unvbox\voidb@x \fi
+            \begingroup \color@begingroup \@correctchoicetrue
+            \CorrectChoice@Emphasis
+            \stepcounter{choice}
+            \item[\checked@char]
+          \else
+            \stepcounter{choice}
+            \item[\checked@char]
+          \fi
+          \do@choice@pageinfo
+        } % CorrectChoice
+        \let\correctchoice\CorrectChoice
+        \labelwidth\leftmargin\advance\labelwidth-\labelsep
+        \topsep=0pt
+        \partopsep=0pt
+        \checkboxeshook
+      }%
+   }%
+   {\if@correctchoice \color@endgroup \endgroup \fi \endlist}
+ \makeatother
+
+% Make checkbox character a circle with the letter
+\checkboxchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=4mm,draw] at (0,0) {\thechoice};}
+% Make checked box character bold WITH surd
+%\checkedchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=8mm,draw] at (0,0) {} node at (0,0) {\thechoice\llap{$\surd$}};}
+% Make checked box character bold
+\checkedchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=4mm,draw] at (0,0) {} node at (0,0) {\thechoice};}
+\printanswers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ENCABEZADO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \centering
+    \hrule \hrule \hrule 
+    \vspace{5mm}
+    \begin{minipage}[c]{0.8\textwidth}
+        \begin{center}
+            {\large\textbf{Mission 12, Start!} \par
+            \large \textbf{Estructuras Discretas} \par
+            \large \textbf{Semestre 2023-1} \par
+            \large \textbf{\today}	\par}
+        \end{center}
+    \end{minipage}
+
+    \vspace{0.2in}
+    \noindent
+    \textbf{Tania Michelle Rubí Rojas}
+    \vspace{2mm}
+    \hrule \hrule \hrule 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \vspace{5mm}
+    \noindent
+    Nombre y número de cuenta: \hrulefill\
+
+    \begin{questions}
+        % Question 01
+        \question
+        {
+            Sea el conjunto de todas las personas nuestro universo del discurso.
+            Si tenemos los siguientes predicados:
+            \begin{tasks}(2)
+                \task $H(x,y): x$ es hermana de $y$
+                \task $A(x,y): x$ es amigo de $y$
+                \task $C(x,y): x$ conoce a $y$
+            \end{tasks}
+
+            ¿Cuál o cuáles son las representaciones correctas para la siguiente 
+            oración?
+            \begin{center}
+                Mariana es hermana de Carlos, pero no conoce a todos los 
+                amigos de él.
+            \end{center}
+        }
+        \begin{checkboxes}
+            \choice $H(\texttt{Mariana},\texttt{Carlos}) \land \exists x 
+            (A(x,\texttt{Carlos}) \land C(\texttt{Mariana},x))$
+            
+            \choice $H(\texttt{Mariana},\texttt{Carlos}) \land \neg \forall x 
+            (A(x,\texttt{Carlos}) \rightarrow C(\texttt{Mariana},x))$ 
+            % Correcta 
+
+            \choice $H(\texttt{Mariana}, \texttt{Carlos}) \rightarrow \neg 
+            \forall x (A(x,\texttt{Carlos}) \rightarrow C(\texttt{Mariana},x))$
+
+            \choice $\exists x (H(\texttt{Mariana},\texttt{Carlos}) \land 
+            (A(\texttt{Carlos},x) \land C(\texttt{Mariana},x)))$
+             
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 02
+        \question
+        {
+            Sea el conjunto de todas las personas nuestro universo del discurso.
+            Si tenemos el siguiente predicado: 
+            \begin{equation*}
+                T(x,y): x \text{ puede tomarle el pelo a } y 
+            \end{equation*}
+
+            De acuerdo a esto, ¿cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice La traducción del enunciado 
+            \begin{equation*}
+                \forall x T(x, \texttt{Juan})
+            \end{equation*}
+
+            es \textit{¨Todo el mundo puede tomarle el pelo a Juan¨} % Correcta 
+
+            \choice La traducción del enunciado 
+            \begin{equation*}
+                \forall x \exists y T(x,y)
+            \end{equation*}
+
+            es \textit{¨Cualquiera puede tomarle el pelo a alguien¨} % Correcta 
+
+            \choice La traducción del enunciado 
+            \begin{equation*}
+                \forall x \exists y \exists z (T(x,y) \land T(x,z) \rightarrow y = z)
+            \end{equation*}
+
+            es \textit{¨Hay exactamente una persona a quien cualquiera puede 
+            tomarle el pelo¨}. % Correcta
+
+            \choice La traducción del enunciado 
+            \begin{equation*}
+                \exists x \exists y (T(x,y) \land x \neq y)
+            \end{equation*}
+
+            es \textit{¨Hay alguien que puede tomarle el pelo a exactamente una 
+            persona distinta de sí mismo¨}.
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        \newpage
+        % Question 03
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice $\neg (\forall x \exists y P(x,y)) \equiv 
+            \exists x \forall y \neg P(y,x)$
+
+            \choice $\forall x (P(x) \rightarrow A(x)) \equiv 
+            \exists x P(x) \rightarrow A(x)$
+
+            \choice $\neg \exists x (\neg P(x)) \land \forall y 
+            (Q(y) \rightarrow R(y)) \equiv \forall x (P(x)) \lor 
+            \exists y (Q(y) \land \neg R(y))$
+
+            \choice $\exists x (P(x) \land A(x)) \equiv 
+            \forall x P(x) \land A(x)$
+
+            \choice Ninguna de las anteriores. % Correcta 
+        \end{checkboxes}
+
+        % Question 04
+        \question
+        {
+            Sea el conjunto de todos los perritos y todos los carteros nuestro 
+            universo del discurso. Si tenemos los siguientes predicados:
+            \begin{tasks}(2)
+                \task $P(x): x$ es un perro 
+                \task $C(x): x$ es un cartero 
+                \task $M(x,y): x$ es mordido por $y$
+            \end{tasks}
+
+            De acuerdo a esto, ¿cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice La traducción del enunciado
+            \begin{equation*}
+                \forall x (P(x) \rightarrow \forall y (C(y) \land M(y,x)))
+            \end{equation*}
+
+            es \textit{¨Los perros muerden a los carteros¨}. 
+
+            \choice La traducción del enunciado 
+            \begin{equation*}
+                \exists x (P(x) \land \exists y (C(y) \land \neg M(y,x)))
+            \end{equation*}
+
+            es \textit{¨Existe un perro que no muerde carteros¨}
+
+            \choice La traducción del enunciado 
+            \begin{equation*}
+                \exists x (P(x) \land C(x) \land  M(x,x) )
+            \end{equation*}
+
+            es \textit{¨Hay un perro que es cartero y se muerde a sí mismo¨}. 
+            % Correcta 
+
+            \choice La traducción del enunciado 
+            \begin{equation*}
+                \exists x (C(x) \land \forall y (P(y) \rightarrow \neg M(x, y)))
+            \end{equation*}
+
+            es \textit{¨Hay un cartero que no es mordido por perros¨}. % Correcta 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 05
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice $\forall x \forall y P(x,y) \equiv \forall y 
+            \forall x P(x,y)$ % Correcta 
+
+            \choice $\forall x P(x) \equiv \forall y (P(y))$ % Correcta
+
+            \choice $\exists x Q(x) \equiv \neg \forall x \neg Q(x)$ % Correcta
+
+            \choice $\exists x (P(x) \lor Q(x)) \equiv \exists x (P(x)) 
+            \lor \exists xQ(x)$ % Correcta 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        \newpage
+        % Question 06
+        \question
+        {
+            Sea el conjunto de todos los países que tienen un equipo de futbol 
+            nuestro universo del discurso. Si tenemos el siguiente predicado:
+            \begin{equation*}
+                G(x,y): x \text{ le gana a } y 
+            \end{equation*}
+
+            ¿Cuál o cuáles son las representaciones correctas para la siguiente 
+            oración?
+            \begin{center}
+                Si Alemania gana contra Italia, entonces Alemania no pierde 
+                todos sus partidos. 
+            \end{center}
+        }
+        \begin{checkboxes}
+            \choice $G(\texttt{Alemania, Italia}) \rightarrow \neg \forall x 
+            G(\texttt{Alemania}, x)$
+
+            \choice $G(\texttt{Alemania, Italia}) \rightarrow \exists x \neg
+            G(\texttt{Alemania}, x)$
+
+            \choice $G(\texttt{Alemania, Italia}) \rightarrow \forall x 
+            G(\texttt{Alemania}, x)$
+
+            \choice $G(\texttt{Alemania, Italia}) \rightarrow \neg \exists x 
+            G(x, \texttt{Alemania})$ 
+
+            \choice Ninguna de las anteriores. % Correcta
+        \end{checkboxes}
+
+        % Question 07
+        \question
+        {
+            Sea el conjunto de todas las computadoras y todos los sistemas 
+            operativos nuestro universo del discurso. Si tenemos los 
+            predicados:
+            \begin{tasks}(2)
+                \task $C(x): x$ es una computadora
+                \task $H(x,y): x$ es hackeada por $y$
+                \task $F(x,y): x$ funciona con el sistema operativo $y$
+            \end{tasks}
+
+            De acuerdo a esto, ¿cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice La traducción del enunciado
+            \begin{equation*}
+                \exists x \exists y (C(x) \land C(y) \land x \neq y \land H(x,y))
+            \end{equation*}
+
+            es \textit{¨Hay una computadora que ha sido hackeada desde otra 
+            computadora diferente de sí misma¨} % Correcta 
+
+            \choice La traducción del enunciado
+            \begin{equation*}
+                \forall x (C(x) \rightarrow F(x, \texttt{Linux}))
+            \end{equation*}
+
+            es \textit{¨Una computadora funciona con el sistema operativo Linux¨}
+
+            \choice La traducción del enunciado
+            \begin{equation*}
+                C(x) \land F(x, \texttt{Linux}) \rightarrow \neg \forall y H(x,y)
+            \end{equation*}
+
+            es \textit{¨Si una computadora tiene el sistema operativo Linux, 
+            entonces no puede ser hackeada¨}
+
+            \choice La traducción del enunciado
+            \begin{equation*}
+                \forall x \forall y \forall z(C(x) \land C(z) \land x \neq z 
+                \land F(x,y) \rightarrow H(x,z))
+            \end{equation*}
+
+            es \textit{¨Todas las computadoras que tienen cualquier sistema 
+            operativo pueden ser hackeadas¨}
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 08
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice $\neg (\forall x (P(x) \rightarrow \exists y (H(y) \land 
+            B(x,y)))) \equiv \exists x \forall y (P(x) \land H(y) \rightarrow 
+            \neg B(x,y))$ % Correcta 
+
+            \choice $\exists x P(x) \equiv \exists y P(y)$ % Correcta
+
+            \choice $\neg (\exists x (P(x) \land Q(x))) \equiv 
+            \forall x (P(x) \rightarrow \neg Q(x))$ % Correcta 
+
+            \choice $\forall x P(x) \equiv \neg \exists x \neg P(x)$
+            % Correcta
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 09
+        \question
+        {
+            Sea $\mathbb{N}$ nuestro universo del discurso. Si tenemos los 
+            siguientes predicados:
+            \begin{tasks}(2)
+                \task $P(x): x$ es un número par 
+                \task $E(x): x$ es múltiplo de $4$
+            \end{tasks}
+
+            ¿Cuál o cuáles son las representaciones correctas para la siguiente 
+            oración?
+            \begin{center}
+                Existe un número que es múltiplo de $4$ y que no es un 
+                número par 
+            \end{center}
+        }
+        \begin{checkboxes}
+            \choice $\neg \exists x (E(x) \land P(x))$
+
+            \choice $\neg \forall x (P(x) \rightarrow E(x))$
+
+            \choice $\exists x (E(x) \land \neg P(x))$ % Correcta 
+
+            \choice $\neg \forall x (E(x) \rightarrow P(x))$ % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 10
+        \question
+        {
+            Sea el conjunto de los días de la semana nuestro universo del 
+            discurso. Si tenemos los predicados:
+            \begin{tasks}(2)
+                \task $S(x):$ el día $x$ está soleado 
+                \task $N(x):$ el día $x$ está nublado 
+            \end{tasks}
+
+            De acuerdo a esto, ¿cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice La traducción del enunciado 
+            \begin{equation*}
+                \exists x N(x) \rightarrow \forall y S(y)
+            \end{equation*}
+
+            es \textit{¨Si algún día está nublado, entonces todos los días 
+            estarán soleados¨}. % Correcta 
+
+            \choice La traducción del enunciado 
+            \begin{equation*}
+                \exists x S(\texttt{Lunes}) \rightarrow \forall y S(y)
+            \end{equation*}
+
+            es \textit{¨El lunes estuvo soleado, por lo que todos los días 
+            estarán soleados¨}. % Correcta 
+
+            \choice La traducción del enunciado 
+            \begin{equation*}
+                \forall x (N(x) \rightarrow S(x))
+            \end{equation*}
+
+            es \textit{¨Siempre estará soleado sólo si está nublado¨}. 
+
+            \choice La traducción del enunciado 
+            \begin{equation*}
+                \exists x \exists y (S(x) \land N(y) \land x \neq y)
+            \end{equation*}
+
+            es \textit{¨Ningún día es al mismo tiempo soleado y nublado¨}. 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+        
+        \newpage
+        % Question 11
+        \question
+        {
+            Sea el conjunto de todos los países que tienen un equipo de futbol 
+            nuestro universo del discurso. Si tenemos el siguiente predicado:
+            \begin{equation*}
+                G(x,y): x \text{ le gana a } y 
+            \end{equation*}
+
+            ¿Cuál o cuáles son las representaciones correctas para la siguiente 
+            oración?
+            \begin{center}
+                Brasil vence a cada equipo contra el que Alemania pierde, 
+                excepto a sí mismo. 
+            \end{center}
+        }
+        \begin{checkboxes}
+            \choice $\neg \exists x (G(x, \texttt{Alemania}) \land 
+            x \neq \texttt{Brasil} \land G(\texttt{Brasil}, x))$
+
+            \choice $\forall x (G(x, \texttt{Alemania}) \land x \neq 
+            \texttt{Brasil} \rightarrow G(\texttt{Brasil}, x))$ % Correcta 
+
+            \choice $\neg \forall x (G(x, \texttt{Alemania}) 
+            \rightarrow x \neq \texttt{Brasil} \land G(\texttt{Brasil}, x))$
+
+            \choice $\forall x (G(x, \texttt{Alemania}) \rightarrow 
+            G(\texttt{Brasil}, x))$
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 12
+        \question
+        {
+            Sea el conjunto de personas de toda la comunidad académica 
+            nuestro universo del discurso. Si tenemos los predicados:
+            \begin{tasks}(2)
+                \task $E(x): x$ es un estudiante  
+                \task $M(x): x$ es un maestro 
+                \task $P(x,y): x$ le hace una pregunta a $y$ 
+            \end{tasks}
+
+            De acuerdo a esto, ¿cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice La traducción del enunciado
+            \begin{equation*}
+                \exists x (E(x) \land \forall y (M(y) \rightarrow 
+                \neg P(x,y)))
+            \end{equation*}
+
+            es \textit{¨Hay un estudiante al que ningún profesor le ha hecho 
+            preguntas¨}.
+
+            \choice La traducción del enunciado
+            \begin{equation*}
+                \exists x \forall y (E(x) \land M(y) \rightarrow P(x,y))
+            \end{equation*}
+
+            es \textit{¨Un estudiante le ha hecho preguntas a todos los 
+            profesores¨}. % Correcta 
+
+            \choice La traducción del enunciado
+            \begin{equation*}
+                \forall x (E(x) \rightarrow P(x, \texttt{Profesor García}))
+            \end{equation*} 
+
+            es \textit{¨Cada estudiante le ha hecho una pregunta al profesor 
+            García¨}. % Correcta
+
+            \choice La traducción del enunciado
+            \begin{equation*}
+                \forall x ((M(x) \rightarrow P(x, \texttt{Profesor López})) 
+                \lor P(\texttt{Profesor Pérez}, x))
+            \end{equation*}
+
+            es \textit{¨Todo profesor ha hecho una pregunta al profesor López o 
+            bien el profesor Pérez les ha hecho una pregunta¨}. 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 13
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice En posible traducir cualquier tipo de expresión a Lógica de 
+            Primer Orden, de ahí su inmenso poder. 
+
+            \choice $\forall x S(x) \rightarrow \neg \exists y G(y) \equiv 
+            \exists y G(y) \rightarrow \neg \forall x S(x)$ % Correcta 
+
+            \choice En Lógica de Primer Orden, no es posible que el universo 
+            del discurso sea un conjunto infinito. 
+
+            \choice $\forall x (T(x) \lor M(x)) \equiv \forall x (\neg T(x) 
+            \rightarrow M(x))$ % Correcta 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        \newpage
+        % Question 14
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice En Lógica de Primer Orden, siempre sucede que la negación 
+            de una implicación da como resultado otra implicación. 
+
+            \choice $\neg (\exists x T(x) \rightarrow \forall y M(y)) \equiv 
+            \exists x T(x) \land \forall y \neg M(y)$
+
+            \choice $\neg \forall x (F(x) \rightarrow I(x)) \equiv \exists x 
+            (F(x) \land \neg I(x))$ % Correcta 
+
+            \choice En Lógica de Primer Orden, no es posible aplicar leyes 
+            distributivas entre cuantificadores y conectivos. 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 15
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice El argumento 
+            \begin{verbatim}
+            Todos los hombres son mortales.
+            Sócrates es un hombre. 
+            Por lo tanto, Sócrates es mortal. 
+            \end{verbatim}
+
+            es correcto, y esto lo podemos justificar usando la instanciación 
+            universal. % Correcta 
+
+            \choice El argumento 
+            \begin{verbatim}
+            Si un número entero es impar, entonces su cuadrado es par. 
+            x es un número entero impar 
+            Por lo tanto, x*x es par 
+            \end{verbatim}
+
+            es correcto, y esto lo podemos justificar usando el modus ponens 
+            universal. % Correcto 
+
+            \choice El argumento 
+            \begin{verbatim}
+            Todas las personas sanas comen una manzana verde al día. 
+            Erick no es una persona sana. 
+            Por lo tanto, Erick no come una manzana verde al día. 
+            \end{verbatim}
+
+            es correcto, y esto lo podemos justificar usando el modus tollens 
+            universal. % Correcto 
+
+            \choice El argumento 
+            \begin{verbatim}
+            Johan es un artista que tiene el cabello chino. 
+            Por lo tanto, existe un artista que tiene el cabello chino. 
+            \end{verbatim}
+
+            es correcto, y esto lo podemos justificar usando la generalización 
+            existencial. % Correcta 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 16
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Todos los predicados son enunciados. 
+            
+            \choice Los predicados pueden ser elementos del universo 
+            de discurso. 
+
+            \choice El universo de discurso se supone no vacío y debe ser 
+            claro y estar bien definido. % Correcta 
+
+            \choice Una constante es la representación de un elemento 
+            en particular dentro del universo de discurso. % Correcta 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 17
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice El argumento 
+            \begin{verbatim}
+            Todo el mundo habla consigo mismo. 
+            Por lo tanto, todo el mundo habla con todo el mundo. 
+            \end{verbatim}
+
+            es correcto, y esto lo podemos justificar usando la generalización
+            universal. 
+
+            \choice El argumento 
+            \begin{verbatim}
+            Cualquier suma de dos números enteros es un número entero. 
+            La suma de a+b es un número entero. 
+            Por lo tanto, los números a y b son números enteros. 
+            \end{verbatim}
+
+            es correcto, y esto lo podemos justificar usando la instanciación
+            universal. 
+
+            \choice El argumento 
+            \begin{verbatim}
+            Todos los perritos felices son sacados a pasear al menos 
+            una vez al día.
+            Blacky es sacada a pasear al menos una vez al día. 
+            Por lo tanto, Blacky es una perrita feliz.  
+            \end{verbatim}
+
+            es correcto, y esto lo podemos justificar usando la instanciación
+            universal
+
+            \choice El argumento 
+            \begin{verbatim}
+            Todo el mundo es amigo de todo el mundo. 
+            Por lo tanto, todo el mundo es amigo de sí mismo. 
+            \end{verbatim}
+
+            es correcto, y esto lo podemos justificar usando la instanciación
+            universal. % Correcta 
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 18
+        \question
+        {
+            Sea el conjunto de todas las personas nuestro universo de discurso. 
+            Si tenemos el predicado:
+            \begin{center}
+                $Q(x,y): x $ quiere a $y$
+            \end{center}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?}
+            \begin{checkboxes}
+                \choice La traducción del enunciado
+                \begin{equation*}
+                    \neg (\exists x \exists y Q(x,y))
+                \end{equation*}
+                
+                es \textit{Nadie quiere a nadie}. % Correcta 
+
+                \choice La traducción del enunciado 
+                \begin{equation*}
+                    \neg \exists x \forall y Q(x,y)
+                \end{equation*}
+
+                es \textit{Nadie quiere a todos}. % Correcta 
+
+                \choice La traducción del enunciado 
+                \begin{equation*}
+                    \exists x \forall y Q(x,y)
+                \end{equation*}
+                
+                es \textit{Alguien quiere a todos}. % Correcta 
+
+                \choice La traducción del enunciado 
+                \begin{equation*}
+                    \forall y \exists x \neg Q(x,y)
+                \end{equation*}
+                
+                es \textit{Alguien quiere a nadie}. 
+
+                \choice Ninguna de las anteriores.
+            \end{checkboxes}
+
+            \newpage
+    \end{questions}
+\end{document}
