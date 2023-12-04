@@ -1,0 +1,889 @@
+\documentclass[oneside]{style}
+
+\title{Desafío 07}
+\principal{Relaciones de Orden y de Equivalencia}
+\author{Tania Michelle Rubí Rojas}
+\semester{Semestre 2023-1}
+
+\begin{document}
+\maketitle
+
+Para cada uno de los siguientes ejercicios, \textbf{justifica ampliamente} tu 
+respuesta:
+
+\begin{questions}[label=\protect\circled{\bfseries\arabic*}]
+    % Ejercicio 01
+    \question
+    {
+        Sea $A = \{a,b,c\}$.
+        \begin{itemize}
+            \item \textbf{Describe} todas las relaciones de orden parcial sobre 
+            $A$.
+            \item \textbf{Describe} todas las relaciones de orden parcial sobre 
+            $A$ para las que $a$ es un elemento máximo. 
+            \item \textbf{Describe} todas las relaciones de orden parcial sobre 
+            $A$ para las que $b$ es un elemento maximal.
+        \end{itemize} 
+    }
+
+    % Ejercicio 02
+    \question
+    {
+        Sea $\mathcal{E}$ el conjunto de todas los estados de México que tengan 
+        aeropuertos. Definimos la relación $\sim$ sobre $\mathcal{E}$ como sigue:
+        \begin{equation*}
+            x \sim y \Leftrightarrow \text{es posible tomar un avión desde el 
+            estado } x \text{ y llegar al estado } y \text{ usando vuelo 
+            directo}
+        \end{equation*}
+
+        Nota: Se considera que existe un vuelo entre dos estados si 
+        ambos estados tienen un aeropuerto. 
+
+        \textbf{Realiza} lo siguiente: 
+        \begin{itemize}
+            \item \textbf{Describe} la cerradura transitiva de $\sim$.
+
+            \item ¿La cerradura transitiva de $\sim$ es un orden parcial? 
+            ¿Por qué?
+
+            \item En caso de que $\sim$ sea de orden parcial, \textbf{responde} 
+            lo siguiente:
+            \begin{itemize}
+                \item ¿Cuáles son los elementos maximales y minimales de 
+                $(\mathcal{E}, \sim)$?
+                \item ¿Cuál es el elemento mínimo y máximo de $(\mathcal{E}, 
+                \sim)$?
+            \end{itemize}
+
+            \item Sea $\sim \sim$ la relación sobre el conjunto 
+            \begin{equation*}
+                M = \{\text{Baja California Sur, CDMX, Nuevo León, Yucatán}\} 
+            \end{equation*}
+
+            tal que 
+            \begin{align*}
+                \sim \sim = \{(\text{CDMX, Nuevo León}), (\text{Nuevo León, 
+                Baja California Sur}), \\ (\text{CDMX, Yucatán}),(\text{CDMX,
+                CDMX}),(\text{Nuevo León, Nuevo León}), \\ (\text{Baja 
+                California Sur, Baja California Sur}), (\text{Yucatán, 
+                Yucatán})\} 
+            \end{align*}
+
+            Si $\sim \sim$ es de orden parcial, \textbf{dibuja} su diagrama de 
+            Hasse. En caso contrario, \textbf{explica} por qué no es de orden 
+            parcial. 
+        \end{itemize}
+    }
+
+    % Ejercicio 03
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Encuentra} todas las posibles particiones del conjunto
+            $\{a,b,c,d\}$, donde $a,b,c$ y $d$ son todos distintos entre sí.
+
+            \item Para cada una de las particiones del inciso anterior, 
+            \textbf{da} la relación de equivalencia asociada. 
+        \end{itemize}
+    }
+
+    % Ejercicio 04
+    \question
+    {
+        \textbf{Determina} si las siguientes afirmaciones son verdaderas o 
+        falsas:
+        \begin{itemize}
+            \item Si $R$ y $S$ son relaciones de equivalencia definidas sobre 
+            un conjunto no vacío $A$, entonces $R \cup S$ es una relación de 
+            equivalencia sobre $A$.
+
+            \item Si $R$ y $S$ son relaciones de equivalencia definidas sobre 
+            un conjunto no vacío $A$ tal que $R \cup S$ es una relación de 
+            equivalencia, entonces tanto $R$ como $S$ son relaciones de 
+            equivalencia. 
+        \end{itemize}
+    }
+
+    % Ejercicio 05
+    \question
+    {
+        \textbf{Determina} si las siguientes afirmaciones son verdaderas o 
+        falsas:
+        \begin{itemize}
+            \item Si $R$ y $S$ son relaciones de equivalencia definidas sobre 
+            un conjunto no vacío $A$, entonces $R \cap S$ es una relación de 
+            equivalencia sobre $A$. 
+
+            \item Si $R$ y $S$ son relaciones de equivalencia definidas sobre 
+            un conjunto no vacío $A$ tal que $R \cap S$ es una relación de 
+            equivalencia sobre $A$, entonces tanto $R$ como $S$ son relaciones 
+            de equivalencia sobre $A$.  
+        \end{itemize}
+    }
+
+    % Ejercicio 06
+    \question
+    {
+        \textbf{Determina} si las siguientes relaciones son de equivalencia. 
+        En caso de que lo sean, \textbf{determina} las clases de equivalencia 
+        y \textbf{da} la partición inducida por dichas relaciones. En caso de 
+        que alguna no lo sea, \textbf{justifica} por qué no. 
+        \begin{itemize}
+            \item Sea $X = \{a,b,c\}$. Definimos la relación $\sim$ sobre 
+            $\mathcal{P}(X)$ como 
+            \begin{equation*}
+                A \sim B \Leftrightarrow \text{ el número de elementos en } A 
+                \text{ es igual al número de elementos en } B
+            \end{equation*}
+
+            \item Sea $X$ un conjunto no vacío y $Y \subseteq X$. Definimos la 
+            relación $\sim$ sobre $\mathcal{P}(X)$ como sigue: 
+            \begin{equation*}
+                A \sim B \Leftrightarrow A \cap Y = B \cap Y
+            \end{equation*}
+        \end{itemize}
+    }
+
+    % Ejercicio 07
+    \question
+    {
+        \textbf{Determina} si las siguientes relaciones son de equivalencia. 
+        En caso de que lo sean, \textbf{determina} las clases de equivalencia 
+        y \textbf{da} la partición inducida por dichas relaciones. En caso de 
+        que alguna no lo sea, \textbf{justifica} por qué no.
+        \begin{itemize}
+            \item Sea $C$ el conjunto de todas las cadenas de a's y de b's 
+            cuya longitud es $4$. Definimos la relación $\sim$ sobre $C$ como 
+            sigue:
+            \begin{equation*}
+                s \sim t \Leftrightarrow s \text{ tiene los dos mismos primeros 
+                caracteres que } t
+            \end{equation*}
+
+            \item Sea $X = \{1,2,3\}$. Definimos la relación $\sim$ sobre 
+            $\mathcal{P}(X)$ como sigue:
+            \begin{equation*}
+                A \sim B \Leftrightarrow \text{el número de elementos en } A 
+                \text{ es menor que el número de elementos en } B
+            \end{equation*}
+        \end{itemize}
+    }
+
+    % Ejercicio 08
+    \question
+    {
+        \textbf{Determina} si las siguientes relaciones son de equivalencia. 
+        En caso de que lo sean, \textbf{determina} las clases de equivalencia 
+        y \textbf{da} la partición inducida por dichas relaciones. En caso de 
+        que alguna no lo sea, \textbf{justifica} por qué no.
+        \begin{itemize}
+            \item Sea $S$ el conjunto de todas las cadenas de ceros, unos y 
+            dos, cuya longitud es $2$. Definimos la relación $\sim$ sobre $S$
+            como sigue:
+            \begin{equation*}
+                s \sim t \Leftrightarrow \text{ si la suma de los caracteres 
+                de } s \text{ es igual a la suma de los caracteres en } t
+            \end{equation*} 
+
+            \item Sea $X$ un conjunto no vacío. Definimos la relación $\sim$ 
+            sobre $\mathcal{P}(X)$ como sigue:
+            \begin{equation*}
+                A \sim B \Leftrightarrow A \subseteq B
+            \end{equation*}
+        \end{itemize}
+    }
+
+    % Ejercicio 09
+    \question
+    {
+        \textbf{Determina} si las siguientes relaciones son de equivalencia. 
+        En caso de que lo sean, \textbf{determina} las clases de equivalencia 
+        y \textbf{da} la partición inducida por dichas relaciones. En caso de 
+        que alguna no lo sea, \textbf{justifica} por qué no.
+        \begin{itemize}
+            \item Sea $X$ un conjunto no vacío. Definimos la relación $\sim$
+            sobre $\mathcal{P}(X)$ como sigue:
+            \begin{equation*}
+                A \sim B \Leftrightarrow A \neq B
+            \end{equation*}
+
+            \item Definimos la relación $\sim$ sobre $\mathbb{R}$ como 
+            sigue:
+            \begin{equation*}
+                x \sim y \Leftrightarrow x^2 - x = y^2 - y
+            \end{equation*}
+        \end{itemize}
+    }
+
+    % Ejercicio 10
+    \question
+    {
+        Sea $X = \{1,2,3,4\}$. Para cada una de las siguientes particiones de 
+        $X$, \textbf{determina} la relación de equivalencia inducida por ésta, 
+        \textbf{mostrando} todos sus elementos.
+        \begin{itemize}
+            \item $\{\{1,2\}, \{3,4\}\}$
+            \item $\{\{1\}, \{2\}, \{3,4\}\}$
+            \item $\{\{1\}, \{2\}, \{3\}, \{4\}\}$
+        \end{itemize}
+    }
+
+    % Ejercicio 11
+    \question
+    {
+        \textbf{Determina} si las siguientes relaciones son de equivalencia. 
+        En caso de que lo sean, \textbf{determina} las clases de equivalencia 
+        y \textbf{da} la partición inducida por dichas relaciones. En caso de 
+        que alguna no lo sea, \textbf{justifica} por qué no.
+        \begin{itemize}
+            \item Sea $P$ el conjunto de todas las personas. Definimos la 
+            relación $R$ sobre $P$ como sigue:
+            \begin{equation*}
+                R = \{(a,b) \; | \; a \text{ es más alto que } b \}
+            \end{equation*}
+
+            \item Sea $P$ el conjunto de todas las personas. Definimos la
+            relación $S$ sobre $P$ como sigue:
+            \begin{equation*}
+                S = \{(a,b) \; | \; a \text{ y } b \text{ en algún momento han 
+                vivido en el mismo país}\}
+            \end{equation*}
+        \end{itemize}
+    }
+
+    % Ejercicio 12
+    \question
+    {
+        \textbf{Determina} si las siguientes relaciones son de equivalencia. 
+        En caso de que lo sean, \textbf{determina} las clases de equivalencia 
+        y \textbf{da} la partición inducida por dichas relaciones. En caso de 
+        que alguna no lo sea, \textbf{justifica} por qué no.
+        \begin{itemize}
+            \item Sea $P$ el conjunto de todas las personas. Definimos la 
+            relación $R$ sobre $P$ como sigue:
+            \begin{equation*}
+                R = \{(a,b) \; | \; a \text{ y } b \text{ están enamorados}\}
+            \end{equation*}
+
+            \item Sea $P$ el conjunto de todas las personas. Definimos la
+            relación $S$ sobre $P$ como sigue:
+            \begin{equation*}
+                S = \{(a,b) \; | \; b \text{ tiene más mascotas que } a\}
+            \end{equation*}
+        \end{itemize}
+    }
+
+    % Ejercicio 13
+    \question
+    {
+        \textbf{Determina} si las siguientes relaciones son de equivalencia. 
+        En caso de que lo sean, \textbf{determina} las clases de equivalencia 
+        y \textbf{da} la partición inducida por dichas relaciones. En caso de 
+        que alguna no lo sea, \textbf{justifica} por qué no.
+        \begin{itemize}
+            \item Sea $P$ el conjunto de todas las personas. Definimos la 
+            relación $R$ sobre $P$ como sigue:
+            \begin{equation*}
+                R = \{(a,b) \; | \; a \text{ y } b \text{ tienen la misma 
+                altura}\}
+            \end{equation*}
+
+            \item Sea $P$ el conjunto de todas las personas. Definimos la
+            relación $S$ sobre $P$ como sigue:
+            \begin{equation*}
+                S = \{(a,b) \; | \; a \text{ y } b \text{ tienen el mismo color 
+                de cabello}\}
+            \end{equation*}
+        \end{itemize}
+    }
+
+    % Ejercicio 14
+    \question
+    {
+        Sea $X = \{1,2,3,4\}$. Para cada una de las siguientes particiones de 
+        $X$, \textbf{determina} la relación de equivalencia inducida por ésta, 
+        \textbf{mostrando} todos sus elementos.
+        \begin{itemize}
+            \item $\{\{1,2,3\}, \{4\}\}$
+            \item $\{\{1,2,3,4\}\}$
+            \item $\{\{1\}, \{2,4\}, \{3\}\}$
+        \end{itemize}
+    }
+
+    % Ejercicio 15
+    \question
+    {
+        \textbf{Determina} si las siguientes relaciones son de equivalencia. 
+        En caso de que lo sean, \textbf{determina} las clases de equivalencia 
+        y \textbf{da} la partición inducida por dichas relaciones. En caso de 
+        que alguna no lo sea, \textbf{justifica} por qué no.
+        \begin{itemize}
+            \item Definimos la relación $R$ sobre $\mathbb{Z}$ como sigue:
+            \begin{equation*}
+                xRy \Leftrightarrow x+y \text{ es par}
+            \end{equation*}
+
+            \item Definimos la relación $R$ sobre $\mathbb{Z}$ como sigue:
+            \begin{equation*}
+                xRy \Leftrightarrow 7 \text{ divide a } n-m
+            \end{equation*}
+        \end{itemize}
+    }
+
+    \newpage
+    % Ejercicio 16
+    \question
+    {
+        Definimos a $\mathcal{I}$ como el conjunto de instrucciones que deben 
+        realizarse para preparar cereal con leche.
+        \begin{itemize}
+            \item[I.] Tomamos un plato hondo para poner la mezcla.
+            \item[II.] Tomamos la caja del cereal.
+            \item[III.] Servimos la porción de cereal deseada en el plato.
+            \item[IV.] Tomamos el cartón de leche
+            \item[V.] Servimos la porción de leche deseada en el plato. 
+        \end{itemize}
+        
+        Algunas instrucciones deben realizarse antes que otras. Por ejemplo, 
+        la instrucción I debe realizarse antes que la instrucción III. Por 
+        otro lado, otras instrucciones se pueden realizar en cualquier orden, 
+        como es el caso de las instrucciones I y II. 
+        
+        Dicho esto, definimos la relación $\sim$ sobre  como sigue:
+        \begin{equation*}
+            i \sim j \Leftrightarrow i=j \text{ o la instrucción } i 
+            \text{ debe realizarse antes que la instrucción } j
+        \end{equation*}
+
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Describe} la relación $\sim$, \textbf{mostrando} 
+            todos sus elementos.
+
+            \item \textbf{Representa} gráficamente la relación $\sim$ usando 
+            gráficas dirigidas.
+
+            \item ¿$\sim$ es reflexiva? 
+            
+            \item ¿$\sim$ es antirreflexiva? 
+
+            \item ¿$\sim$ es simétrica? 
+
+            \item ¿$\sim$ es asimétrica? 
+
+            \item ¿$\sim$ es antisimétrica? 
+
+            \item ¿$\sim$ es transitiva? 
+
+            \item ¿$\sim$ es un orden parcial? 
+
+            \item \textbf{Dibuja} su diagrama de Hasse sobre el conjunto 
+            \{(I, IV), (I,I), (III,V)\}
+        \end{itemize}
+    }
+
+    % Ejercicio 17
+    \question
+    {
+        Sea $\mathcal{H}$ el conjunto de todas las personas que han vivido. 
+        Definimos la relación $\mathcal{H}$$\mathcal{H}$ sobre $\mathcal{H}$ como sigue:
+        \begin{equation*}
+            p \sim q \Leftrightarrow p \text{ es ancestro de } q \text{ o } 
+            p=q
+        \end{equation*}
+
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item ¿$\mathcal{H}$ es reflexiva?
+            \item ¿$\mathcal{H}$ es antirreflexiva?
+            \item ¿$\mathcal{H}$ es simétrica?
+            \item ¿$\mathcal{H}$ es asimétrica?
+            \item ¿$\mathcal{H}$ es antisimétrica?
+            \item ¿$\mathcal{H}$ es transitiva?
+            \item ¿$\mathcal{H}$ es un orden parcial?
+            \item \textbf{Determina} los elementos minimales y maximales de 
+            $(\mathcal{H}, \sim)$
+            \item \textbf{Determina} las cotas superiores e inferiores de 
+            $(\mathcal{H}, \sim)$
+            \item \textbf{Determina} el elemento supremo e ínfimo de 
+            $(\mathcal{H}, \sim)$
+        \end{itemize}
+    }
+
+    % Ejercicio 18
+    \question
+    {
+        Sea $(\mathcal{P}(1,2,3), \subseteq)$ un conjunto parcialmente ordenado. 
+        \textbf{Encuentra} dos elementos en dicho conjunto que no sean 
+        comparables. 
+    }
+
+
+    % Ejercicio 19
+    \question
+    {
+        Sea $S$ el conjunto de todas las cadenas de a's y b's. Definimos la 
+        relación binaria $R$ sobre $S$ como sigue:
+        \begin{equation*}
+            sRt \Leftrightarrow \text{ la longitud de } s \text{ es menor o 
+            igual a la longitud de } t
+        \end{equation*}
+
+        \textbf{Determina} si $R$ es un orden parcial. 
+    }
+
+    % Ejercicio 20
+    \question
+    {
+        Definimos la relación binaria $R$ sobre $\mathbb{R} \times \mathbb{R}$ 
+        como sigue:
+        \begin{equation*}
+            (a,b)R(c,d) \Leftrightarrow (a < c) \lor (a = c \land b \leq d)    
+        \end{equation*}
+
+        \textbf{Determina} si $R$ es un orden parcial. 
+    }
+
+    % Ejercicio 21 
+    \question
+    {
+        Definimos la relación binaria $R$ sobre $\mathbb{Z}$ como sigue: 
+        \begin{equation*}
+            xRy \Leftrightarrow x+y \text{ es par}
+        \end{equation*}
+
+        \textbf{Determina} si $R$ es un orden parcial. 
+    }
+
+    % Ejercicio 22 
+    \question
+    {
+        Sea $A = \{a,b,c,d\}$. Definimos la relación $R$ sobre $A$ como sigue:
+        \begin{equation*}
+            R = \{(a,a), (b,b), (c,c), (d,d), (c,a), (a,d), (c,d), (b,c), (b,d),
+            (b,a)\}
+        \end{equation*}
+
+        \textbf{Determina} si $R$ es un orden total. 
+    }
+
+    % Ejercicio 23 
+    \question
+    {
+        Sea $A = \{1,2,3,6\}$. Definimos la relación binaria $R$ sobre $A$ como 
+        sigue:
+        \begin{equation*}
+            xRy \Leftrightarrow \frac{x}{y} \text{ es impar}
+        \end{equation*}
+
+        ¿Es $R$ un orden parcial? En caso afirmativo, ¿es un orden total?
+    }
+
+    % Ejercicio 24
+    \question
+    {
+        Definimos la relación binaria $R$ sobre $\mathbb{Z}$ como sigue:
+        \begin{equation*}
+            xRy \Leftrightarrow x-y \text{ es par}
+        \end{equation*}
+
+        ¿Es $R$ un orden parcial? En caso afirmativo, ¿es un orden total?
+    }
+
+    % Ejercicio 25
+    \question
+    {
+        Definimos la relación binaria $R$ sobre $Z^+$ como sigue:
+        \begin{equation*}
+            xRy \Leftrightarrow x = y^k \quad \quad \text{con }
+            k \in \{0,1,2,\ldots\}
+        \end{equation*}
+
+        ¿Es $R$ un orden parcial? En caso afirmativo, ¿es un orden total?
+    }
+
+    % Ejercicio 26
+    \question
+    {
+        Sea $P$ el conjunto de todas las personas. Definimos la relación 
+        binaria $R$ sobre $P$ como  sigue:
+        \begin{equation*}
+            xRy \Leftrightarrow \frac{x}{y} \text{ es impar}
+        \end{equation*}
+
+        ¿Es $R$ un orden parcial? En caso afirmativo, ¿es un orden total?
+    }
+
+    % Ejercicio 27
+    \question
+    {
+        Sean $R$ y $S$ dos relaciones de orden parcial sobre un conjunto $A$.
+        Definimos una relación $T$ sobre el conjunto $A$ como sigue:
+        \begin{equation*}
+            xTy \Leftrightarrow xRy \land xSy 
+        \end{equation*} 
+
+        \textbf{Determina} si $T$ es un orden parcial sobre $T$. 
+    }
+
+    % Ejercicio 28
+    \question
+    {
+        Sea $A = \{0,1\}$. \textbf{Describe} todas las relaciones de orden 
+        parcial sobre $A$. 
+    }
+
+    % Ejercicio 29
+    \question 
+    {
+        Sea $A = \{0,1,2\}$. \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Describe} todas las relaciones de orden parcial sobre 
+            $A$ donde $0$ es un elemento máximo. 
+
+            \item \textbf{Describe} todas las relaciones de orden parcial sobre 
+            $A$ donde $0$ es un elemento mínimo. 
+        \end{itemize}
+    }
+
+    % Ejercicio 30
+    \question
+    {
+        Supongamos que $R$ es una relación reflexiva, simétrica, transitiva y 
+        antisimétrica sobre un conjunto $A$. ¿Qué podemos concluir acerca de la 
+        relación $R$?
+    }
+
+    % Ejercicio 31
+    \question
+    {
+        Sea $R$ una relación de equivalencia sobre un conjunto $A$. Si $R$ tiene 
+        sólo una clase de equivalencia, ¿cómo es la relación $R$?
+    }
+
+    % Ejercicio 32
+    \question
+    {
+        Sea $R$ una relación de equivalencia sobre un conjunto $A$. Si 
+        $|X| = |R|$, ¿cómo es la relación $R$?
+    }
+
+    % Ejercicio 33
+    \question
+    {
+        Sea $A = \{1,2,3,4,5,6\}$. \textbf{Proporciona} una relación de 
+        equivalencia $R$ sobre $A$ que tenga exactamente cuatro clases de 
+        equivalencia. 
+    }
+
+    % Ejercicio 34
+    \question
+    {
+        ¿Cuántas relaciones de equivalencia hay en el conjunto 
+        $\{1,2,3\}$? \textbf{Escribe} cada una de ellas.  
+    }
+
+    % Ejercicio 35
+    \question
+    {
+        Sean $X$ y $Y$ conjuntos distintos del vacío. Sea $f: X 
+        \rightarrow Y$ una función. Definimos el conjunto $S$ como sigue:
+        \begin{equation*}
+            S = \{f^{-1}(\{y\}) \; | \; y \in Y\}
+        \end{equation*}
+
+        ¿Es $S$ una partición de $X$? En caso afirmativo, \textbf{describe} 
+        una relación de equivalencia que genere esta partición.
+    }
+
+    % Ejercicio 36
+    \question
+    {
+        Sea $R$ una relación de equivalencia sobre un conjunto $A$. 
+        \textbf{Define} una función $f$ de $A$ al conjunto de clases de 
+        equivalencia de $A$ mediante la regla de correspondencia 
+        \begin{equation*}
+            f(x) = [x]
+        \end{equation*}
+
+        ¿Cuándo sucede que $f(x) = f(y)$?
+    }
+
+    % Ejercicio 37
+    \question
+    {
+        Sea $R$ una relación sobre un conjunto $A$. Sea \texttt{refl}, 
+        \texttt{sim} y \texttt{trans} la cerradura reflexiva, simétrica y 
+        transitiva de $R$, respectivamente. \textbf{Muestra} que 
+        \texttt{trans(\texttt{sim(\texttt{refl$(R)$})})} es una relación de 
+        equivalencia que contiene a $R$. 
+    }
+
+    % Ejercicio 38
+    \question
+    {
+        Sea $R$ una relación de equivalencia sobre un conjunto $A$. ¿Cuál o 
+        cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        \begin{itemize}
+            \item Si $(a,b) \not \in R$, entonces $[a] = [b]$.
+            \item Si $[a] = [b]$, entonces $[a] \cap [b] = \varnothing$.
+        \end{itemize}
+    }
+
+    % Ejercicio 39
+    \question
+    {
+        Sea $R$ una relación de equivalencia sobre un conjunto no vacío $A$ y 
+        sean $a,b \in A$. \textbf{Demostrar} que 
+        \begin{equation*}
+            [a] = [b] \Leftrightarrow aRb
+        \end{equation*}       
+    }
+
+    % Ejercicio 40
+    \question
+    {
+        Sea $A$ un conjunto tal que $|A| = 10$ y sea $R$ una relación de 
+        equivalencia sobre $A$. Sean $x,y,z \in A$ tal que $|[x]| = 3, 
+        |[y]| = 5$ y $|[z]| = 1$. ¿Cuántas clases de equivalencia tiene 
+        $R$?
+    }
+
+    % Ejercicio 41
+    \question
+    {
+        ¿Cuáles de las siguientes relaciones son de equivalencia?
+        \begin{itemize}
+            \item Definimos la relación $R$ sobre $\mathbb{Z}$ como sigue:
+            \begin{equation*}
+                aRb \Leftrightarrow a^2 - b^2 \leq 7
+            \end{equation*}
+
+            \item Definimos la relación $S$ sobre $\mathbb{Z}$ como 
+            sigue:
+            \begin{equation*}
+                aSb \Leftrightarrow a + b \equiv 0 \pmod{5}
+            \end{equation*}
+        \end{itemize}
+    }
+
+    % Question 42
+    \question
+    {
+        ¿Cuáles de las siguientes relaciones son de equivalencia?
+        \begin{itemize}
+            \item Definimos la relación $R$ sobre $\mathbb{Z}$ como 
+            sigue:
+            \begin{equation*}
+                aRb \Leftrightarrow 2a + 5b \equiv 0 \pmod{7}
+            \end{equation*}
+
+            \item Definimos la relación $S$ sobre $\mathbb{Z}$ como 
+            sigue:
+            \begin{equation*}
+                aSb \Leftrightarrow a^2 + b^ = 0
+            \end{equation*}
+        \end{itemize}
+    }
+
+    % Question 43
+    \question
+    {
+        Sea $R$ una relación simétrica y transitiva sobre un conjunto $A$. 
+        \textbf{Demuestra} que si para cada $x \in A$ existe una $y \in A$ 
+        tal que $(x,y) \in R$, entonces $R$ es una relación de equivalencia. 
+    }
+
+    % Question 44
+    \question
+    {
+        Sea $R$ una relación reflexiva y transitiva sobre un conjunto $A$. Sea
+        $S$ una relación binaria sobre el conjunto $A$ tal que $(x,y) \in S$ si 
+        y sólo si $(x,y), (y,x) \in R$. \textbf{Demuestra} que $S$ es una 
+        relación de equivalencia. 
+    }
+
+    % Question 45
+    \question
+    {
+        Para cada uno de los siguientes diagramas de Hasse, \textbf{realiza} 
+        lo siguiente:
+        \begin{itemize}
+            \item \textbf{Describe} todos los pares ordenados del orden 
+            parcial. 
+            \item \textbf{Describe} los elementos minimales y maximales, 
+            además del máximo y del mínimo (si es que existen). 
+        \end{itemize}
+
+        \begin{multicols}{3}
+            \begin{itemize}
+                \item[a)]  
+
+                \begin{tikzpicture}
+                    \matrix (A) [matrix of nodes, row sep=0.5cm, 
+                                 column sep=0.5cm]
+                    { 
+                        $e$ & & $d$ \\  
+                        $b$ & & $c$ \\
+                        & $a$ & \\
+                    };
+                    \draw (A-1-1)--(A-2-1);
+                    \draw (A-2-1)--(A-1-3);
+                    \draw (A-2-1)--(A-3-2);
+                    \draw (A-1-3)--(A-2-3);
+                    \draw (A-3-2)--(A-2-3);
+                \end{tikzpicture}
+    
+                \item[b)]
+
+                \begin{tikzpicture}
+                    \matrix (A) [matrix of nodes, row sep=0.5cm, 
+                                 column sep=0.5cm]
+                    { 
+                        & & $g$ & \\ 
+                        & $e$ & & $f$ \\  
+                        & $d$ & & \\
+                        $a$ & & $b$ & $c$ \\
+                    };
+                    \draw (A-1-3)--(A-2-2);
+                    \draw (A-1-3)--(A-2-4);
+                    \draw (A-2-2)--(A-3-2);
+                    \draw (A-2-4)--(A-3-2);
+                    \draw (A-2-4)--(A-4-4);
+                    \draw (A-3-2)--(A-4-1);
+                    \draw (A-3-2)--(A-4-3);
+                \end{tikzpicture}
+                
+                \item[c)]
+
+                \begin{tikzpicture}
+                    \matrix (A) [matrix of nodes, row sep=0.5cm, 
+                                 column sep=0.5cm]
+                    { 
+                        $g$ & \\
+                        $f$ & \\  
+                        $d$ & $e$ \\
+                        $b$ & $c$ \\
+                        & $a$ \\ 
+                    };
+                    \draw (A-1-1)--(A-2-1);
+                    \draw (A-2-1)--(A-3-1);
+                    \draw (A-2-1)--(A-3-2);
+                    \draw (A-3-1)--(A-4-1);
+                    \draw (A-3-2)--(A-4-1);
+                    \draw (A-3-2)--(A-4-2);
+                    \draw (A-4-1)--(A-5-2);
+                    \draw (A-4-2)--(A-5-2);
+                \end{tikzpicture}
+            \end{itemize}
+        \end{multicols}
+    }
+
+    % Question 46
+    \question
+    {
+        Sea $\mathcal{E}$ la colección de todos los subconjuntos finitos de 
+        $\mathbb{N}$ que tienen un número par de elementos. Para el conjunto
+        parcialmente ordenado $(\mathcal{E}, \subseteq)$ se consideran los 
+        elementos $A = \{1,2\}$ y $B = \{1,3\}$. 
+        \begin{itemize}
+            \item \textbf{Encuentra} cuatro cotas superiores para $\{A,B\}$.
+            \item ¿Tiene $\{A,B\}$ supremo en $(\mathcal{E}, \subseteq)$?
+        \end{itemize}       
+    }
+
+    % Ejercicio 47
+    \question
+    {
+        Sea $\mathcal{C}$ la colección de todos los subconjuntos finitos de 
+        $\mathbb{N}$. ¿Tiene $(\mathcal{C}, \subseteq)$ algún elemento 
+        maximal o minimal?
+    }
+
+    % Ejercicio 48
+    \question
+    {
+        Para cada uno de los siguientes diagramas de Hasse, \textbf{realiza} 
+        lo siguiente:
+        \begin{itemize}
+            \item \textbf{Encuentra} las cotas superiores e inferiores del
+            subconjunto $B$ en $A$. 
+            parcial. 
+            \item \textbf{Encuentra} el supremo y el ínfimo del conjunto $B$.
+        \end{itemize}
+
+        \begin{multicols}{3}
+            \begin{itemize}
+                \item[a)] $B = \{c,d,e\}$
+                
+                \begin{tikzpicture}
+                    \matrix (A) [matrix of nodes, row sep=0.5cm, 
+                                 column sep=0.5cm]
+                    { 
+                        $a$ & & $b$ & \\ 
+                        & \textcolor{red}{$c$} & \\  
+                        \textcolor{red}{$d$} & & \textcolor{red}{$e$} \\
+                        & $f$ & & $g$ \\
+                    };
+                    \draw (A-1-1)--(A-2-2);
+                    \draw (A-1-3)--(A-2-2);
+                    \draw (A-2-2)--(A-3-1);
+                    \draw (A-2-2)--(A-3-3);
+                    \draw (A-3-1)--(A-4-2);
+                    \draw (A-3-3)--(A-4-2);
+                    \draw (A-3-3)--(A-4-4);
+                \end{tikzpicture}
+
+                \columnbreak
+    
+                \item[b)] $B = \{4,5,6\}$
+
+                \begin{tikzpicture}
+                    \matrix (A) [matrix of nodes, row sep=0.5cm, 
+                                 column sep=0.5cm]
+                    { 
+                        $1$ & & $2$ & \\ 
+                        & $3$ & \\  
+                        \textcolor{red}{$4$} & & \textcolor{red}{$5$} \\
+                        & \textcolor{red}{$6$} & & $7$ \\
+                        & & $8$ & \\ 
+                    };
+                    \draw (A-1-1)--(A-2-2);
+                    \draw (A-1-3)--(A-2-2);
+                    \draw (A-2-2)--(A-3-1);
+                    \draw (A-2-2)--(A-3-3);
+                    \draw (A-3-1)--(A-4-2);
+                    \draw (A-3-3)--(A-4-2);
+                    \draw (A-3-3)--(A-4-4);
+                    \draw (A-4-2)--(A-5-3);
+                    \draw (A-4-4)--(A-5-3);
+                \end{tikzpicture}
+                
+                \columnbreak
+
+                \item[c)] $B = \{2,3,4\}$
+
+                \begin{tikzpicture}
+                    \matrix (A) [matrix of nodes, row sep=0.5cm, 
+                                 column sep=0.5cm]
+                    { 
+                        & $1$ & \\
+                        & \textcolor{red}{$2$} & \\  
+                        \textcolor{red}{$3$} & & \textcolor{red}{$4$} \\
+                        $5$ & & $6$ \\
+                    };
+                    \draw (A-1-2)--(A-2-2);
+                    \draw (A-2-2)--(A-3-1);
+                    \draw (A-2-2)--(A-3-3);
+                    \draw (A-3-1)--(A-4-1);
+                    \draw (A-3-1)--(A-4-3);
+                    \draw (A-3-3)--(A-4-1);
+                    \draw (A-3-3)--(A-4-3);
+                \end{tikzpicture}
+            \end{itemize}
+        \end{multicols}
+    }
+\end{questions}
+\end{document}

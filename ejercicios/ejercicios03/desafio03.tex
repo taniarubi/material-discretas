@@ -1,0 +1,289 @@
+\documentclass[oneside]{style}
+
+\title{Desafío 03}
+\principal{Funciones}
+\author{Tania Michelle Rubí Rojas}
+\semester{Semestre 2023-1}
+
+\begin{document}
+\maketitle
+
+Para cada uno de los siguientes ejercicios, \textbf{justifica ampliamente} tu 
+respuesta:
+
+\begin{questions}[label=\protect\circled{\bfseries\arabic*}]
+    % Ejercicio 01
+    \question{\textbf{Indica} si los siguientes enunciados son verdaderos o 
+    falsos.}
+    \begin{itemize}
+        \item Si dos elementos en el dominio de una función son iguales, 
+        entonces sus imagénes en el codominio son iguales.  
+
+        \item Dos funciones definidas de manera diferente nunca pueden ser 
+        iguales. 
+    \end{itemize}
+
+    % Ejercicio 02
+    \question
+    {
+        Sean el conjunto $A = \{1,2,3,4,5\}$ y la función 
+        $f: \mathcal{P}(A) \rightarrow \mathbb{Z}$ definida de la siguiente 
+        manera: 
+        \begin{equation*}
+            f(X)=\begin{cases}
+                      0 \quad &\text{si} \, $X$ \; \text{tiene un número par 
+                      de elementos}\\
+                      1 \quad &\text{si} \, $X$ \; \text{tiene un número impar 
+                      de elementos }\\
+                 \end{cases}
+        \end{equation*}
+
+        \textbf{Determina} lo siguiente:
+        \begin{tasks}(4)
+            \task $f(\{4,1,3\})$
+            \task $f(\{2,3\})$
+            \task $f(\varnothing)$
+            \task $f(\{5,2,3,4\})$
+        \end{tasks}
+    }
+
+    % Ejercicio 03
+    \question
+    {
+        Sea la función $f: \mathbb{Z}^+ \rightarrow \mathbb{Z}^+$ que 
+        está definida de la siguiente manera:
+        \begin{equation*}
+            f(n) = \text{la suma de los divisores positivos de } n
+        \end{equation*}
+
+        \textbf{Determina} lo siguiente:
+        \begin{tasks}(4)
+            \task $f(1)$
+            \task $f(5)$
+            \task $f(15)$
+            \task $f(21)$
+        \end{tasks}
+    }
+
+    % Ejercicio 04
+    \question{\textbf{Indica} si los siguientes enunciados son verdaderos o 
+    falsos.}
+    \begin{itemize}
+        \item Una función puede tener la misma entrada para más de una 
+        salida. 
+
+        \item El conjunto de todas las cadenas de ceros y unos es contable.
+    \end{itemize}
+
+    % Ejercicio 05
+    \question{Sea $P$ el conjunto de todas las personas. \textbf{Da} dos 
+    ejemplos de funciones de $P$ a $P$ que sean inyectivas, pero no 
+    subrayectivas.}
+
+    % Ejercicio 06
+    \question{\textbf{Indica} si los siguientes enunciados son verdaderos o 
+    falsos.}
+    \begin{itemize}
+        \item Sean $X$ y $Y$ conjuntos. Si $f: X \rightarrow Y$ es cualquier 
+        función, entonces $I_Y \circ f = f$, donde $I_Y$ es la función 
+        identidad en $Y$. 
+
+        \item Si $f:X \rightarrow Y$ es una función inyectiva y sobreyectiva 
+        con la función inversa $f^{-1}: Y \rightarrow X$, entonces 
+        $f \circ f^{-1} = I_Y$, donde $I_Y$ es la función identidad en $Y$. 
+    \end{itemize}
+
+    % Ejercicio 07
+    \question
+    {
+        Para las funciones definidas en los ejercicios $2$ y $3$, 
+        \textbf{responde} lo siguiente:
+        \begin{itemize}
+            \item ¿Cuál es el dominio de $f$?
+            \item ¿Cuál es la imagen de $f$?
+            \item ¿Cuál es su regla de correspondencia?
+            \item ¿Quién es $f^{-1}$?
+            \item ¿Quién es $f \circ f$?
+        \end{itemize}
+    }
+
+    % Ejercicio 08
+    \question
+    {
+        Sean $X = \{a,b,c\}$ y $Y = \{u\}$ conjuntos. \textbf{Resuelve} lo
+        siguiente:
+        \begin{itemize}
+            \item \textbf{Encuentra} todas las funciones de $X$ a $Y$.
+            \item ¿Cuántas de esas funciones son inyectivas? ¿Cuántas son 
+            suprayectivas?
+        \end{itemize}
+    }
+
+    % Ejercicio 09
+    \question{\textbf{Indica} si los siguientes enunciados son verdaderos o 
+    falsos.}
+    \begin{itemize}
+        \item Sean $A, B$ y $C$ conjuntos. Si $f: A \rightarrow B$ y 
+        $g:B \rightarrow C$ son funciones y $g \circ f$ es inyectiva, 
+        entonces $g$ es inyectiva.
+
+        \item Sean $A, B$ y $C$ conjuntos. Si $f: A \rightarrow B$ y 
+        $g:B \rightarrow C$ son funciones y $g \circ f$ es inyectiva, 
+        entonces $f$ es inyectiva.
+    \end{itemize}
+
+    % Ejercicio 10
+    \question{\textbf{Indica} si los siguientes enunciados son verdaderos o 
+    falsos.}
+    \begin{itemize}
+        \item Sean $A, B$ y $C$ conjuntos. Si $f: A \rightarrow B$ y 
+        $g:B \rightarrow C$ son funciones y $g \circ f$ es suprayectiva, 
+        entonces $g$ es suprayectiva.
+
+        \item Sean $A, B$ y $C$ conjuntos. Si $f: A \rightarrow B$ y 
+        $g:B \rightarrow C$ son funciones y $g \circ f$ es suprayectiva, 
+        entonces $f$ es suprayectiva.
+    \end{itemize}
+
+    % Ejercicio 11
+    \question
+    {
+        Sea $S$ el conjunto de todos los subconjuntos finitos de enteros 
+        positivos. Sea la función $f: \mathbb{Z}^+ \rightarrow S$ que está 
+        definida de la siguiente manera:
+        \begin{equation*}
+            f(n) = \text{el conjunto de divisores positivos de } n
+        \end{equation*}
+
+        \textbf{Determina} lo siguiente:
+        \begin{tasks}(4)
+            \task $f(21)$
+            \task $f(17)$
+            \task $f(15)$
+            \task $f(1)$
+        \end{tasks}
+    }
+
+    % Ejercicio 12
+    \question{Sea $P$ el conjunto de todas las personas. \textbf{Da} dos 
+    ejemplos de funciones de $P$ a $P$ que sean suprayectivas, pero no 
+    inyectivas.}
+
+    % Ejercicio 13
+    \question{\textbf{Indica} si los siguientes enunciados son verdaderos o 
+    falsos.}
+    \begin{itemize}
+        \item Cualquier conjunto infinito contiene un subconjunto 
+        infinito contable. 
+
+        \item La unión de dos conjuntos infinitos contables es infinito 
+        contable. 
+    \end{itemize}
+
+    % Ejercicio 14
+    \question{\textbf{Indica} si los siguientes enunciados son verdaderos o 
+    falsos.}
+    \begin{itemize}
+        \item Sean $A, B, C$ y $D$ conjuntos. Si $f: A \rightarrow B$,  
+        $g:B \rightarrow C$ y $h: C \rightarrow D$ son funciones, 
+        entonces $h \circ (g \circ f) = (h \circ g) \circ f$.  
+
+        \item Sea $A$ un conjunto. Sean las funciones $f: A \rightarrow A$, 
+        $g: A \rightarrow A$ y $h: A \rightarrow$. Si $h$ es inyectiva y 
+        $h \circ f = h \circ g$, entonces $f = g$. 
+    \end{itemize}
+
+    % Ejercicio 15
+    \question{¿Cuál es la diferencia entre una relación binaria y una función?}
+
+    % Ejercicio 16
+    \question
+    {
+        ¿Cuál de las siguientes relaciones son funciones?
+        \begin{align*}
+            R &\subseteq \mathbb{R} \times \mathbb{R} \quad \quad \text{donde }
+            (x,y) \in R \leftrightarrow x = y^2 \\ 
+            S &\subseteq \mathbb{Z} \times \mathbb{Z} \quad \quad \text{donde }
+            xRy \leftrightarrow x+y \; \text{es par}
+        \end{align*}
+
+        En caso de que alguna lo sea,
+        \begin{itemize}
+            \item ¿Cuál es su dominio?
+            \item ¿Cuál es su codominio?
+            \item ¿Cuál es su regla de correspondencia?
+            \item ¿Cuál es su función inversa?
+            \item ¿Cuál es el resultado de componer la función consigo misma?
+        \end{itemize}
+    }
+
+    \newpage
+    % Ejercicio 17
+    \question
+    {
+        ¿Cuál de las siguientes relaciones son funciones?
+        \begin{align*}
+            T &\subseteq \{1,2,3\} \times \{\varnothing, a, b\} \quad \quad 
+            \text{donde } T = \{(1, \varnothing), (2, \varnothing), (3,a), 
+            (1,b)\} \\ 
+            U &\subseteq \{1,2,3\} \times \{\varnothing, a, b\} \quad \quad 
+            \text{donde } U = \{(1,a), (2,b), (3,\varnothing), (1,a)\}
+        \end{align*}
+
+        En caso de que alguna lo sea,
+        \begin{itemize}
+            \item ¿Cuál es su dominio?
+            \item ¿Cuál es su codominio?
+            \item ¿Cuál es su regla de correspondencia?
+            \item ¿Cuál es su función inversa?
+            \item ¿Cuál es el resultado de componer la función consigo misma?
+        \end{itemize}
+    }
+
+    % Ejercicio 18
+    \question
+    {
+        ¿Cuál de las siguientes relaciones son funciones?
+        \begin{align*}
+            R &\subseteq \{1,2,3\} \times \{\varnothing, a, b\} \quad \quad 
+            \text{donde } R = \{(2,b), (3,\varnothing)\} \\ 
+            A &= \{1,2,3\} \quad \quad \quad \quad \quad \quad \quad 
+            \text{donde } S = \{(x,y) \in A^2 \; | \; x+1=y\}
+        \end{align*}
+
+        En caso de que alguna lo sea,
+        \begin{itemize}
+            \item ¿Cuál es su dominio?
+            \item ¿Cuál es su codominio?
+            \item ¿Cuál es su regla de correspondencia?
+            \item ¿Cuál es su función inversa?
+            \item ¿Cuál es el resultado de componer la función consigo misma?
+        \end{itemize}
+    }
+
+    % Ejercicio 19
+    \question
+    {
+        Sean $A,B$ y $C$ conjuntos no vacíos. Sean $f: A \rightarrow B$ y 
+        $g: B \rightarrow C$ funciones. ¿Cuáles de las siguientes expresiones 
+        son \textbf{verdaderas}?
+        \begin{itemize}
+            \item Si $g \circ f$ es inyectiva, entonces $f$ es inyectiva.
+            \item Si $g \circ f$ es suprayectiva, entonces $f$ es suprayectiva.
+        \end{itemize}
+    }
+
+    % Ejercicio 20
+    \question
+    {
+        Sean $a,b \in \mathbb{R}$ con $b \neq 0$. Definimos la función
+        $f: \mathbb{R} - \{0\} \rightarrow \mathbb{R} - \{a\}$ como sigue:
+        \begin{equation*}
+            f(x) = a + \frac{b}{x}
+        \end{equation*}
+
+        \textbf{Demuestra} que $f$ es una función biyectiva. 
+    }
+
+\end{questions}
+\end{document}

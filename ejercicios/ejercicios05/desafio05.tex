@@ -1,0 +1,434 @@
+\documentclass[oneside]{style}
+
+\title{Desafío 05}
+\principal{Definición Recursiva de Funciones}
+\author{Tania Michelle Rubí Rojas}
+\semester{Semestre 2023-1}
+
+\begin{document}
+\maketitle
+
+Para cada uno de los siguientes ejercicios, \textbf{justifica ampliamente} tu 
+respuesta:
+
+\begin{questions}[label=\protect\circled{\bfseries\arabic*}]
+    % Ejercicio 01
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Define} recursivamente la función: 
+            \begin{align*}
+                f: \mathbb{N} &\rightarrow \mathbb{N} \\ 
+                f(n) &= 2^n
+            \end{align*} 
+
+            \item \textbf{Indica} de manera explícita quién es el dominio y el 
+            codominio de la función. Además, \textbf{menciona} cuál es su regla 
+            de correspondencia.
+
+            \item ¿Es $f$ función? En caso de que lo sea, ¿es inyectiva y 
+            suprayectiva?
+
+            \item \textbf{Muestra} el comportamiento de tu función con los 
+            valores $n = 0, n = 4$ y $n = 8$. ¿Obtienes los resultados esperados?
+            ¿Por qué?
+        \end{itemize}
+    }
+
+    % Ejercicio 02
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Sea $S$ el conjunto de todas las cadenas de a's y b's, y sea 
+            $\mathcal{L}_S$ el conjunto de listas cuyos elementos pertenecen a 
+            $S$. \textbf{Define} recursivamente la función:
+            \begin{align*}
+                \texttt{longitud}&: \mathcal{L}_S \rightarrow \mathbb{N} \\ 
+                \texttt{longitud(s)} &= \texttt{la longitud de } s 
+            \end{align*}
+
+            \item \textbf{Indica} de manera explícita quién es el dominio y el 
+            codominio de la función. Además, \textbf{menciona} cuál es su regla 
+            de correspondencia.
+
+            \item ¿Es \texttt{longitud} función? En caso de que lo sea, ¿es 
+            inyectiva y suprayectiva?
+
+            \item \textbf{Muestra} el comportamiento de tu función con las 
+            cadenas $baba, abaaab$ y $aaaaa$. ¿Obtienes los resultados esperados?
+            ¿Por qué?
+        \end{itemize}
+    }
+
+    % Ejercicio 03
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Define} recursivamente la función:
+            \begin{align*}
+                f: \mathbb{N} &\rightarrow \mathbb{N} \\ 
+                f(n) &= 2n + 1
+            \end{align*}  
+
+            \item \textbf{Indica} de manera explícita quién es el dominio y el 
+            codominio de la función. Además, \textbf{menciona} cuál es su regla 
+            de correspondencia.
+
+            \item ¿Es $f$ función? En caso de que lo sea, ¿es inyectiva y 
+            suprayectiva?
+
+            \item \textbf{Muestra} el comportamiento de tu función con los valores 
+            $n = 2, n = 5$ y $n = 7$. ¿Obtienes los resultados esperados?
+            ¿Por qué?
+        \end{itemize}
+    }
+
+    % Ejercicio 04
+    \question
+    {
+        \textbf{Responde} lo siguiente: 
+        \begin{itemize}
+            \item ¿Cuáles son las características de una función recursiva?
+            \item ¿Cuál es la estructura de una regla de correspondencia 
+            recursiva?
+            \item ¿Cuál es la diferencia entre una función recursiva y una 
+            definición recursiva?
+            \item ¿Es posible definir funciones recursivas para generar un 
+            conjunto cualquiera $A$?
+        \end{itemize}
+    }
+
+    % Ejercicio 05
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Sea $\mathcal{A}_S$ el conjunto de árboles binarios cuyos 
+            elementos pertenecen al conjunto $S$. \textbf{Define} 
+            recursivamente la función:
+            \begin{align*}
+                \texttt{hmi}&: \mathcal{A}_\mathbb{N} \rightarrow 
+                \mathcal{A}_\mathbb{S} \\ 
+                \texttt{hmi(T)} &= \text{la hoja más a la izquierda de } T
+            \end{align*} 
+
+            \item \textbf{Indica} de manera explícita quién es el dominio y el 
+            codominio de la función. Además, \textbf{menciona} cuál es su regla 
+            de correspondencia.
+
+            \item ¿Es \texttt{hmi} función? En caso de que lo sea, ¿es inyectiva 
+            y suprayectiva?
+
+            \item \textbf{Muestra} el comportamiento de tu función con tres 
+            ejemplos (no triviales) que propongas. ¿Obtienes los resultados 
+            esperados? ¿Por qué?
+        \end{itemize}
+    }
+
+    % Ejercicio 06
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Sea $A$ una fórmula proposicional cuyos únicos conectivos 
+            lógicos son $\land, \lor$ y $\neg$. Definimos la fórmula dual de 
+            $A$, denotada como $A_D$, cuyo resultado intercambia $\land$ por 
+            $\lor$, $\lor$ por $\land$ y reemplaza a cada variable 
+            proposicional, digamos $p$, por su negación $\neg p$. 
+            \textbf{Define} recursivamente la función:
+            \begin{align*}
+                \texttt{swap}:\mathcal{LPROP} &\rightarrow \mathcal{LPROP} \\ 
+                \texttt{swap(F)} &= F_S
+            \end{align*}
+
+            \item \textbf{Indica} de manera explícita quién es el dominio y el 
+            codominio de la función. Además, \textbf{menciona} cuál es su regla 
+            de correspondencia.
+
+            \item ¿Es \texttt{swap(F)} función? En caso de que lo sea, ¿es 
+            inyectiva y suprayectiva?
+
+            \item \textbf{Muestra} el comportamiento de tu función con tres 
+            ejemplos (no triviales) que propongas. ¿Obtienes los resultados 
+            esperados? ¿Por qué?
+        \end{itemize}
+    }
+
+    % Ejercicio 07
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Sea $\mathcal{A}_S$ el conjunto de árboles binarios cuyos 
+            elementos pertenecen al conjunto $S$. \textbf{Define} 
+            recursivamente la función:
+            \begin{align*}
+                \texttt{nv}&: \mathcal{A}_\mathbb{N} \rightarrow 
+                \mathbb{N} \\ 
+                \texttt{nv(T)} &= \text{número de vértices de } T
+            \end{align*} 
+
+            \item \textbf{Indica} de manera explícita quién es el dominio y el 
+            codominio de la función. Además, \textbf{menciona} cuál es su regla 
+            de correspondencia.
+
+            \item ¿Es \texttt{nv} función? En caso de que lo sea, ¿es inyectiva 
+            y suprayectiva?
+
+            \item \textbf{Muestra} el comportamiento de tu función con tres 
+            ejemplos (no triviales) que propongas. ¿Obtienes los resultados 
+            esperados? ¿Por qué?
+        \end{itemize}
+    }
+
+    % Ejercicio 08
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Sea $\mathcal{A}_S$ el conjunto de árboles binarios cuyos 
+            elementos pertenecen al conjunto $S$. \textbf{Define} 
+            recursivamente la función:
+            \begin{align*}
+                \texttt{na}&: \mathcal{A}_\mathbb{N} \rightarrow 
+                \mathbb{N} \\ 
+                \texttt{na(T)} &= \text{la altura de } T
+            \end{align*} 
+
+            \item \textbf{Indica} de manera explícita quién es el dominio y el 
+            codominio de la función. Además, \textbf{menciona} cuál es su regla 
+            de correspondencia.
+
+            \item ¿Es $na$ función? En caso de que lo sea, ¿es inyectiva y 
+            suprayectiva?
+
+            \item \textbf{Muestra} el comportamiento de tu función con tres 
+            ejemplos (no triviales) que propongas. ¿Obtienes los resultados 
+            esperados? ¿Por qué?
+        \end{itemize}
+    }
+
+    \newpage
+    % Ejercicio 09
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Sea $S$ el conjunto de todas las cadenas de a's y b's, y sea 
+            $\mathcal{L}_S$ el conjunto de listas cuyos elementos pertenecen a 
+            $S$. \textbf{Define} recursivamente la función:
+            \begin{align*}
+                \texttt{reversa}&: \mathcal{L}_S \rightarrow \mathbb{N} \\ 
+                \texttt{reversa(s)} &= \texttt{la reversa de } s 
+            \end{align*}
+
+            \item \textbf{Indica} de manera explícita quién es el dominio y el 
+            codominio de la función. Además, \textbf{menciona} cuál es su regla 
+            de correspondencia.
+
+            \item ¿Es \texttt{reversa} función? En caso de que lo sea, ¿es 
+            inyectiva y suprayectiva?
+
+            \item \textbf{Muestra} el comportamiento de tu función con las 
+            cadenas $baba, abaaab$ y $aaaaa$. ¿Obtienes los resultados esperados?
+            ¿Por qué?
+        \end{itemize}
+    }
+
+    % Ejercicio 10
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Sea $S$ el conjunto de todas las cadenas de a's y b's, y sea 
+            $\mathcal{L}_S$ el conjunto de listas cuyos elementos pertenecen a 
+            $S$. \textbf{Define} recursivamente la función:
+            \begin{align*}
+                \texttt{pal}&: \mathcal{L}_S \rightarrow \{\texttt{true, 
+                false}\} \\ 
+                \texttt{pal(s)} &= \texttt{si los caracteres en } s 
+                \text{ forman un palíndromo, } \\ 
+                &\text{regresa \texttt{true}. En caso contrario, regresa 
+                \texttt{false}} 
+            \end{align*}
+
+            \item \textbf{Indica} de manera explícita quién es el dominio y el 
+            codominio de la función. Además, \textbf{menciona} cuál es su regla 
+            de correspondencia.
+
+            \item ¿Es \texttt{pal} función? En caso de que lo sea, ¿es inyectiva 
+            y suprayectiva?
+
+            \item \textbf{Muestra} el comportamiento de tu función con tres 
+            ejemplos (no triviales) que propongas. ¿Obtienes los resultados 
+            esperados? ¿Por qué?
+        \end{itemize}
+    }
+
+    % Ejercicio 11
+    \question
+    {
+        \textbf{Define} recursivamente una función para la potencia de números
+        enteros bajo el siguiente esquema:
+        \[
+            n^k = 
+            \begin{cases} 
+                (n^2)^{\frac{k}{2}} & \text{si $k$ es par} \\
+                n(n^{k-1}) & \text{en otro caso}
+            \end{cases}
+        \]
+
+        tal que tenga la siguiente firma:
+        \begin{equation*}
+            \texttt{potencia}: \mathbb{N} \rightarrow \mathbb{N}
+        \end{equation*}
+
+    }
+
+    % Ejercicio 13
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Define} recursivamente la función 
+            \begin{align*}
+                \texttt{suma}&: \mathbb{N} \rightarrow \mathbb{N} \\  
+                \texttt{suma(n)} &= \text{ la suma de cada uno de los dígitos 
+                de } n
+            \end{align*} 
+
+            \item \textbf{Indica} de manera explícita quién es el dominio y el 
+            codominio de la función. Además, \textbf{menciona} cuál es su regla 
+            de correspondencia.
+
+            \item ¿Es \texttt{suma} función? En caso de que lo sea, ¿es 
+            inyectiva y suprayectiva?
+
+            \item \textbf{Muestra} el comportamiento de tu función con los 
+            valores $n = 0, n = 1563$ y $n = 147852369$. ¿Obtienes los 
+            resultados esperados? ¿Por qué?
+        \end{itemize}
+    }
+
+    \newpage
+    % Ejercicio 14
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Sea $\mathcal{A}_S$ el conjunto de árboles binarios cuyos 
+            elementos pertenecen al conjunto $S$. Sea, además, $\mathcal{L}_S$ 
+            el conjunto de todas las listas cuyos elementos pertenecen al 
+            conjunto $S$. \textbf{Define} recursivamente la función:
+            \begin{align*}
+                \texttt{aplana}&: \mathcal{A}_\mathbb{N} \rightarrow 
+                \mathcal{L}_\mathbb{N} \\ 
+                \texttt{aplana(T)}  &= \text{los elementos en los nodos de } T 
+                \text{ de forma que recorramos primero } \\ &\text{la raíz, 
+                luego los nodos del subárbol izquierdo y finalmente los del 
+                subárbol derecho}
+            \end{align*} 
+
+            \item \textbf{Define} recursivamente una función \texttt{aplana(T)} 
+            que tome un árbol binario $T$ y regrese la lista de sus nodos 
+            empezando por la raíz y siguiendo con los nodos del subárbol 
+            izquierdo y derecho recursivamente.  
+
+            \item \textbf{Indica} de manera explícita quién es el dominio y el 
+            codominio de la función. Además, \textbf{menciona} cuál es su regla 
+            de correspondencia.
+
+            \item ¿Es \texttt{aplana} función? En caso de que lo sea, ¿es 
+            inyectiva y suprayectiva?
+
+            \item \textbf{Muestra} el comportamiento de tu función con tres 
+            ejemplos (no triviales) que propongas. ¿Obtienes los resultados 
+            esperados? ¿Por qué?
+        \end{itemize}
+    }
+
+    % Ejercicio 15
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Sea $\mathcal{L}_S$  el conjunto de todas las listas 
+            cuyos elementos pertenecen al conjunto $S$. \textbf{Define} 
+            recursivamente la función:
+            \begin{align*}
+                \texttt{getNth}&: \mathbb{N} \times \mathcal{L}_\mathbb{N} 
+                \rightarrow \mathbb{N} \\ 
+                \texttt{getNth(n,l)} &= n\text{-ésimo elemento de } l
+            \end{align*}
+
+            \item \textbf{Indica} de manera explícita quién es el dominio y el 
+            codominio de la función. Además, \textbf{menciona} cuál es su regla 
+            de correspondencia.
+
+            \item ¿Es \texttt{getNth} función? En caso de que lo sea, ¿es 
+            inyectiva y suprayectiva?
+
+            \item \textbf{Muestra} el comportamiento de tu función con tres 
+            ejemplos (no triviales) que propongas. ¿Obtienes los resultados 
+            esperados? ¿Por qué?
+        \end{itemize}
+    }
+
+    % Ejercicio 16
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Sea $\mathcal{L}_S$  el conjunto de todas las listas 
+            cuyos elementos pertenecen al conjunto $S$. \textbf{Define} 
+            recursivamente la función:
+            \begin{align*}
+                \texttt{min}&: \mathcal{L}_\mathbb{N} 
+                \rightarrow \mathbb{N} \\ 
+                \texttt{min(l)} &= \text{el elemento más pequeño de } l
+            \end{align*}
+
+            \item \textbf{Indica} de manera explícita quién es el dominio y el 
+            codominio de la función. Además, \textbf{menciona} cuál es su regla 
+            de correspondencia.
+
+            \item ¿Es \texttt{min} función? En caso de que lo sea, ¿es inyectiva 
+            y suprayectiva?
+
+            \item \textbf{Muestra} el comportamiento de tu función con tres 
+            ejemplos (no triviales) que propongas. ¿Obtienes los resultados 
+            esperados? ¿Por qué?
+        \end{itemize}
+    }
+
+    % Ejercicio 17
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Define} recursivamente la función:
+            \begin{align*}
+                \texttt{repite}&: \mathbb{N} \times \mathbb{Z}
+                \rightarrow \mathcal{L}_\mathbb{Z} \\ 
+                \texttt{repite(n,e)} &= \text{la lista que contiene 
+                al elemento } e \text{ repetido } n \text{ veces}
+            \end{align*}  
+
+            \item \textbf{Indica} de manera explícita quién es el dominio y el 
+            codominio de la función. Además, \textbf{menciona} cuál es su regla 
+            de correspondencia.
+
+            \item ¿Es \texttt{repite} función? En caso de que lo sea, ¿es 
+            inyectiva y suprayectiva?
+
+            \item \textbf{Muestra} el comportamiento de tu función con tres 
+            ejemplos (no triviales) que propongas. ¿Obtienes los resultados 
+            esperados? ¿Por qué?
+        \end{itemize}
+    }
+
+\end{questions}
+\end{document}

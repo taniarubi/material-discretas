@@ -1,0 +1,324 @@
+\documentclass[oneside]{style}
+
+\title{Desafío 04}
+\principal{Definición Recursiva de Conjuntos}
+\author{Tania Michelle Rubí Rojas}
+\semester{Semestre 2023-1}
+
+\begin{document}
+\maketitle
+
+Para cada uno de los siguientes ejercicios, \textbf{justifica ampliamente} tu 
+respuesta:
+
+\begin{questions}[label=\protect\circled{\bfseries\arabic*}]
+    % Ejercicio 01
+    \question
+    {
+        Para el siguiente conjunto 
+        \begin{equation*}
+            S = \{n^2 \; | \; n \in \mathbb{N}\}
+        \end{equation*}
+
+        \textbf{realiza} lo siguiente.
+        \begin{itemize}
+            \item \textbf{Da} la definición por extensión del conjunto $S$.
+            \item \textbf{Define} a $S$ recursivamente.
+            \item ¿Tu definición es correcta? \textbf{Justifica} tu respuesta 
+            mostrando cada uno de los componentes de tu definición y cada uno 
+            de los componentes de las reglas que definiste. 
+            \item Usando la definición que escribiste en el inciso anterior, 
+            muestra que $16 \in S$ y $5 \not \in S$.  
+        \end{itemize}
+    }
+
+    % Ejercicio 02
+    \question
+    {
+        Para el siguiente conjunto 
+        \begin{equation*}
+            S = \{2^n - 2 \; | \; n \in \mathbb{N} \text{ y } n > 0\}
+        \end{equation*}
+
+        \textbf{realiza} lo siguiente.
+        \begin{itemize}
+            \item \textbf{Da} la definición por extensión del conjunto $S$.
+            \item \textbf{Define} a $S$ recursivamente.
+            \item ¿Tu definición es correcta? \textbf{Justifica} tu respuesta 
+            mostrando cada uno de los componentes de tu definición y cada uno 
+            de los componentes de las reglas que definiste. 
+            \item Usando la definición que escribiste en el inciso anterior, 
+            muestra que $30 \in S$ y $2 \in S$
+        \end{itemize}
+    }
+
+    % Ejercicio 03
+    \question
+    {
+        Para el siguiente conjunto 
+        \begin{equation*}
+            S = \{a^n b c^n \; | \; n \in \mathbb{N}\}
+        \end{equation*}
+
+        \textbf{realiza} lo siguiente.
+        \begin{itemize}
+            \item \textbf{Da} la definición por extensión del conjunto $S$.
+            \item \textbf{Define} a $S$ recursivamente.
+            \item ¿Tu definición es correcta? \textbf{Justifica} tu respuesta 
+            mostrando cada uno de los componentes de tu definición y cada uno 
+            de los componentes de las reglas que definiste. 
+            \item Usando la definición que escribiste en el inciso anterior, 
+            muestra que $aabcc \in S$ y $aabbcc \not \in S$
+        \end{itemize}
+    }
+
+    % Ejercicio 04
+    \question
+    {
+        Sea $S$ el conjunto de los números naturales. Para dicho conjunto, 
+        \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Da} la definición por comprensión del conjunto $S$.
+            \item \textbf{Define} a $S$ recursivamente.
+            \item ¿Tu definición es correcta? \textbf{Justifica} tu respuesta 
+            mostrando cada uno de los componentes de tu definición y cada uno 
+            de los componentes de las reglas que definiste. 
+            \item Usando la definición que escribiste en el inciso anterior, 
+            muestra que $5 \in S$ y $2 \in S$. 
+        \end{itemize}
+    }
+
+    % Ejercicio 05
+    \question{¿Todo conjunto puede ser definido de manera recursiva?}
+
+    % Ejercicio 06
+    \question{¿Cuáles son las características de una definición recursiva?}
+
+    % Ejercicio 07
+    \question
+    {
+        Sea $A \subseteq \mathbb{Z}$ un conjunto cuya definición recursiva es 
+        la siguiente:
+        \begin{itemize}
+            \item[i)] $1 \in A$
+            \item[ii)] Si $a \in A$ entonces $a \in A$
+            \item[iii)] Estos y sólo estos son elementos de $A$.
+        \end{itemize}   
+
+        \textbf{Resuelve} lo siguiente:
+        \begin{itemize}
+            \item ¿Cuál es el pegamento, el antecedente y el consecuente de
+            cada una de las reglas de la definición?
+
+            \item \textbf{Escribe} por extensión y comprensión el conjunto $A$. 
+        \end{itemize}
+    }
+
+    % Ejercicio 08
+    \question
+    {
+        Sea $S$ el conjunto de los números negativos que son pares. Para dicho 
+        conjunto, \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Da} la definición por comprensión del conjunto $S$.
+            \item \textbf{Define} a $S$ recursivamente.
+            \item ¿Tu definición es correcta? \textbf{Justifica} tu respuesta 
+            mostrando cada uno de los componentes de tu definición y cada uno 
+            de los componentes de las reglas que definiste. 
+            \item Usando la definición que escribiste en el inciso anterior, 
+            muestra que $-10 \in S$ y $0 \not \in S$ 
+        \end{itemize}
+    }
+
+    % Ejercicio 09
+    \question
+    {
+        Sea $S$ el conjunto de los números enteros que son impares. Para 
+        dicho conjunto, \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Da} la definición por comprensión del conjunto $S$.
+            \item \textbf{Define} a $S$ recursivamente.
+            \item ¿Tu definición es correcta? \textbf{Justifica} tu respuesta 
+            mostrando cada uno de los componentes de tu definición y cada uno 
+            de los componentes de las reglas que definiste. 
+            \item Usando la definición que escribiste en el inciso anterior, 
+            muestra que $-3 \in S$ y $7 \in S$. 
+        \end{itemize}
+    }
+
+    % Ejercicio 10
+    \question
+    {
+        Sea $S$ el conjunto de todas las cadenas de ceros y unos. Para dicho 
+        conjunto, \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Da} la definición por comprensión del conjunto $S$.
+            \item \textbf{Define} a $S$ recursivamente.
+            \item ¿Tu definición es correcta? \textbf{Justifica} tu respuesta 
+            mostrando cada uno de los componentes de tu definición y cada uno 
+            de los componentes de las reglas que definiste. 
+            \item Usando la definición que escribiste en el inciso anterior, 
+            muestra que $0101 \in S$ y $031 \not \in S$ 
+        \end{itemize}
+    }
+
+    % Ejercicio 11
+    \question
+    {
+        Para el siguiente conjunto 
+        \begin{equation*}
+            S = \{0^n 1^n \; | \; n \in \mathbb{N} \text{ y } n > 0\}
+        \end{equation*}
+
+        \textbf{realiza} lo siguiente.
+        \begin{itemize}
+            \item \textbf{Da} la definición por extensión del conjunto $S$.
+            \item \textbf{Define} a $S$ recursivamente.
+            \item ¿Tu definición es correcta? \textbf{Justifica} tu respuesta 
+            mostrando cada uno de los componentes de tu definición y cada uno 
+            de los componentes de las reglas que definiste. 
+            \item Usando la definición que escribiste en el inciso anterior, 
+            muestra que $0011 \in S$ y $00001111 \in S$
+        \end{itemize}
+    }
+
+    % Ejercicio 12
+    \question
+    {
+        Sea $S$ el conjunto de todas las cadenas de ceros y unos que terminan 
+        con un cero. Para dicho conjunto, \textbf{realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Da} la definición por extensión del conjunto $S$.
+            \item \textbf{Define} a $S$ recursivamente.
+            \item ¿Tu definición es correcta? \textbf{Justifica} tu respuesta 
+            mostrando cada uno de los componentes de tu definición y cada uno 
+            de los componentes de las reglas que definiste. 
+            \item Usando la definición que escribiste en el inciso anterior, 
+            muestra que $111010 \in S$ y $1 \not \in S$ 
+        \end{itemize}
+    }
+
+    % Ejercicio 13
+    \question{¿Una definición recursiva puede tener más de una regla 
+    recursiva? \textbf{Justifica} tu respuesta con un ejemplo. }
+
+    % Ejercicio 14
+    \question
+    {
+        Sea $F$ un conjunto cuya definición recursiva es la siguiente:
+        \begin{itemize}
+            \item[i)] $1 \in F$
+            \item[ii)] Si $n \in F$ entonces $n^2 + n + 3 \in F$
+            \item[iii)] Estos y sólo estos son elementos de $F$.
+        \end{itemize}   
+
+        ¿Cuáles de los siguientes elementos pertenecen a $F$?
+        \begin{tasks}(3)
+            \task $52$
+            \task $33$
+            \task $106$
+          \end{tasks}    
+    }
+
+    % Ejercicio 15
+    \question
+    {
+        Sea $S$ un conjunto de números cuya definición recursiva es 
+        la siguiente:
+        \begin{itemize}
+            \item[i)] $2 \in S$
+            \item[ii)] Si $n \in S$ entonces $n+3 \in S$ y $2*n \in S$
+            (donde $+, *$ denotan, respectivamente, la suma y 
+            multiplicación habitual de números naturales).
+            \item[iii)] Estos y sólo estos son elementos de $S$.
+        \end{itemize}   
+
+        \textbf{Resuelve} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Da} la definición por comprensión del conjunto 
+            $S$.
+            \item ¿Los elementos $6,7,19$ pertenecen a $S$?
+            \item ¿La definición es correcta? \textbf{Justifica} tu respuesta 
+            mostrando cada uno de los componentes de la definición y cada uno 
+            de los componentes de las reglas definidas.  
+        \end{itemize}
+    }
+
+    % Ejercicio 16
+    \question
+    {
+        Sea $S$ un conjunto de cadenas cuya definición recursiva es 
+        la siguiente:
+        \begin{itemize}
+            \item[i)] $a \in S$
+            \item[ii)] $b \in S$  
+            \item[ii)] Si $x \in S$ entonces $xb \in S$.
+            \item[iii)] Estos y sólo estos son elementos de $S$.
+        \end{itemize}   
+
+        \textbf{Resuelve} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Da} la definición por comprensión del conjunto 
+            $S$.
+            \item ¿Los elementos $a, aba, bbbbb$ pertenecen a $S$?
+            \item ¿La definición es correcta? \textbf{Justifica} tu respuesta 
+            mostrando cada uno de los componentes de la definición y cada uno 
+            de los componentes de las reglas definidas.  
+        \end{itemize}
+    }
+
+    % Ejercicio 17
+    \question
+    {
+        Sea $S$ un conjunto de cadenas cuya definición recursiva es 
+        la siguiente:
+        \begin{itemize}
+            \item[i)] $pqq \in S$
+            \item[ii)] Si $x,y \in S$ entonces $pxqq,qqxp,xy \in S$
+            \item[iii)] Estos y sólo estos son elementos de $S$.
+        \end{itemize}   
+
+        \textbf{Resuelve} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Da} la definición por comprensión del conjunto 
+            $S$.
+            \item ¿Los elementos $ppqqqq,qqpp,qqqqqqpppp$ pertenecen a $S$?
+            \item ¿La definición es correcta? \textbf{Justifica} tu respuesta 
+            mostrando cada uno de los componentes de la definición y cada uno 
+            de los componentes de las reglas definidas.  
+        \end{itemize}
+    }
+
+    % Ejercicio 18
+    \question
+    {
+        Sea $M$ el conjunto de números naturales que son impares cuya 
+        definición recursiva es la siguiente:
+        \begin{itemize}
+            \item[i)] $1 \in M$
+            \item[ii)] Si $n \in M$ entonces $n+2 \in M$
+            \item[ii)] Este es el conjunto $M$  
+        \end{itemize}
+
+        ¿La definición recursiva de $M$ es correcta, válida y finita?
+    }
+
+    \newpage
+    % Ejercicio 19
+    \question
+    {
+        ¿Cuáles de las siguientes afirmaciones son \textbf{verdaderas}?
+        \begin{itemize}
+            \item Una definición recursiva es válida si y sólo si 
+            construye todos los elementos del conjunto en cuestión. 
+
+            \item La regla de extremo garantiza que las reglas base 
+            y las reglas recursivas son las únicas maneras de obtener 
+            o construir elementos del conjunto. 
+        \end{itemize}
+    }
+
+    % Ejercicio 20
+    \question{¿Una definición recursiva puede tener más de un caso base?}
+\end{questions}
+\end{document}

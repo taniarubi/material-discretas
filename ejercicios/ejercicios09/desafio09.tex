@@ -1,0 +1,577 @@
+\documentclass[oneside]{style}
+
+\title{Desafío 09}
+\principal{Lógica Proposicional: La venganza}
+\author{Tania Michelle Rubí Rojas}
+\semester{Semestre 2023-1}
+
+\begin{document}
+\maketitle
+
+Para cada uno de los siguientes ejercicios, \textbf{justifica ampliamente} tu 
+respuesta:
+
+\begin{questions}[label=\protect\circled{\bfseries\arabic*}]
+    % Ejercicio 01
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} la siguiente oración al lenguaje de la 
+            lógica proposicional. 
+
+            \begin{quote}
+                \centering
+                Mañana es enero sólo si hoy es víspera de año nuevo. 
+            \end{quote}
+
+            \item \textbf{Escribe} la \textbf{negación} de la oración anterior 
+            en lenguaje español y \textbf{tradúcelo} al lenguaje de la lógica 
+            proposicional.
+
+            \item \textbf{Determina} si las dos traducciones anteriores son 
+            una tautología, una contradicción o una contingencia. 
+        \end{itemize}
+    }
+
+    % Ejercicio 02
+    \question
+    {
+
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Para el siguiente argumento lógico, marca con color 
+            \textcolor{orange}{\textbf{naranja}} la(s) premisa(s) y marca con 
+            color \textcolor{blue}{\textbf{azul}} la conclusión.
+
+            \begin{quote}
+                \centering
+                Si todos los números enteros son racionales, entonces 
+                el número $1$ es racional. Todos los números enteros son 
+                racionales. Por lo tanto, el número $1$ es racional.
+            \end{quote}
+    
+            \item \textbf{Traduce} el argumento anterior al lenguaje de la lógica 
+            proposicional.
+    
+            \item Utilizando la traducción que construiste en el inciso anterior, 
+            \textbf{determina} si el argumento lógico es correcto usando el 
+            concepto de \textbf{consecuencia lógica}.
+        \end{itemize}
+    }
+
+    % Ejercicio 03
+    \question
+    {
+        \textbf{Determina}, usando \textbf{interpretaciones}, si los siguientes 
+        conjuntos de fórmulas son satisfacibles. En caso afirmativo, 
+        \textbf{muestra} un modelo que los satisfaga.
+        \begin{itemize}
+            \item $\Gamma = \{p \rightarrow q, \neg q \lor r, p \land \neg r\}$
+            \item $\Gamma = \{(p \lor q) \rightarrow r, \neg((\neg p \land 
+            \neg q) \lor r)\}$
+        \end{itemize}
+    }
+
+    % Ejercicio 04
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} la siguiente oración al lenguaje de la 
+            lógica proposicional. 
+
+            \begin{quote}
+                \centering
+                Si Tommy es el padre de Amanda, entonces Charly es su tío y 
+                Susana es su tía. 
+            \end{quote}
+
+            \item \textbf{Escribe} la \textbf{negación} de la oración anterior 
+            en lenguaje español y \textbf{tradúcelo} al lenguaje de la lógica 
+            proposicional.
+
+            \item \textbf{Determina} si las dos traducciones anteriores son 
+            una tautología, una contradicción o una contingencia. 
+        \end{itemize}
+    }
+
+    % Ejercicio 05
+    \question
+    {
+
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Para el siguiente argumento lógico, marca con color 
+            \textcolor{orange}{\textbf{naranja}} la(s) premisa(s) y marca con 
+            color \textcolor{blue}{\textbf{azul}} la conclusión.
+
+            \begin{quote}
+                \centering
+                Este número es par o este número es impar. Este número no es 
+                par. Por lo tanto, este número es impar.
+            \end{quote}
+    
+            \item \textbf{Traduce} el argumento anterior al lenguaje de la lógica 
+            proposicional.
+    
+            \item Utilizando la traducción que construiste en el inciso anterior, 
+            \textbf{determina} si el argumento lógico es correcto usando el 
+            concepto de \textbf{consecuencia lógica}.
+        \end{itemize}
+    }
+
+    % Ejercicio 06
+    \question
+    {
+        \textbf{Determina}, usando \textbf{interpretaciones}, si los siguientes 
+        conjuntos de fórmulas son satisfacibles. En caso afirmativo, 
+        \textbf{muestra} un modelo que los satisfaga.
+        \begin{itemize}
+            \item $\Gamma = \{p \leftrightarrow q, q \leftrightarrow s, p, 
+            \neg s\}$
+            \item $\Gamma = \{(p \land q) \rightarrow r, \neg r, \neg p\}$
+        \end{itemize}
+    }
+
+    % Ejercicio 07
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} la siguiente oración al lenguaje de la 
+            lógica proposicional. 
+
+            \begin{quote}
+                \centering
+                Si $n$ es divisible entre $6$, entonces $n$ es divisible 
+                entre $2$ y $3$. 
+            \end{quote}
+
+            \item \textbf{Escribe} la \textbf{negación} de la oración anterior 
+            en lenguaje español y \textbf{tradúcelo} al lenguaje de la lógica 
+            proposicional.
+
+            \item \textbf{Determina} si las dos traducciones anteriores son 
+            una tautología, una contradicción o una contingencia. 
+        \end{itemize}
+    }
+
+    % Ejercicio 08
+    \question
+    {
+        \textbf{Determina} si son \textbf{verdaderas} las siguientes 
+        equivalencias lógicas:
+        \begin{itemize}
+            \item $(p \lor q) \rightarrow r \equiv (p \rightarrow r) \land 
+            (q \rightarrow r)$
+
+            \item $(p \land q) \rightarrow r \equiv (p \rightarrow r) \lor 
+            (q \rightarrow r)$
+        \end{itemize}
+    }
+
+    % Ejercicio 09
+    \question
+    {
+
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Para el siguiente argumento lógico, marca con color 
+            \textcolor{orange}{\textbf{naranja}} la(s) premisa(s) y marca con 
+            color \textcolor{blue}{\textbf{azul}} la conclusión.
+
+            \begin{quote}
+                \centering
+                Si todos los programas de computadora contienen errores, 
+                entonces este programa contiene un error. Este programa no 
+                contiene un error. Por lo tanto, no pasa que todos los 
+                programas de computadora tengan errores.
+            \end{quote}
+    
+            \item \textbf{Traduce} el argumento anterior al lenguaje de la lógica 
+            proposicional.
+    
+            \item Utilizando la traducción que construiste en el inciso anterior, 
+            \textbf{determina} si el argumento lógico es correcto usando el 
+            \textbf{método de refutación}.
+        \end{itemize}
+    }
+
+    % Ejercicio 10
+    \question
+    {
+        \textbf{Determina}, usando \textbf{interpretaciones}, si las 
+        siguientes fórmulas son satisfacibles, tautologías o 
+        contradicciones. 
+        \begin{itemize}
+            \item $p \lor (\neg p \land q) \rightarrow p \lor q$
+            \item $(\neg p \lor q) \rightarrow ((p \land r) \leftrightarrow
+            ((s \land t) \rightarrow (u \lor p)))$
+        \end{itemize}
+    }
+
+    % Ejercicio 11
+    \question
+    {
+        \textbf{Determina}, usando \textbf{interpretaciones}, si los siguientes 
+        conjuntos de fórmulas son satisfacibles. En caso afirmativo, 
+        \textbf{muestra} un modelo que los satisfaga.
+        \begin{itemize}
+            \item $\Gamma = \{(p \lor q) \rightarrow r, p, r \rightarrow t, 
+            \neg (t \lor q)\}$
+            \item $\Gamma = \{p \rightarrow q, p \lor r \land s, q \rightarrow 
+            t\}$
+        \end{itemize}
+    }
+
+    % Ejercicio 12
+    \question
+    {
+        \textbf{Determina} si los siguientes argumentos son correctos o no. En 
+        caso de no serlo, \textbf{da} una interpretación que haga verdaderas a 
+        las premisas y falsa a la conclusión. 
+        \begin{itemize}
+            \item $\{p \rightarrow q, q \lor r, \neg (r \land s)\} \models 
+            (p \rightarrow q) \rightarrow (q \lor \neg s)$
+
+            \item $\{p \lor q, \neg (p \land r), \neg q\} \models r \rightarrow
+            s$
+        \end{itemize}
+    }
+
+    % Ejercicio 13
+    \question
+    {
+        \textbf{Determina} si son \textbf{verdaderas} las siguientes 
+        equivalencias lógicas:
+        \begin{itemize}
+            \item $(\neg p \rightarrow (q \land \neg q)) \equiv p$
+
+            \item $p \lor (p \land q) \equiv p$
+        \end{itemize}
+    }
+
+    \newpage
+    % Ejercicio 14
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Para el siguiente argumento lógico, marca con color 
+            \textcolor{orange}{\textbf{naranja}} la(s) premisa(s) y marca con 
+            color \textcolor{blue}{\textbf{azul}} la conclusión.
+
+            \begin{quote}
+                \centering
+                César estudia la licenciatura en Ciencia de Datos o César 
+                estudia la licenciatura en Economía. Si Oleg estudia la 
+                licenciatura en Ciencia de Datos, entonces César cursa la 
+                materia de Bases de Datos. Por lo tanto, César estudia la 
+                licenciatura en Economía o César no requiere cursar la materia 
+                de Bases de Datos.
+            \end{quote}
+    
+            \item \textbf{Traduce} el argumento anterior al lenguaje de la lógica 
+            proposicional.
+    
+            \item Utilizando la traducción que construiste en el inciso anterior, 
+            \textbf{determina} si el argumento lógico es correcto usando el 
+            \textbf{método de refutación}.
+        \end{itemize}
+    }
+
+    % Ejercicio 15
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Para cada una de las siguientes fórmulas, \textbf{elimina} 
+            los paréntesis superfluos si es que hay.
+            \begin{itemize}
+                \item[i)] $((p \rightarrow r) \leftrightarrow (q \rightarrow r))$
+                \item[ii)] $(((\neg p) \lor q) \rightarrow r)$
+            \end{itemize}
+            
+            \item \textbf{Determina} si cada expresión se trata de una 
+            tautología, una contradicción o una contingencia.
+        \end{itemize}
+    }
+
+    % Ejercicio 16
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} la siguiente oración al lenguaje de la 
+            lógica proposicional. 
+
+            \begin{quote}
+                \centering
+                Hoy no es lunes, pero tal vez mañana sea octubre.
+            \end{quote}
+
+            \item \textbf{Escribe} la \textbf{negación} de la oración anterior 
+            en lenguaje español y \textbf{tradúcelo} al lenguaje de la lógica 
+            proposicional.
+
+            \item \textbf{Determina} si las dos traducciones anteriores son 
+            una tautología, una contradicción o una contingencia. 
+        \end{itemize}
+    }
+
+    % Ejercicio 17
+    \question
+    {
+        \textbf{Determina} si son \textbf{verdaderas} las siguientes 
+        equivalencias lógicas:
+        \begin{itemize}
+            \item $p \lor (q \land r) \equiv (p \lor q) \land (p \lor r)$
+
+            \item $\neg (p \rightarrow q) \equiv p \land \neg q$
+        \end{itemize}
+    }
+
+    % Ejercicio 18
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Para el siguiente argumento lógico, marca con color 
+            \textcolor{orange}{\textbf{naranja}} la(s) premisa(s) y marca con 
+            color \textcolor{blue}{\textbf{azul}} la conclusión.
+
+            \begin{quote}
+                \centering
+                Si Sebastián no está en el equipo A, entonces Tommy está en el 
+                equipo B. Si Tommy no está en el equipo B, entonces Sebastián 
+                está en el equipo A. Por lo tanto, Sebastián no está en el 
+                equipo A o Tommy no está en el equipo B
+            \end{quote}
+    
+            \item \textbf{Traduce} el argumento anterior al lenguaje de la lógica 
+            proposicional.
+    
+            \item Utilizando la traducción que construiste en el inciso anterior, 
+            \textbf{determina} si el argumento lógico es correcto usando el 
+            \textbf{método de refutación}.
+        \end{itemize}
+    }
+
+    % Ejercicio 19
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Para cada una de las siguientes fórmulas, \textbf{elimina} 
+            los paréntesis superfluos si es que hay.
+            \begin{itemize}
+                \item[i)] $((p \land (\neg q)) \lor p)$
+                \item[ii)] $(((\neg p) \lor q) \lor q) \lor (p \land (\neg q))$
+            \end{itemize}
+            
+            \item \textbf{Determina} si cada expresión se trata de una 
+            tautología, una contradicción o una contingencia.
+        \end{itemize}
+    }
+
+    \newpage
+    % Ejercicio 20
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Para el siguiente argumento lógico, marca con color 
+            \textcolor{orange}{\textbf{naranja}} la(s) premisa(s) y marca con 
+            color \textcolor{blue}{\textbf{azul}} la conclusión.
+
+            \begin{quote}
+                \centering
+                Si Ana es buena nadadora, entonces ella es buena corredora. 
+                Si Ana es buena corredora, entonces ella es una buena ciclista. 
+                Por lo tanto, si Ana es buena nadadora entonces ella es una 
+                buena ciclista.
+            \end{quote}
+    
+            \item \textbf{Traduce} el argumento anterior al lenguaje de la lógica 
+            proposicional.
+    
+            \item Utilizando la traducción que construiste en el inciso anterior, 
+            \textbf{determina} si el argumento lógico es correcto usando el 
+            concepto de \textbf{consecuencia lógica}.
+        \end{itemize}
+    }
+
+    % Ejercicio 21
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item Para cada una de las siguientes fórmulas, \textbf{agrega} 
+            los paréntesis necesarios de acuerdo a su precedencia y 
+            asociatividad. 
+            \begin{itemize}
+                \item[i)] $p \land \neg q \land r \leftrightarrow p \land r 
+                \land \neg q$
+                \item[ii)] $\neg (\neg p) \leftrightarrow$
+            \end{itemize}
+            
+            \item \textbf{Determina} si cada expresión se trata de una 
+            tautología, una contradicción o una contingencia.
+        \end{itemize}
+    }
+
+    % Ejercicio 22
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} la siguiente oración al lenguaje de la 
+            lógica proposicional. 
+
+            \begin{quote}
+                \centering
+                El servicio es excelente cuando la comida es buena. 
+            \end{quote}
+
+            \item \textbf{Escribe} la \textbf{negación} de la oración anterior 
+            en lenguaje español y \textbf{tradúcelo} al lenguaje de la lógica 
+            proposicional.
+
+            \item \textbf{Determina} si las dos traducciones anteriores son 
+            una tautología, una contradicción o una contingencia. 
+        \end{itemize}
+    }
+
+    % Ejercicio 23
+    \question
+    {
+        \textbf{Define} una función recursiva que reciba una fórmula 
+        proposicional y una lista de tuplas cuya primer componente sea una 
+        variable proposicional y cuya segunda componente sea un elemento del 
+        conjunto ${\texttt{true, false}}$. Esta función nos debe regresar el 
+        valor de verdad de la expresión en  considerando que los valores de 
+        verdad de sus variables proposicionales son los que se especifican 
+        en la lista. 
+        \begin{itemize}
+            \item Debes \textbf{definir} la firma de la función y 
+            \textbf{describirla}.
+
+            \item \textbf{Explica} por qué tu función está bien definida. 
+
+            \item \textbf{Ejecuta} tu función con las expresiones con dos 
+            ejemplos no triviales. 
+        \end{itemize}
+    }
+
+    % Ejercicio 24
+    \question
+    {
+        \textbf{Determina}, usando \textbf{interpretaciones}, si los siguientes 
+        conjuntos de fórmulas son satisfacibles. En caso afirmativo, 
+        \textbf{muestra} un modelo que los satisfaga.
+        \begin{itemize}
+            \item $\Gamma = \{\neg q \land r \lor p \lor q, p \land r\}$
+            \item $\Gamma = \{p \land \neg q, \neg (q \lor \neg p), q \land p
+            \lor q \lor \neg p\}$
+        \end{itemize}
+    }
+
+    % Ejercicio 25
+    \question
+    {
+        \textbf{Determina} si los siguientes argumentos son correctos o no. En 
+        caso de no serlo, \textbf{da} una interpretación que haga verdaderas a 
+        las premisas y falsa a la conclusión. 
+        \begin{itemize}
+            \item $\{p \lor q, p \rightarrow r, q \rightarrow r\} \models r$
+
+            \item $\{r \land s \rightarrow t, \neg t\} \models t \rightarrow q$
+        \end{itemize}
+    }
+
+    % Ejercicio 26
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} la siguiente oración al lenguaje de la 
+            lógica proposicional. 
+
+            \begin{quote}
+                \centering
+                Las flores florecerán sólo si llueve.  
+            \end{quote}
+
+            \item \textbf{Escribe} la \textbf{negación} de la oración anterior 
+            en lenguaje español y \textbf{tradúcelo} al lenguaje de la lógica 
+            proposicional.
+
+            \item \textbf{Determina} si las dos traducciones anteriores son 
+            una tautología, una contradicción o una contingencia. 
+        \end{itemize}
+    }
+
+    % Ejercicio 27
+    \question
+    {
+        \textbf{Determina} si son \textbf{verdaderas} las siguientes 
+        equivalencias lógicas:
+        \begin{itemize}
+            \item $q \rightarrow p \equiv \neg p \rightarrow \neg q$
+
+            \item $\neg (p \lor (\neg p \land q)) \equiv \neg (p \lor q)$
+        \end{itemize}
+    }
+
+    % Ejercicio 28
+    \question
+    {
+        \textbf{Determina} si los siguientes argumentos son correctos o no. En 
+        caso de no serlo, \textbf{da} una interpretación que haga verdaderas a 
+        las premisas y falsa a la conclusión. 
+        \begin{itemize}
+            \item $\{\neg q \rightarrow \neg r, \neg r \rightarrow \neg p, 
+            \neg p \rightarrow \neg q\} \models q \leftrightarrow r$
+
+            \item $\{p, \neg q\} \models \neg (p \rightarrow q)$
+        \end{itemize}
+    }
+
+    % Ejercicio 29
+    \question
+    {
+        \textbf{Determina}, usando \textbf{interpretaciones}, si los siguientes 
+        conjuntos de fórmulas son satisfacibles. En caso afirmativo, 
+        \textbf{muestra} un modelo que los satisfaga.
+        \begin{itemize}
+            \item $\Gamma = \{q \lor r \lor s, \neg (q \lor r), \neg (r \lor s), 
+            \neg (s \lor q)\}$
+            \item $\Gamma = \{\neg (p \land q) \land \neg (p \land r), q \lor r, 
+            \neg (p \lor \neg r)\}$
+        \end{itemize}
+    }
+
+    % Ejercicio 30
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Traduce} la siguiente oración al lenguaje de la 
+            lógica proposicional. 
+
+            \begin{quote}
+                \centering
+                Mi práctica de ICC es complicada y estoy triste. 
+            \end{quote}
+
+            \item \textbf{Escribe} la \textbf{negación} de la oración anterior 
+            en lenguaje español y \textbf{tradúcelo} al lenguaje de la lógica 
+            proposicional.
+
+            \item \textbf{Determina} si las dos traducciones anteriores son 
+            una tautología, una contradicción o una contingencia. 
+        \end{itemize}
+    }
+\end{questions}
+\end{document}

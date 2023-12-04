@@ -1,0 +1,503 @@
+\documentclass[oneside]{style}
+
+\title{Desafío 02}
+\principal{Relaciones Binarias}
+\author{Tania Michelle Rubí Rojas}
+\semester{Semestre 2023-1}
+
+\begin{document}
+\maketitle
+
+Para cada uno de los siguientes ejercicios, \textbf{justifica ampliamente} tu 
+respuesta:
+
+\begin{questions}[label=\protect\circled{\bfseries\arabic*}]
+    % Ejercicio 01
+    \question
+    {
+        \textbf{Encuentra} dos ejemplos de una relación binaria $R$ tal 
+        que cumpla
+        \begin{equation*}
+            R^{-1} = im(R) \times dom(R)
+        \end{equation*} 
+    }
+
+    % Ejercicio 02
+    \question
+    {
+        \textbf{Responde} lo siguiente:
+        \begin{itemize}
+            \item Sean $R,S,T$ y $U$ conjuntos cualesquiera tales que 
+            $R \neq \varnothing$ y $T \neq \varnothing$. 
+            \begin{center}
+                ¿Es cierto que $R \subseteq S$ y $T \subseteq U \Leftrightarrow 
+                R \times T \subseteq S \times U$?
+            \end{center}
+
+            \item ¿Qué sucede si no se pide la restricción $R \neq \varnothing$ 
+            y $T \neq \varnothing$?
+        \end{itemize}
+    }
+
+    % Ejercicio 03
+    \question
+    {
+        Considera los siguientes conjuntos:
+        \begin{align*}
+            A &= \{x \; | \; x \text{ es una persona que vive en México}\} \\ 
+            B &= \{x \; | \; x \text{ es un estado de la República Mexicana}\}
+        \end{align*}
+
+        Definimos las siguientes relaciones binarias:
+        \begin{itemize}
+            \item $R \subseteq A \times B$ tal que $u R v \Leftrightarrow u$ 
+            vive en $v$.
+
+            \item $S \subseteq A \times B$ tal que $u S v \Leftrightarrow u$ 
+            trabaja en $v$.
+        \end{itemize}
+
+        \textbf{Describe} las siguientes relaciones binarias:
+        \begin{tasks}(4)
+            \task $R \cap S$
+            \task $R \cup S$ 
+            \task $R^{-1} \cap S$ 
+            \task $R \cap S^{-1}$. 
+        \end{tasks}
+    }
+
+    % Ejercicio 04
+    \question
+    {
+        Considera las siguientes relaciones binarias:
+        \begin{itemize}
+            \item $R \subseteq \mathbb{N} \times \mathbb{N}$ tal que 
+            $x R y \Leftrightarrow x \text{ divide a } y$
+
+            \item $S \subseteq \mathbb{N} \times \mathbb{N}$ tal que 
+            $x S y \Leftrightarrow 5x \leq y$
+        \end{itemize}
+
+        \textbf{Determina} cuáles de los siguientes pares ordenados satisfacen las 
+        siguientes relaciones:
+        \begin{tasks}(2)
+            \task $R \cup S; \; (2,6), (3,17), (2,1), (0,0)$
+            \task $R \cap S; \; (3,6), (1,2), (2,12)$
+            \task $R^{-1}; \; (1,5), (2,8), (3,15)$
+            \task $S^{-1}; \; (1,1), (2,10), (4,8)$
+        \end{tasks}
+    }
+
+    % Ejercicio 05
+    \question
+    {
+        \textbf{Realiza} lo siguiente: 
+        \begin{itemize}
+            \item Sean $R,S$ y $T$ relaciones binarias cualesquiera. ¿Es cierto que 
+            $(T \circ S) \circ R = T \circ (S \circ R)$?
+
+            \item En caso de que sea afirmativo, ¿qué implica esta igualdad?
+        \end{itemize}
+    }
+
+    % Ejercicio 06
+    \question
+    {
+        Sea el conjunto $X = \{\bigstar, a, \bullet\}$. Definimos la relación 
+        $\sigma \subseteq \mathcal{P}(X) \times \mathcal{P}(X)$ como 
+        \begin{equation*}
+            A \sigma B \Leftrightarrow \text{la cardinalidad de $A$ y $B$ es 
+            la misma}
+        \end{equation*} 
+    }
+
+    \textbf{Determina} cuál o cuáles de las siguientes expresiones son 
+    \textbf{verdaderas}.
+    \begin{tasks}(3)
+        \task $\{\bigstar, a\} R \{a, \bullet\}$
+        \task $\{\bigstar\} R \{\bigstar, a\}$
+        \task $\{\bullet\} R \{a\}$
+    \end{tasks}
+
+    % Ejercicio 07
+    \question{Sea $H$ el conjunto de todos los seres humanos y $A$ el conjunto 
+    de todos los animalitos. \textbf{Define} una relación $R$ tal que 
+    $R \subseteq H \times A$.}
+
+    % Ejercicio 08
+    \question
+    {
+        Sea el conjunto $A = \{\text{james}, \{\bullet\}\}$. \textbf{Realiza} 
+        lo siguiente:
+        \begin{itemize}
+            \item \textbf{Calcula} $A^2$
+            \item ¿Cuáles son todas las posibles relaciones binarias contenidas 
+            en $A^2$? \textbf{Describe} cada una de esas relaciones, mostrando 
+            todos sus elementos. 
+        \end{itemize}
+    }
+
+    % Ejercicio 09
+    \question{Sea $R$ una relación binaria cualquiera. ¿Es cierto que 
+    $R^{-1} \subseteq im(R) \times dom(R)$?}
+
+    % Ejercicio 10
+    \question
+    {
+        Considera los conjuntos:
+        \begin{align*}
+            A &= \{a,b\} \quad \quad B = \{2,3\} \\ 
+            C &= \{3,4\}
+        \end{align*}
+
+        \textbf{Encuentra} 
+        \begin{tasks}(4)
+            \task $A \times B$
+            \task $A \times C$
+            \task $A \times (B \cup C)$ 
+            \task $A \times B \times C$
+        \end{tasks}
+    }
+
+    % Ejercicio 11
+    \question{Sea $C$ el conjunto de todas las capitales de México y $E$ el 
+    conjunto de todos los estados de México. \textbf{Define} una relación 
+    binaria $S$ tal que $S \subseteq C \times E$.}
+
+    % Ejercicio 12
+    \question
+    {
+        Considera los siguientes conjuntos:
+        \begin{align*}
+            A &= \{1,2,3,4,5\} \quad \quad B = \{3,4,5\} \\ 
+            C &= \{1,4,6,16\} \quad \quad \; D = \{1,2,4,6,8\}
+        \end{align*}
+
+        Definimos las siguientes relaciones binarias:
+        \begin{itemize}
+            \item $R \subseteq A \times B$ tal que $(x,y) \in R 
+            \Leftrightarrow x+y \leq 5$
+
+            \item $S \subseteq A \times C$ tal que $(x,y) \in S 
+            \Leftrightarrow y = x^2$
+
+            \item $T \subseteq D^2$ tal que $(x,y) \in T \Leftrightarrow
+            3$ divide a $x+y$. 
+        \end{itemize}
+
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Determina} $R^{-1}$ y $T^{-1}$, escribiendo todos 
+            sus elementos.
+
+            \item \textbf{Determina} $R^{-1} \circ T^{-1}$, escribiendo todos 
+            sus elementos. 
+        \end{itemize}
+    }
+
+    % Ejercicio 13
+    \question{Considera las relaciones binarias $R$ y $S$ que definiste en los 
+    ejercicios $7$ y $11$. \textbf{Calcula} $S \circ R$.}
+
+    % Ejercicio 14
+    \question{¿Es posible encontrar relaciones binarias $R$ y $S$ tales que 
+    $R \neq S$ y $S \circ R = R \circ S$?}
+
+    % Ejercicio 15
+    \question
+    {
+        Sea $A$ el conjunto de todos los alumnos de la Facultad de Ciencias. 
+        Definimos la relación binaria $R$ como sigue:
+        \begin{equation*}
+            a R b \Leftrightarrow \text{la altura de } a \text{ es mayor que 
+            la altura de } b
+        \end{equation*}
+
+        \textbf{Responde} lo siguiente:
+        \begin{itemize}
+            \item ¿Cuál es el dominio y la imagen de $R$?
+            \item \textbf{Calcula} $R^{-1}$ y $R \circ R$
+        \end{itemize}
+    }
+
+    % Ejercicio 16
+    \question
+    {
+        Sea el conjunto $X = \{a,b,c\}$. Definimos la relación binaria $S$ 
+        como sigue:
+        \begin{equation*}
+            S = \{(A, B) \in \mathcal{P}(X) \times \mathcal{P}(X) \; : \; 
+            |A| = |B|\}
+        \end{equation*}
+
+        \textbf{Determina} cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}:
+        \begin{tasks}(4)
+            \task $\{a,b\} S \{b,c\}$
+            \task $(\{a\}, \varnothing) \in S$
+            \task $\{b, c\} S \{a,b,c\}$
+            \task $(\{c\}, \{a\}) \in S$
+        \end{tasks}
+    }
+
+    % Ejercicio 17
+    \question
+    {
+        Sea $P$ el conjunto de todas las personas. Definimos la relación 
+        binaria $R \subseteq P^2$ como sigue:
+        \begin{equation*}
+            u R v \Leftrightarrow u \text{ es hijo de } v
+        \end{equation*}
+
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item ¿Cuál es el dominio y la imagen de $R$?
+            \item \textbf{Calcula}:
+            \begin{tasks}(5)
+                \task $R^2$
+                \task $R^3$
+                \task $R^{-1}$
+                \task $R^{-2}$
+                \task $R^{-3}$
+            \end{tasks}
+        \end{itemize}
+    }
+
+    % Ejercicio 18
+    \question
+    {
+        Sea $S$ el conjunto de todas las cadenas de $0's$ y $1's$ de longitud 
+        $4$. Definimos la relación binaria $R \subseteq S^2$ como sigue:
+        \begin{equation*}
+            s R t \Leftrightarrow s \text{ tiene los mismos dos 
+            primeros caracteres que } t
+        \end{equation*}
+
+        \textbf{Determina} cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}:
+        \begin{tasks}(4)
+            \task $(0100, 0110) \in R$
+            \task $(0011, 1100) \in R$
+            \task $(0000, 0001) \in R$
+            \task $(1000, 0100) \in R$
+        \end{tasks}
+    }
+
+    % Ejercicio 19
+    \question
+    {
+        Sean los conjuntos
+        \begin{equation*}
+            A = \{3,4,5\} \quad \quad \quad 
+            B = \{4,5,6\}
+        \end{equation*}
+        
+        Definimos la relación binaria $R \subseteq A \times B$ como 
+        sigue:
+        \begin{equation*}
+            R = \{(3,4), (3,5), (3,6), (4,5), (4,6), (5,6)\}
+        \end{equation*}
+
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Da} una definición formal por comprensión para $R$.
+            \item \textbf{Calcula} $R^{-1}$
+            \item \textbf{Calcula} $R \circ R$
+        \end{itemize}
+    }
+
+    % Ejercicio 20
+    \question{\textbf{Encuentra} dos ejemplos de una relación binaria $R$ tal que 
+    $R^{-1} \neq im(R) \times dom(R)$}
+
+    % Ejercicio 21
+    \question
+    {
+        Sea el conjunto $X = \{a,b,c\}$. Definimos la relación $\sigma$ sobre 
+        $\mathcal{P}(X)$ como sigue:
+        \begin{equation*}
+            A \sigma B \Leftrightarrow A \cap B \neq \varnothing
+        \end{equation*}
+
+        \begin{tasks}(4)
+            \task $\{a\} \sigma \{c\}$
+            \task $\{a,b,c\} \sigma \{a,b,b,c\}$
+            \task $\{a,b\} \sigma \{b,a\}$
+            \task $\{a,b\} \sigma \{b,c\}$
+        \end{tasks}
+    }
+
+    % Ejercicio 22
+    \question
+    {
+        Sean los conjuntos
+        \begin{align*}
+            A &= \{x \; | \; x \text{ es un personaje ficticio}\} \\ 
+            B &= \{y \; | \; y \text{ es un oficio}\}
+        \end{align*}
+        
+        Definimos la relación $\sigma \subseteq A \times B$ como sigue:
+        \begin{equation*}
+            x \sigma y \Leftrightarrow x \text{ puede trabajar o ha trabajado 
+            en } y
+        \end{equation*}
+
+        \textbf{Responde} lo siguiente:
+        \begin{itemize}
+            \item ¿Qué elementos están relacionados con Barbie?
+            \item ¿Qué elementos están relacionados con Bob Esponja?
+            \item ¿Para todo elemento $y \in B$ existe un elemento 
+            $x \in A$ tal que $x \sigma y$
+            \item ¿Para todo elemento $x \in A$ existe un elemento 
+            $y \in B$ tal que $x \sigma y$
+        \end{itemize}
+    }
+
+    \newpage
+    % Ejercicio 23
+    \question
+    {
+        \textbf{Considera} las siguientes dos relaciones binarias definidas 
+        sobre $\{1,2,3,4,5,6\}$:
+        \begin{align*}
+            R &= \{(2,2), (5,1), (2,3), (5,2), (2,1)\} \\ 
+            S &= \{(3,4), (5,3), (6,6), (1,4), (4,3)\}
+        \end{align*}
+
+        \textbf{Describe} las siguientes relaciones por extensión. 
+        \begin{tasks}(3)
+            \task $R \circ R$
+            \task $R \circ S$
+            \task $S \circ R$
+        \end{tasks}
+    }
+
+    % Ejercicio 24
+    \question
+    {
+        Considera los siguientes conjuntos:
+        \begin{align*}
+            A &= \{1,2,3,4,5\} \quad \quad B = \{3,4,5\} \\ 
+            C &= \{1,4,6,16\} \quad \quad \; D = \{1,2,4,6,8\}
+        \end{align*}
+
+        Definimos las siguientes relaciones binarias:
+        \begin{itemize}
+            \item $R \subseteq A \times B$ tal que $(x,y) \in R 
+            \Leftrightarrow x+y \leq 5$
+
+            \item $S \subseteq A \times C$ tal que $(x,y) \in S 
+            \Leftrightarrow y = x^2$
+
+            \item $T \subseteq D^2$ tal que $(x,y) \in T \Leftrightarrow
+            3$ divide a $x+y$. 
+        \end{itemize}
+
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Determina} las relaciones $R,S$ y $T$, escribiendo 
+            todos sus elementos. 
+
+            \item \textbf{Determina} los dominios e imágenes de las tres 
+            relaciones. 
+        \end{itemize}
+    }
+
+    % Ejercicio 25
+    \question
+    {
+        \textbf{Considera} las siguientes dos relaciones binarias definidas 
+        sobre $\{1,2,3,4,5,6\}$:
+        \begin{align*}
+            R &= \{(2,2), (5,1), (2,3), (5,2), (2,1)\} \\ 
+            S &= \{(3,4), (5,3), (6,6), (1,4), (4,3)\}
+        \end{align*}
+
+        \textbf{Describe} las siguientes relaciones por extensión.
+        \begin{tasks}(3)
+            \task $R \circ S^{-1}$
+            \task $S \circ R^{-1}$
+            \task $S^{-1} \circ S$
+        \end{tasks}
+    }
+
+    % Ejercicio 26
+    \question
+    {
+        Sea $S$ el conjunto de todas las cadenas de $0's, 1's$ y $2's$ de 
+        longitud $5$. Definimos la relación $R \subseteq S^2$ como sigue:
+        \begin{equation*}
+            s R t \Leftrightarrow \text{la suma de los caracteres de } s 
+            \text{ es igual a la suma de los caracteres de } t
+        \end{equation*}
+
+        \textbf{Determina} cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}:
+        \begin{tasks}(4)
+            \task $(01210, 02200) \in R$
+            \task $(01011, 21001) \in R$
+            \task $(22120, 02121) \in R$
+            \task $(12200, 21110) \in R$
+        \end{tasks}
+    }
+
+    % Ejercicio 27
+    \question
+    {
+        Definimos una relación $R \subseteq \mathbb{Z}^2$ como sigue:
+        \begin{equation*}
+            (x,y) \in R \Leftrightarrow 5 \text{ divide a } (x^2-y^2)
+        \end{equation*}
+    }
+
+    % Ejercicio 28
+    \question
+    {
+        Considera los siguientes conjuntos:
+        \begin{equation*}
+            A = \{(0,0), (0,1)\} \quad \quad B = \{\bigstar, \bullet\}
+        \end{equation*} 
+
+        \textbf{Calcula}:
+        \begin{tasks}(5)
+            \task $A^2$
+            \task $B^2$
+            \task $\mathcal{P}(A^2)$ 
+            \task $\mathcal{P}(B^2)$
+            \task $A \times B$
+        \end{tasks}
+    }
+
+    % Ejercicio 29
+    \question{\textbf{Encuentra} tres ejemplos de relaciones $R$ y $S$ tales que 
+    $S \circ R \neq R \circ S$}
+
+    % Ejercicio 30
+    \question
+    {
+        Sea $A = \{1,2\}$. \textbf{Calcula} el conjunto 
+        $\mathcal{P}(A) \times A$. 
+    }
+
+    % Ejercicio 31
+    \question
+    {
+        ¿Cuál o cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        \begin{itemize}
+            \item Sean $A,B,C$ y $D$ conjuntos. Si $A \times B \subseteq 
+            C \times D$ entonces $A \subseteq C$ y $B \subseteq D$. 
+
+            \item Sean $A,B,C$ y $D$ conjuntos. Si $A \subseteq C$ y 
+            $B \subseteq D$, \textbf{demuestra} que $A \times B \subseteq 
+            C \times D$. 
+        \end{itemize} 
+    }
+
+    % Ejercicio 32
+    \question
+    {
+        ¿Existe un conjunto $A$ tal que cumpla que $A \subseteq A \times A$?
+    }
+
+\end{questions}
+\end{document}

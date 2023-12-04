@@ -1,0 +1,518 @@
+\documentclass[oneside]{style}
+
+\title{Desafío 13}
+\principal{Inducción Matemática}
+\author{Tania Michelle Rubí Rojas}
+\semester{Semestre 2023-1}
+
+\begin{document}
+\maketitle
+
+Para cada uno de los siguientes ejercicios, \textbf{justifica ampliamente} tu 
+respuesta:
+
+\begin{questions}[label=\protect\circled{\bfseries\arabic*}]
+    % Ejercicio 01
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para toda 
+        $n \in \mathbb{Z}^+$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$\displaystyle\sum_{i=1} ^{n} i^3 
+            = \left( \frac{n(n+1)}{2} \right)^2$}
+        \end{center}
+    }
+
+    % Ejercicio 02
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para toda 
+        $n \in \mathbb{N}$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$4 \vert (3^{2n} + 7)$}
+        \end{center}
+    }
+
+    % Ejercicio 03
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para toda 
+        $n \geq 4 \in \mathbb{N}$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$2^n \leq n! \leq n^n$}
+        \end{center}
+    }
+
+    % Ejercicio 04
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción fuerte} que para toda 
+        $n \in \mathbb{Z}^+$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$F_n \leq \bigl( \frac{12}{7} \bigr)^n$}
+        \end{center}
+
+        donde $F_n$ es el $n$-ésimo número de la serie de Fibonacci. 
+    }
+
+    % Ejercicio 05
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para toda 
+        $n \in \mathbb{Z}^+$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$(11)^{n+2} + (12)^{2n+1}$ es 
+            divisible entre $133$}
+        \end{center}
+    }
+
+    % Ejercicio 06
+    \question
+    {
+        \textcolor{purple}{\textbf{Nubecita}} define la secuencia $a_1, a_2, 
+        a_3, \ldots$ como sigue:
+        \begin{align*}
+            a_1 &= 1 \\ 
+            a_2 &= 2 \\ 
+            a_n &= 2a_{n-1} - a_{n-2} 
+            && \text{para toda } n \geq 3
+        \end{align*}
+
+        \textbf{Demuestra} usando \textbf{inducción fuerte} que para toda 
+        $n \in \mathbb{N}$ se cumple que 
+        \begin{center}
+            \tcbox[tcbox raise base]{$a_n = n$}
+        \end{center} 
+    }
+
+    \newpage
+    % Ejercicio 07
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para toda 
+        $n \in \mathbb{Z}^+$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$\displaystyle\sum_{i=1} ^{n} i^2 
+            = \frac{n(n+1)(2n+1)}{6}$}
+        \end{center}
+    }
+
+    % Ejercicio 08
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para toda 
+        $n,m \in \mathbb{N}$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$x^{m+n} = x^m x^n$}
+        \end{center}
+    }
+
+    % Ejercicio 09
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para toda 
+        $n \in \mathbb{N}$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$\displaystyle\sum_{i=0} ^{n} 9 \cdot 
+            10^i = 10^{n+1} - 1$}
+        \end{center}
+    }
+
+    % Ejercicio 10
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para toda 
+        $n \in \mathbb{N}$ y $x \neq 1$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$\displaystyle\sum_{i=0} ^{n} x^i 
+            = \frac{x^{n+1}-1}{x-1}$}
+        \end{center}
+    }
+
+    % Ejercicio 11
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para toda 
+        $n \in \mathbb{N}$ tal que $n > 6$ se cumple que 
+        \begin{center}
+            \tcbox[tcbox raise base]{$3^n < n!$}
+        \end{center}
+    }
+
+    % Ejercicio 12
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para toda 
+        $n \in \mathbb{Z}^+$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$\displaystyle\sum_{i=1} ^{n} i(i!) 
+            = (n+1)! - 1$}
+        \end{center}
+    }
+
+    % Ejercicio 13
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para toda 
+        $n \in \mathbb{N}$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$n$ es un número par o impar}
+        \end{center}
+    }
+
+    % Ejercicio 14
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para toda 
+        $n \in \mathbb{N}$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$n^3 + (n+1)^3 + (n+2)^3$ es 
+            divisible entre $9$}
+        \end{center}
+    }
+
+    \newpage
+    % Ejercicio 15
+    \question
+    {
+        \textcolor{purple}{\textbf{Nubecita}} realiza un experimento con 
+        diferentes computadoras y obtiene como resultado las siguientes 
+        ecuaciones:
+        \begin{align*}
+            c_0 &= 3 \\ 
+            c_1 &= 7 \\ 
+            c_{n+2} &= 3c_{n+1} - 2c_n 
+            && n \in \mathbb{N}
+        \end{align*}
+
+        \textbf{Demuestra} usando \textbf{inducción fuerte} que para toda 
+        $n \in \mathbb{N}$ se cumple que 
+        \begin{center}
+            \tcbox[tcbox raise base]{$c_n = 2^{n+2} - 1$}
+        \end{center} 
+    }
+
+    % Ejercicio 16
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para toda 
+        $n \in \mathbb{Z^+}$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$2^{2n}$ es múltiplo de $3$} 
+        \end{center}
+    }
+
+    % Ejercicio 17
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para toda 
+        $n \in \mathbb{N}$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$5 \vert (n^5 - n)$}
+        \end{center}
+    }
+
+    % Ejercicio 18
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para toda 
+        $n \in \mathbb{Z}^+$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$2^n \leq 2^{n+1} - 2^{n-1} - 1$}
+        \end{center}
+    }
+
+    % Ejercicio 19
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción fuerte} que para toda 
+        $n \in \mathbb{Z}^+$ se cumple que 
+        \begin{center}
+            \tcbox[tcbox raise base]{$12 \vert (n^4 - n^2)$}
+        \end{center} 
+    }
+
+    % Ejercicio 20
+    \question
+    {
+        \textcolor{purple}{\textbf{Nubecita}} define la siguiente secuencia 
+        como sigue:
+        \begin{align*}
+            d_0 &= 2 \\ 
+            d_1 &= 5 \\ 
+            d_{n} &= 5d_{n-1} - 6d_{n-2} 
+            && n > 1 \in \mathbb{N}
+        \end{align*}
+
+        \textbf{Demuestra} usando \textbf{inducción fuerte} que para toda 
+        $n \in \mathbb{N}$ se cumple que 
+        \begin{center}
+            \tcbox[tcbox raise base]{$d_n = 2^n + 3^n$}
+        \end{center}    
+    }
+
+    % Ejercicio 22
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción fuerte} que si $n$ es un 
+        número entero mayor qye $1$, entonces $n$ es un primo o $n$ se puede 
+        escribir como el producto de primos. 
+    }
+
+    \newpage
+    % Ejercicio 22
+    \question
+    {
+        \textcolor{purple}{\textbf{Nubecita}} define la siguiente secuencia 
+        como sigue:
+        \begin{align*}
+            d_0 &= 1 \\ 
+            d_1 &= 4 \\ 
+            d_{n} &= 4(d_{n-1} - d_{n-2}) 
+            && n > 1 \in \mathbb{N}
+        \end{align*}
+
+        \textbf{Demuestra} usando \textbf{inducción fuerte} que para toda 
+        $n \in \mathbb{N}$ se cumple que 
+        \begin{center}
+            \tcbox[tcbox raise base]{$d_n = 2^n (n+1)$}
+        \end{center}   
+    }
+
+    % Ejercicio 23
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción fuerte} que cualquier entero 
+        $n \geq 12$ puede ser escrito de la forma $n = 4a + 5b$ con $a,b \in 
+        \mathbb{Z}^+$.
+    }
+
+    % Ejercicio 24
+    \question
+    {
+        Considera la siguiente función definida recursivamente:
+        \begin{align*}
+            f(0) &= 1 \\ 
+            f(n) &= f(n-1) + 3
+        \end{align*}
+
+        \textbf{Demuestra} usando \textbf{inducción} que $f(n) = 3n + 1$. 
+    }
+
+    % Ejercicio 25
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción fuerte} que para toda 
+        $n \geq 3 \in \mathbb{N}$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$F_n > \bigl( \frac{1 + \sqrt{5}}{2} 
+            \bigr)^{n-2}$}
+        \end{center}
+
+        donde $F_n$ es el $n$-ésimo número de la serie de Fibonacci. 
+    }
+
+    % Ejercicio 26
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para toda 
+        $n \in \mathbb{Z}^+$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$\displaystyle\sum_{i=1} ^{n} (-1)^i i^2 
+            = \frac{(-1)^n n (n+1)}{2}$}
+        \end{center}
+    }
+
+    % Ejercicio 27
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para toda 
+        $n \in \mathbb{Z}^+$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$\displaystyle\sum_{i=1} ^{n} 
+            \frac{1}{i(i+1)} = \frac{n}{n+1}$}
+        \end{center}
+    }
+
+    % Ejercicio 28
+    \question
+    {
+        \textcolor{purple}{\textbf{Nubecita}} define la siguiente secuencia 
+        como sigue:
+        \begin{align*}
+            a_1 &= 1 \\ 
+            a_2 &= 8 \\ 
+            a_{n} &= a_{n-1} + 2a_{n-2} 
+            && n \geq 3 \in \mathbb{N}
+        \end{align*}
+
+        \textbf{Demuestra} usando \textbf{inducción fuerte} que para toda 
+        $n \in \mathbb{N}$ se cumple que 
+        \begin{center}
+            \tcbox[tcbox raise base]{$a_n = 3 \cdot 2^{n-1} + 2(-1)^n$}
+        \end{center}  
+    }
+
+    % Ejercicio 29
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que un conjunto de $n$ 
+        elementos tiene $2^n$ subconjuntos. 
+    }
+
+    % Ejercicio 30
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que un conjunto de $n$ 
+        elementos tiene $\frac{n(n-1)}{2}$ subconjuntos con $2$ elementos. 
+    }
+
+    % Ejercicio 31
+    \question
+    {
+        ¿Cuáles son las diferencias entre la inducción matemática convencional 
+        y la inducción matemática fuerte?
+    }
+
+    % Ejercicio 32
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para toda 
+        $n \geq 2 \in \mathbb{N}$ se cumple que
+        \begin{center}
+            \tcbox[tcbox raise base]{$n! + k $ es divisible por $k$}
+        \end{center}
+    }
+
+    % Ejercicio 33
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para cualquier 
+        entero impar positivo se cumple que 
+        \begin{center}
+            \tcbox[tcbox raise base]{$(-2)^0 + (-2)^1 + (-2)^2 + \cdots + 
+            (-2)^n = \frac{1-2^{n+1}}{3}$}
+        \end{center}
+    }
+
+    % Ejercicio 34
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para cualquier 
+        entero $n \geq 2$ se cumple que 
+        \begin{center}
+            \tcbox[tcbox raise base]{$\frac{1}{2} + \frac{2}{3} + \dots + 
+            \frac{n}{n+1} < \frac{n^2}{n+1}$}
+        \end{center}
+    }
+
+    % Ejercicio 35
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para cualquier entero 
+        $n \geq 2$ se cumple que 
+        \begin{center}
+            \tcbox[tcbox raise base]{$\sqrt{n} < \frac{1}{\sqrt{1}} 
+            + \frac{1}{\sqrt{2}} + \cdots + \frac{1}{\sqrt{n}}$}
+        \end{center}
+    }
+
+    % Ejercicio 36
+    \question
+    {
+        Sea $\{s_i\}_{i \in \mathbb{N}}$ la sucesión definida por 
+        \begin{align*}
+            s_1 &= \frac{9}{10} \\
+            s_2 &= \frac{10}{11} \\  
+            s_{k} &= s_{k-1} \cdot s_{k-2} 
+        \end{align*}
+
+        para todo entero $k \geq 3$. \textbf{Demuestra} usando 
+        \textbf{inducción fuerte} que para cualquier entero positivo se cumple 
+        que 
+        \begin{center}
+            \tcbox[tcbox raise base]{$0 < s_n \leq 1$}
+        \end{center}
+    }
+
+    % Ejercicio 37
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que para cualquier entero 
+        $n \geq 3$ se cumple que 
+        \begin{center}
+            \tcbox[tcbox raise base]{$\bigl(1 + \frac{1}{n}\bigr)^n < n$}
+        \end{center}
+    }
+
+    % Ejercicio 38
+    \question
+    {
+        Un juego consiste en dos jugadores y dos pilas de monedas, cada una con 
+        el mismo número $n \geq 1$ de monedas. Los jugadores se turnan, y cada 
+        turno permite a un jugador eliminar cualquier número de monedas de uno 
+        de los montones. El juego continúa hasta que se hayan eliminado todas 
+        las monedas de ambos montones. El ganador es el jugador que retira 
+        la(s) última(s) moneda(s). Utiliza \textbf{inducción fuerte} para 
+        \textbf{demostrar} que el jugador que va en segundo lugar siempre va 
+        a ganar. 
+    }
+
+    % Ejercicio 39
+    \question
+    {
+        Utiliza \textbf{inducción fuerte} para \textbf{demostrar} que todo 
+        entero positivo puede ser escrito como la suma de potencias de dos 
+        (es decir, todo entero positivo tiene una representación binaria). 
+    }
+
+    % Ejercicio 40
+    \question
+    {
+        Utiliza \textbf{inducción fuerte} para \textbf{demostrar} que 
+        \begin{center}
+            \tcbox[tcbox raise base]{$\sqrt{2}$ es irracional}
+        \end{center}
+    }
+
+    % Ejercicio 41
+    \question
+    {
+        Un rompecabezas se arma uniendo sucesivamente piezas que encajan en 
+        bloques. Se realiza un movimiento cada vez que se agrega una pieza a 
+        un bloque, o cuando se unen dos bloques. Utiliza \textbf{inducción 
+        fuerte} para \textbf{demostrar} que sin importar la secuencia de 
+        movimientos, se requieren exactamente $n-1$ movimientos para armar 
+        un rompecabezas que tiene $n$ piezas.
+    }
+
+    % Ejercicio 42
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que cualquier entero 
+        $n \geq 18$ puede ser escrito de la forma $n = 4a + 7b$ con $a,b \in 
+        \mathbb{Z}^+$.
+    }
+
+    % Ejercicio 43
+    \question
+    {
+        \textbf{Realiza} lo siguiente:
+        \begin{itemize}
+            \item \textbf{Determina} qué números $n \in \mathbb{Z^+}$ pueden 
+            ser escritos de la forma $n = 4a + 11b$, donde $a,b \in 
+            \mathbb{Z}^+$.
+
+            \item \textbf{Demuestra} tu afirmación usando \textbf{inducción}.
+        \end{itemize}
+    }
+
+    % Ejercicio 44
+    \question
+    {
+        \textbf{Demuestra} usando \textbf{inducción} que si $n \in \mathbb{Z}^+$
+        es par, entonces $n^2$ también lo es. 
+    }
+
+\end{questions}
+\end{document}

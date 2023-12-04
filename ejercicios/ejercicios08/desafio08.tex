@@ -1,0 +1,545 @@
+\documentclass[oneside]{style}
+
+\title{Desafío 08}
+\principal{Lógica Proposicional}
+\author{Tania Michelle Rubí Rojas}
+\semester{Semestre 2023-1}
+
+\begin{document}
+\maketitle
+
+Para cada uno de los siguientes ejercicios, \textbf{justifica ampliamente} tu 
+respuesta:
+
+\begin{questions}[label=\protect\circled{\bfseries\arabic*}]
+    % Ejercicio 01
+    \question
+    {
+        Sean $p$ la proposición "He comprado un billete de lotería" y $q$ la 
+        proposición "Gané un premio". ¿Cómo se escriben las siguientes 
+        expresiones en oraciones naturales en Español?
+        \begin{tasks}(4)
+            \task $\neg p$
+            \task $\neg p \lor (p \land q)$
+            \task $\neg (\neg p) \lor \neg q$
+            \task $\neg \lor (p \land q)$
+        \end{tasks}
+    }
+
+    % Ejercicio 02
+    \question
+    {
+        ¿Cuáles de las siguientes son fórmulas proposicionales bien formadas?
+        \begin{tasks}(4)
+            \task $\lor pq$
+            \task $(\neg (p \rightarrow (q \land p)))$
+            \task $p \neg r$
+            \task $(p \land \neg q) \lor (q \rightarrow r)$
+        \end{tasks}
+    }
+
+    % Ejercicio 03
+    \question
+    {
+        \textbf{Define} una función recursiva que dada una expresión de la 
+        lógica proposicional, nos diga si se repite alguna variable 
+        proposicional en dicha expresión.
+        \begin{itemize}
+            \item Debes \textbf{definir} la firma de la función, 
+            \textbf{describirla} y \textbf{explicarla}. 
+
+            \item \textbf{Explica} por qué tu función recursiva está bien 
+            escrita. 
+
+            \item \textbf{Ejecuta} tu función con las expresiones 
+            \begin{itemize}
+                \item[i)] $p \land q \lor \neg r \rightarrow s$
+                \item[ii)] $p \leftrightarrow q \land p \lor \neg q$
+            \end{itemize}
+        \end{itemize}
+    }
+
+    % Ejercicio 04
+    \question
+    {
+        \textbf{Construye} los árboles de sintaxis para las siguientes 
+        expresiones, además de \textbf{indicar} cuál es el conectivo principal 
+        de cada expresión. 
+        \begin{tasks}(3)
+            \task $5 + 6 \cdot (5 \cdot 9 / 8 \cdot 3)$
+            \task $5 + 6 \cdot (7/ 8) + (5 / 0)$
+            \task $2 + 3 + 4 \cdot 8 / (4 - 5)$
+        \end{tasks}
+    }
+
+    % Ejercicio 05
+    \question
+    {
+        Tomando en cuenta las fórmulas proposicionales y los árboles de 
+        sintaxis, \textbf{responde} lo siguiente:
+        \begin{itemize}
+            \item Si $e_1$ es una subfórmula de $e_2$, ¿se cumple que 
+            el árbol de sintaxis asociado a $e_1$ es un subárbol del árbol 
+            de sintaxis asociado a $e_2$?
+
+            \item ¿Cuántos nodos tiene el árbol de sintaxis de una fórmula 
+            proposicional $e$?
+
+            \item ¿Cuáles son los elementos que siempre están en las hojas 
+            del árbol de sintaxis de una fórmula proposicional?
+        \end{itemize}
+    }
+
+    % Ejercicio 06
+    \question
+    {
+        Sean $\mathcal{A}_{\mathcal{LPROP}}$ el conjunto de todos los árboles 
+        de sintaxis de la lógica proposicional y $\mathcal{LPROP}$ el 
+        conjunto de todas las expresiones que son fórmulas proposicionales. 
+        \textbf{Define} una función recursiva 
+        \begin{center}
+            \texttt{st}$: \mathcal{A}_{\mathcal{LPROP}} \rightarrow
+            \mathcal{LPROP}$
+        \end{center}
+
+        que regrese la fórmula proposicional que le corresponde al árbol de 
+        sintaxis que le pasamos como entrada.  
+    }
+
+    % Ejercicio 07
+    \question
+    {
+        \textbf{Investiga} la notación BFN de la lógica proposicional 
+        (tranquis, está en el libro de Favio bb). 
+        \begin{itemize}
+            \item \textbf{Da} la definición recursiva asociada a esa 
+            gramática. 
+
+            \item \textbf{Explica} por qué tu definición recursiva está bien 
+            escrita. 
+
+            \item \textbf{Construye} las siguientes expresiones utilizando tu 
+            definición recursiva:
+            \begin{itemize}
+                \item[i)] $p \land q \lor s \rightarrow s$
+                \item[ii)] $a \rightarrow \neg a \leftrightarrow b \land c$ 
+            \end{itemize}
+        \end{itemize}
+    }
+
+    \newpage
+    % Ejercicio 08
+    \question
+    {
+        Usando las reglas de precedencia y asociatividad de operaciones, 
+        \textbf{elimina} los paréntesis superfluos de las siguientes 
+        expresiones:
+        \begin{tasks}(2)
+            \task $(5 + 9) \cdot (8 \cdot (9 / 5) + 3)$
+            \task $(((4 + (98 / 10) + -6) / 9)/(8 / (8 + 5)))$
+        \end{tasks}
+    }
+
+    % Ejercicio 09
+    \question
+    {
+        Para las siguientes gramáticas:
+        \begin{equation*}
+            \begin{aligned}[c]
+                E &::= () \\
+                E &::= (E) \\
+                E &::= EE
+            \end{aligned}
+            \qquad \qquad \qquad \qquad
+            \begin{aligned}[c]
+                E &::= ( \\
+                E &::= ) \\
+                E &::= (EE \\ 
+                E &::= EE) 
+            \end{aligned}
+        \end{equation*}
+
+        \textbf{Escribe} su definición recursiva equivalente. ¿Sucede que las 
+        definiciones recursivas equivalentes generan el mismo conjunto? 
+    }
+
+    % Ejercicio 10
+    \question
+    {
+        \textbf{Construye} los árboles de sintaxis para las siguientes 
+        expresiones, además de \textbf{indicar} cuál es el conectivo principal 
+        de cada expresión. 
+        \begin{tasks}(3)
+            \task $1 + 1 + 1 + 1 + 1$
+            \task $5 + 6 \cdot 8 \cdot 7 / 7 \cdot 9 / 7$
+            \task $2 - 5 \cdot 9 \cdot (8 / 8 / -9)-/$
+        \end{tasks}
+    }
+
+    % Ejercicio 11
+    \question
+    {
+        Usando las reglas de precedencia y asociatividad de operaciones, 
+        \textbf{elimina} los paréntesis superfluos de las siguientes 
+        expresiones:
+        \begin{tasks}(2)
+            \task $((\neg p \rightarrow (r \land (q \leftrightarrow t)))) 
+            \leftrightarrow (((p \lor r) \leftrightarrow \neg (s \lor p)))$
+            \task $(\neg (p \rightarrow \neg q) \land (t \lor (s \land p) \lor r))$
+        \end{tasks}
+    }
+
+    % Ejercicio 12
+    \question
+    {
+        Para cada una de las siguientes expresiones, \textbf{responde}:
+        \begin{center}
+            ¿Es una proposición? En caso afirmativo, \textbf{indica} si 
+            es una proposición simple o compuesta. 
+        \end{center}
+
+        Expresiones:
+        \begin{itemize}
+            \item Lee esto con cuidado.
+            \item Es triste cuando todo el mundo sabe quién eres, pero nadie 
+            te conoce. 
+            \item Washington, D.C., es la capital de los Estados Unidos de 
+            América. 
+            \item Por un momento olvidamos todo lo que es difícil y nos 
+            permitimos sentir lo que queríamos. 
+            \item $x + 1 = 2$
+        \end{itemize}
+    }
+
+    % Ejercicio 13
+    \question
+    {
+        Para cada una de las siguientes expresiones
+        \begin{align*}
+            &(p \rightarrow (\neg q)) \\ 
+            &p \rightarrow q \lor \neg p \rightarrow r \\ 
+            &((p \lor (\neg r)) \land (q \lor (\neg s)))
+        \end{align*}
+
+        \textbf{Responde} lo siguiente:
+        \begin{itemize}
+            \item ¿Hay paréntesis superfluos en la expresión? En caso de que 
+            sea cierto, \textbf{elimínalos} y \textbf{muestra} cómo queda la 
+            expresión final. 
+
+            \item ¿Cuántos posibles árboles de sintaxis se pueden crear para 
+            dicha expresión? \textbf{Dibuja} cada uno de ellos. 
+        \end{itemize}
+    }
+
+    % Ejercicio 14
+    \question
+    {
+        Usando las reglas de precedencia y asociatividad de operaciones, 
+        \textbf{elimina} los paréntesis superfluos de las siguientes 
+        expresiones:
+        \begin{tasks}(2)
+            \task $(((p \lor q) \rightarrow (p \land q) \rightarrow e) 
+            \leftrightarrow r)$
+            \task $(((\neg p) \rightarrow p) \leftrightarrow ((\neg q) \land 
+            \neg((p \lor q) \land (p \land p))) \leftrightarrow p)$
+        \end{tasks}
+    }
+
+    \newpage
+    % Ejercicio 15
+    \question
+    {
+        Para cada una de las siguientes expresiones, \textbf{dibuja} su árbol 
+        de sintaxis. 
+        \begin{tasks}(2)
+            \task $p \lor q \rightarrow r \rightarrow s \leftrightarrow t$
+            \task $((\neg p \lor q) \rightarrow ((p \land r) \leftrightarrow 
+            ((s \land t) \rightarrow (u \lor p))))$
+        \end{tasks}
+    }
+
+    % Ejercicio 16
+    \question
+    {
+        \textbf{Escribe} los paréntesis en las siguientes expresiones de 
+        acuerdo a su precedencia y asociatividad de operadores.
+        \begin{itemize}
+            \item $p \leftrightarrow q \rightarrow s \leftrightarrow p \land q
+            \leftrightarrow s \lor t \land u \land v \lor r \rightarrow s 
+            \leftrightarrow r$
+
+            \item $a < b < c < d \rightarrow b > c > d \rightarrow c < d 
+            \leftrightarrow d$
+
+            \item $p \rightarrow q \rightarrow r \rightarrow p \land q \lor s
+            \rightarrow t \leftrightarrow u$
+        \end{itemize}
+    }
+
+    % Ejercicio 17
+    \question
+    {
+        Para cada una de las siguientes expresiones, \textbf{dibuja} su árbol 
+        de sintaxis. 
+        \begin{tasks}(2)
+            \task $(((((p \land q) \lor r) \land s) \lor t) \land u)$
+            \task $((((p \rightarrow q) \rightarrow r) \rightarrow s) 
+            \rightarrow t)$
+        \end{tasks}
+    }
+
+    % Ejercicio 18
+    \question
+    {
+        Para cada una de las siguientes expresiones, \textbf{responde}:
+        \begin{center}
+            ¿Es una proposición? En caso afirmativo, \textbf{indica} si 
+            es una proposición simple o compuesta. 
+        \end{center}
+
+        \begin{itemize}
+            \item Para todo entero positivo $n$, existe un número primo mayor
+            que $n$.  
+            \item Después de que algo realmente malo sucede, la siguiente cosa 
+            peor es que la gente se sienta mal acerca de ello. 
+            \item El grito de Dolores, en $1810$, sentó las bases para la 
+            independencia de México. 
+            \item  Así que tal vez, cuando podemos decir cosas, cuando podemos 
+            escribir las palabras, cuando podemos expresar cómo se siente, no 
+            estamos tan indefensos. 
+            \item Para pasar el examen es necesario que los alumnos estudien, 
+            hagan la tarea y asistan a clase. 
+        \end{itemize}
+    }
+
+    % Ejercicio 19
+    \question
+    {
+        \textbf{Escribe} los paréntesis en las siguientes expresiones de 
+        acuerdo a su precedencia y asociatividad de operadores.
+        \begin{itemize}
+            \item $2/8/5 \cdot a \cdot 6 \cdot 9 - 8 + b**4 \cdot c - 5 
+            + c + d/d$
+
+            \item $a \cdot b - a \cdot c \leftrightarrow a > 0 \land 
+            b >c$
+
+            \item $a < b \land b < c \rightarrow a < c$
+        \end{itemize}
+    }
+
+    % Ejercicio 20
+    \question
+    {
+        Para cada una de las siguientes expresiones, \textbf{responde}:
+        \begin{center}
+            ¿Es una proposición? En caso afirmativo, \textbf{indica} si 
+            es una proposición simple o compuesta. 
+        \end{center}
+
+        \begin{itemize}
+            \item ¿Por qué no bailamos? 
+            \item Cada uno de nosotros somos raros de diferentes maneras, pero 
+            en conjunto, eso es en realidad normal. 
+            \item $a^3 + 3a^2b + 3ab^2 +a^3$
+            \item Un amigo es alguien que te da libertad total de ser tú mismo, 
+            especialmente para sentir o para no sentir. 
+            \item Una vez que le temes a algo, te pueden dar miedo muchas cosas. 
+        \end{itemize}
+    }
+
+    % Ejercicio 21
+    \question
+    {
+        Para cada una de las siguientes expresiones, \textbf{responde}:
+        \begin{center}
+            ¿Es una proposición? En caso afirmativo, \textbf{indica} si 
+            es una proposición simple o compuesta. 
+        \end{center}
+
+        \begin{itemize}
+            \item No me digas qué hacer. 
+            \item ¿Tenemos examen?
+            \item Mi práctica de ICC es complicada y estoy triste. 
+            \item Este perrito es cariñoso y da besitos. 
+            \item Si la melancolía es tu condena, líbrate de cadenas y ponte 
+            a vivir. 
+        \end{itemize}
+    }
+
+    \newpage
+    % Ejercicio 22
+    \question
+    {
+        Para cada una de las siguientes expresiones, \textbf{responde}:
+        \begin{center}
+            ¿Es una proposición? En caso afirmativo, \textbf{indica} si 
+            es una proposición simple o compuesta. 
+        \end{center}
+
+        \begin{itemize}
+            \item Aprende a soñar y podrás tener el Sol. 
+            \item Suaves son esas palabras, aunque sean falsas promesas. 
+            \item Lo único que tengo de tí es este triste lamento. 
+            \item Si no te oigo, escúchame. 
+            \item Si no hay palabras, quédate. 
+        \end{itemize}
+    }
+
+    % Ejercicio 23
+    \question
+    {
+        Para cada una de las siguientes expresiones, \textbf{responde}:
+        \begin{center}
+            ¿Es una proposición? En caso afirmativo, \textbf{indica} si 
+            es una proposición simple o compuesta. 
+        \end{center}
+
+        \begin{itemize}
+            \item Si no te he entendido, ayúdame. 
+            \item Soy un kiwi. 
+            \item Tienes la mirada más bonita que he visto en mi vida. 
+            \item Pasaste, te ví y pense: "Él no es para mí"
+            \item Ya es muy tarde. 
+        \end{itemize}
+    }
+
+    % Ejercicio 24
+    \question
+    {
+        Para cada una de las siguientes expresiones, \textbf{responde}:
+        \begin{center}
+            ¿Es una proposición? En caso afirmativo, \textbf{indica} si 
+            es una proposición simple o compuesta. 
+        \end{center}
+
+        \begin{itemize}
+            \item Sólo ven y ayúdame con una duda. 
+            \item $2$ es el único número primo que es par. 
+            \item Él es el mejor estudiante de la clase. 
+            \item Kakarotto, ¡eres el número $1$!
+            \item John será un excelente programador solo si él aprueba su 
+            curso de matemáticas discretas. 
+        \end{itemize}
+    }
+
+    % Ejercicio 25
+    \question
+    {
+        Para cada una de las siguientes expresiones, \textbf{responde}:
+        \begin{center}
+            ¿Es una proposición? En caso afirmativo, \textbf{indica} si 
+            es una proposición simple o compuesta. 
+        \end{center}
+
+        \begin{itemize}
+            \item Escribiré tu historia cuando ya no estés. 
+            \item Hay que buscar la solución y desafiar las reglas con el 
+            corazón. 
+            \item Ya es muy tarde para la cordura, para decirte que no. 
+            \item Cuando andes perdido, sin rumbo y te quieras rendir; 
+            para y piensa en mí. 
+            \item Si los precios suben, Mr. Satán no podrá comprar 
+            chocolates para Majin Buu. 
+        \end{itemize}
+    }
+
+    % Ejercicio 26
+    \question
+    {
+        Para cada una de las siguientes expresiones, \textbf{responde}:
+        \begin{center}
+            ¿Es una proposición? En caso afirmativo, \textbf{indica} si 
+            es una proposición simple o compuesta. 
+        \end{center}
+
+        \begin{itemize}
+            \item Ir a estudiar o ir a entrenar es condición suficiente 
+            para que Gohan pueda ir a dormir. 
+            \item O bien Freezer es el mejor guerrero o bien es el peor 
+            guerrero, pero no ambos. 
+            \item Si goku gana o pierde, estará cansad y tendrá mucha hambre. 
+            \item Los árboles son estructuras de datos que pueden parecer 
+            difíciles en un inicio, pero estudiando y programándolos es 
+            más sencillo comprenderlos. 
+            \item Voy a pedir un Uber para que no me lleve al médico.
+        \end{itemize}
+    }
+
+    \newpage
+    % Ejercicio 27
+    \question
+    {
+        Para cada una de las siguientes expresiones, \textbf{responde}:
+        \begin{center}
+            ¿Es una proposición? En caso afirmativo, \textbf{indica} si 
+            es una proposición simple o compuesta. 
+        \end{center}
+
+        \begin{itemize}
+            \item Voy a pedir un Uber para que no me lleve al médico. 
+            \item $2 + 4 < 8$
+            \item No hace calor, pero hay Sol. 
+            \item Te extraño. 
+            \item Los perritos son amor. 
+        \end{itemize}
+    }
+
+    % Ejercicio 28
+    \question
+    {
+        Para cada una de las siguientes expresiones, \textbf{responde}:
+        \begin{center}
+            ¿Es una proposición? En caso afirmativo, \textbf{indica} si 
+            es una proposición simple o compuesta. 
+        \end{center}
+
+        \begin{itemize}
+            \item No quiero nada de tí. 
+            \item Me tropecé con tu forma perfecta de besar. 
+            \item Isa tiene conocimientos de Machine Learning y Seguridad 
+            Informática. 
+            \item Por favor, por un minuto ponte en mi lugar. 
+            \item Leonardo es fiel fanático del América. 
+        \end{itemize}
+    }
+
+    % Ejercicio 29
+    \question
+    {
+        Para cada una de las siguientes expresiones, \textbf{responde}:
+        \begin{center}
+            ¿Es una proposición? En caso afirmativo, \textbf{indica} si 
+            es una proposición simple o compuesta. 
+        \end{center}
+
+        \begin{itemize}
+            \item Dame una razón para no desconfiar de todas tus promesas. 
+            \item El pastel es delicioso, pero no tiene suficiente chocolate. 
+            \item Las cortinas están rotas sólo si mi gato las rompió. 
+            \item Este crimen yo no lo cometí. 
+            \item Si el programa es eficiente, entonces se ejecuta eficientemente.
+        \end{itemize}
+    }
+
+    % Ejercicio 30
+    \question
+    {
+        Para cada una de las siguientes expresiones, \textbf{responde}:
+        \begin{center}
+            ¿Es una proposición? En caso afirmativo, \textbf{indica} si 
+            es una proposición simple o compuesta. 
+        \end{center}
+
+        \begin{itemize}
+            \item Te admiro mucho. 
+            \item Todos los políticos son corruptos. 
+            \item Ahora estoy aquí buscándola y no está. 
+            \item Te acercaste, me invitaste, me negué. Pero la curiosidad 
+            me ganó y acepté. 
+            \item No todas las personas que nacieron en India viven en India. 
+        \end{itemize}
+    }
+\end{questions}
+\end{document}
