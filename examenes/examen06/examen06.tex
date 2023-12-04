@@ -1,0 +1,556 @@
+\documentclass[12pt, a4paper]{exam}
+
+% Soporte para cambiar la fecha que sale en el examen
+\usepackage{advdate}
+% Soporte para escribir en varias columnas
+\usepackage{multicol}
+% Soporte para los acentos.
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}    
+% Idioma español.
+\usepackage[spanish,mexico,es-tabla]{babel}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{amsmath,amssymb,amsthm}
+
+% Cambiamos los márgenes del documento. 
+\usepackage[top=1.5cm,left=1.5cm,right=1.5cm]{geometry}
+
+% Pie de página
+\cfoot{Página \thepage\ de \numpages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\thechoice}{\alph{choice}}
+
+\makeatletter
+\renewenvironment{checkboxes}%
+   {\setcounter{choice}{0}\list{\checkbox@char}%
+      {%
+        \settowidth{\leftmargin}{W.\hskip\labelsep\hskip 2.5em}%
+        \def\choice{%
+          \if@correctchoice
+            \color@endgroup \endgroup
+          \fi
+          \stepcounter{choice}
+          \item[\checked@char]
+          \do@choice@pageinfo
+        } % choice
+        \def\CorrectChoice{%
+          \if@correctchoice
+            \color@endgroup \endgroup
+          \fi
+          \ifprintanswers
+            % We can't say \choice here, because that would
+            % insert an \endgroup.
+            % 2016/05/10: We say \color@begingroup in addition to
+            % \begingroup in case \CorrectChoiceEmphasis involves color
+            % and the text exactly fills the line (which would
+            % otherwise create a blank line after this choice):
+            % 2016/05/11: We leave hmode if we're in it,
+            % i.e., if there's no blank line preceding this
+            % \CorrectChoice command.  (Without this, the
+            % \special created by a \color{whatever} command that might
+            % be inserted by \CorrectChoice@Emphasis would be appended 
+            % to the previous \choice, which could cause an extra
+            % (blank) line to be inserted before this \CorrectChoice.)
+            % Since \par and \endgraf seem to cancel \@totalleftmargin
+            % (for reasons I don't understand), we'll do the following:
+            % Motivated by  the def of \leavevmode, 
+            %      \def\leavevmode{\unhbox\voidb@x}
+            % we will now leave hmode (if we're in hmode):
+            \ifhmode \unskip\unskip\unvbox\voidb@x \fi
+            \begingroup \color@begingroup \@correctchoicetrue
+            \CorrectChoice@Emphasis
+            \stepcounter{choice}
+            \item[\checked@char]
+          \else
+            \stepcounter{choice}
+            \item[\checked@char]
+          \fi
+          \do@choice@pageinfo
+        } % CorrectChoice
+        \let\correctchoice\CorrectChoice
+        \labelwidth\leftmargin\advance\labelwidth-\labelsep
+        \topsep=0pt
+        \partopsep=0pt
+        \checkboxeshook
+      }%
+   }%
+   {\if@correctchoice \color@endgroup \endgroup \fi \endlist}
+ \makeatother
+
+% Make checkbox character a circle with the letter
+\checkboxchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=4mm,draw] at (0,0) {\thechoice};}
+% Make checked box character bold WITH surd
+%\checkedchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=8mm,draw] at (0,0) {} node at (0,0) {\thechoice\llap{$\surd$}};}
+% Make checked box character bold
+\checkedchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=4mm,draw] at (0,0) {} node at (0,0) {\thechoice};}
+\printanswers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ENCABEZADO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \centering
+    \hrule \hrule \hrule 
+    \vspace{5mm}
+    \begin{minipage}[c]{0.8\textwidth}
+        \begin{center}
+            {\large\textbf{Mission 06, Start!} \par
+            \large \textbf{Estructuras Discretas} \par
+            \large \textbf{Semestre 2023-1} \par
+            \large \textbf{\today}	\par}
+        \end{center}
+    \end{minipage}
+
+    \vspace{0.2in}
+    \noindent
+    \textbf{Tania Michelle Rubí Rojas}
+    \vspace{2mm}
+    \hrule \hrule \hrule 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \vspace{5mm}
+    \noindent
+    Nombre y número de cuenta: \hrulefill\
+
+    \vspace{5mm}
+    \noindent
+    
+    \textbf{Notación y convenciones para el examen:}
+    {\tiny
+    \begin{multicols}{2}
+    \begin{itemize}\setlength\itemsep{0em}  
+      \item $0\in\mathbb{N}$
+
+      \item Dos números enteros son primos relativos  si no tienen ningún 
+      divisor en común a excepción del $1$.
+
+      \item El conjunto de los números primos es
+      \begin{equation*}
+        \{2,3,5,7,11,13,17,19,23,29, 31, 37, \ldots\}
+      \end{equation*}
+
+      \item Los errores de escritura en las funciones son {\bf intencionales}, 
+      por lo que cualquier afirmación que contenga una expresión mal escrita 
+      es falsa.
+    \end{itemize}
+    \end{multicols}
+    }
+
+    \begin{questions}
+        % Question 01
+        \question
+        {
+            Sea $A = \{a,b,c,d,e\}$. Definimos la relación $R$ sobre $A$ como 
+            sigue:
+            \begin{equation*}
+                R = \{(a,b), (a,c), (a,e), (b,a), (b,c), (c,a), (c,b), (d,a), 
+                (e,d)\}
+            \end{equation*} 
+
+            ¿Cuál o cuáles de las siguientes relaciones son la \textbf{cerradura
+            transitiva} de $R$?
+        }
+        \begin{checkboxes}
+            \choice $R \cup \{(a,a), (a,d), (b,b), (b,e), (b,d), (c,c), (c,e), 
+            (c,d), (d,b), (d,c), (d,e), (d,d), (e,a),$ \\ $(e,c), (e,e)\}$
+
+            \choice $R \cup \{(a,a), (a,d), (b,b), (b,d), (c,c), (c,e), (d,b), 
+            (d,c), (d,e), (d,d), (e,a), (e,b), (e,c),$ \\ $(e,e)\}$
+
+            \choice $R \cup \{(a,a), (a,d), (b,a), (b,b), (b,e), (b,d), (c,c), 
+            (c,e), (c,d), (d,b), (d,c), (d,e), (d,d),$ \\ $(d,a), (e,a), (e,b), 
+            (e,c), (e,e)\}$
+
+            \choice $R \cup \{(a,a), (a,d), (b,b), (b,e), (b,d), (c,c), (c,e), 
+            (c,d), (d,b), (d,c), (d,e), (d,d), (e,a),$ \\ $(e,b), (e,c), 
+            (e,e)\}$ % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 02
+        \question
+        {
+            Definimos las relaciones $R$ y $S$ sobre el conjunto 
+            $\mathbb{N}$, como sigue:
+            \begin{align*}
+                R &= \{(a,b) \in \mathbb{N} \times \mathbb{N} \; | \; 
+                a+1 = b\} \\ 
+                S &= \{(a,b) \in \mathbb{N} \times \mathbb{N} \; | \; 
+                a = b+2\}
+            \end{align*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $R \circ S = \{(a,b) \in \mathbb{N} \times \mathbb{N} 
+            \; | \; a = b + 1\}$
+
+            \choice $R \cap S = \varnothing$ % Correcta 
+
+            \choice $(R \circ S) \subset (S \circ R)$ % Correcta
+
+            \choice $S \circ R = \{(a,b) \in \mathbb{N} \times \mathbb{N} 
+            \; | \; a = b + 1\}$ % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 03
+        \question
+        {
+            Definimos la relación $R \subseteq \{0,1\} \times \{0,1\}$ como 
+            $R = \varnothing$. ¿Cuál o cuáles de las siguientes expresiones 
+            son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $R$ es antisimétrica. % Correcta
+
+            \choice $R$ no es simétrica. 
+
+            \choice La cerradura transitiva de $R$ es $R \cup \{(0,0), 
+            (1,1)\}$.
+
+            \choice $R$ es reflexiva. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 04
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Sea $R$ una relación binaria sobre un conjunto $A$. 
+            Entonces $R$ es transitiva si y sólo si $R \circ R = R$. 
+
+            \choice Sea $R$ una relación binaria sobre un conjunto $A$.
+            Entonces $R \cup R^{-1}$ es la cerradura simétrica de $R$. 
+            % Correcta
+
+            \choice Si $R$ es antisimétrica, entonces $R^{-1}$ también lo es. 
+            % Correcta
+
+            \choice Sea $R$ una relación binaria sobre un conjunto $A$. 
+            Entonces $R \cup \{(x,x) \; | \; x \in A\}$ es la cerradura 
+            reflexiva de $R$. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 05
+        \question
+        {
+            Sea $P$ el conjunto de todas las personas. Definimos la relación 
+            $R$ sobre $P$ como sigue:
+            \begin{equation*}
+                aRb \Leftrightarrow a \text{ y } b \text{ tienen el mismo 
+                apellido materno}
+            \end{equation*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $R$ es antisimétrica. 
+
+            \choice $R$ es reflexiva. % Correcta
+
+            \choice No es posible obtener la cerradura transitiva de la 
+            relación $R$. 
+
+            \choice $R$ no es simétrica. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 06
+        \question
+        {
+            Sea $P$ el conjunto de todas las personas. Definimos la relación 
+            $R$ sobre $P$ como sigue:
+            \begin{equation*}
+                aRb \Leftrightarrow a \text{ es hermana biológica de } b
+            \end{equation*}
+            
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $R$ es antisimétrica. 
+
+            \choice $R$ es simétrica. 
+
+            \choice Si $P$ es el conjunto de todas las personas que son hombres,
+            entonces $R = \varnothing$. % Correcta
+
+            \choice $R$ es antirreflexiva. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 07
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Sea $R$ una relación binaria sobre un conjunto $A$. 
+            Entonces $R$ es simétrica si y sólo si $R^{-1}$ también lo es. 
+            % Correcta
+
+            \choice Si $R$ y $S$ son relaciones binarias transitivas sobre un 
+            conjunto $A$, entonces $R \cap S$ también lo es. % Correcta 
+
+            \choice Si $R$ y $S$ son relaciones binarias reflexivas sobre un 
+            conjunto $A$, entonces $R \cup S$ es reflexiva sobre $A$. % Correcta
+
+            \choice Sea $R$ una relación binaria sobre un conjunto $A$. 
+            Entonces $R$ es transitiva si y sólo si $R^{-1}$ también lo es.
+            % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 08
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Si $R$ y $S$ son relaciones binarias transitivas sobre un 
+            conjunto $A$, entonces $R \cup S$ también lo es. 
+
+            \choice Sea $R$ una relación binaria transitiva sobre un conjunto 
+            $A$. Entonces $R$ es asimétrica si y sólo si $R$ es antirreflexiva.
+            % Correcta 
+
+            \choice Si $R$ y $S$ son relaciones binarias simétricas sobre un 
+            conjunto $A$, entonces $R \cup S$ también lo es. % Correcta
+
+            \choice Si $R$ es una relación reflexiva y transitiva sobre un 
+            conjunto $A$, entonces $R^2 = R$. % Correcta 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 09
+        \question
+        {
+            Sea $A = \mathbb{Z}^+ \times \mathbb{Z}^+$. Definimos la relación 
+            $R$ sobre $A$, como sigue:
+            \begin{equation*}
+                R = \{((a,b), (c,d)) \; | \; a+d = b+c\}
+            \end{equation*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $R$ no es antisimétrica. % Correcta
+
+            \choice $R$ es simétrica. % Correcta
+
+            \choice $R$ no es reflexiva. 
+
+            \choice La cerradura transitiva de $R$ es $R^2$. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 10
+        \question
+        {
+            Definimos las relaciones $R$ y $S$ sobre $\mathbb{N}$ como sigue:
+            \begin{align*}
+                R &= \{(0,2), (0,5), (0,9), (1,9), (1,12), (1,15), (2,2)\} \\ 
+                S &= \{(2,0), (2,6), (5,6), (9,8), (12,1), (12,7), (15,4)\}
+            \end{align*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $(S \circ R)^{-1} = \{(0,0), (6,0), (8,0), (8,1), (1,1),  
+            (7,1), (0,2), (6,2), (4,2)\}$
+
+            \choice $(S \circ R)^{-1} = \{(0,0), (6,0), (8,0), (8,1), (1,1),  
+            (2,6), (7,1), (0,2), (6,2)\}$
+
+            \choice $(S \circ R)^{-1} = \{(0,0), (0,2), (1,1), (4,1), (6,0), 
+            (6,2), (7,1), (8,0), (8,1)\}$ % Correcta
+
+            \choice $(S \circ R)^{-1} = \{(0,0), (0,2), (1,1), (4,1), (6,0), 
+            (2,6), (7,1), (8,0), (8,1)\}$
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 11
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Es posible que una relación binaria, no vacía y definida 
+            sobre un conjunto no vacío $A$, sea simétrica y antisimétrica al 
+            mismo tiempo. % Correcta 
+
+            \choice Si $R$ y $S$ son relaciones binarias simétricas sobre un 
+            conjunto $A$, entonces $R \cap S$ también lo es. % Correcta
+
+            \choice Toda relación binaria que no es reflexiva es antirreflexiva.
+            
+            \choice Sea $R$ una relación binaria simétrica y transitiva sobre 
+            un conjunto $A$. Entonces $R$ también es reflexiva. 
+
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 12
+        \question
+        {
+            Definimos la relación $R$ sobre $\mathbb{N}$ como sigue:
+            \begin{equation*}
+                R = \{(a,b) \; | \; a \text{ y } b \text{ son primos 
+                relativos}\}
+            \end{equation*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $R$ es transitiva. 
+
+            \choice $R$ es antisimétrica. 
+
+            \choice $R$ es reflexiva.
+
+            \choice $R$ es simétrica. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 13
+        \question{¿Cuál o cuáles de las siguientes expresiones 
+        son \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Sea $R$ una relación binaria sobre un conjunto $A$. 
+            Entonces existe un algoritmo para determinar la cerradura 
+            antisimétrica de $R$. 
+
+            \choice Sea $R$ una relación binaria sobre un conjunto $A$. 
+            Si $R$ es antirreflexiva, entonces $R$ es asimétrica. 
+
+            \choice Sea $R$ una relación binaria sobre un conjunto $A$. 
+            Entonces $R$ es asimétrica si y sólo si $R \cap R^{-1} = 
+            \varnothing$. % Correcta 
+
+            \choice Sea $R$ una relación binaria sobre un conjunto $A$. 
+            Si $R$ es simétrica y transitiva, entonces $R$ es 
+            antirreflexiva. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 14
+        \question
+        {
+            Definimos la relación $R$ sobre $A = \{1,2,3,4,6,12,13,17,19,23,24,
+            26,29\}$ como sigue:
+            \begin{equation*}
+                R = \{(a, b) \; | \; \frac{b}{a} \text{ es un número primo}\}
+            \end{equation*}
+            
+            ¿Cuál o cuáles de las siguientes relaciones son la 
+            \textbf{cerradura transitiva} de $R$?
+        }
+        \begin{checkboxes}
+            \choice $R \cup \{(4,1), (6,1), (12,3), (12,2), (24,6), (24,4), 
+            (26,1), (24,3)\}^{-1}$
+
+            \choice $R \cup \{(4,1), (6,1), (12,3), (12,2), (24,6), (24,4), 
+            (26,1), (12,1), (24,3), (24,2), (24,1)\}^{-1}$ % Correcta
+
+            \choice $R \cup \{(4,1), (6,1), (12,3), (12,2), (24,6), (24,4), 
+            (26,1), (12,1), (24,3)\}^{-1}$
+
+            \choice $R \cup \{(4,1), (6,1), (12,3), (12,2), (24,6), (24,4), 
+            (26,1), (24,3), (24,2), (24,1)\}^{-1}$
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 15
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Sea $R$ una relación binaria sobre un conjunto $A$. Si $R$
+            es simétrica, entonces $R \circ R$ también lo es. % Correcta 
+
+            \choice Sea $R$ una relación binaria sobre un conjunto $A$. 
+            Entonces $R$ es reflexiva si y sólo si $\{(x,x) \; | \; x \in A\} 
+            \subseteq R$. % Correcta 
+
+            \choice Sea $R$ una relación binaria sobre un conjunto $A$. Si $R$ 
+            es relexiva y transitiva, entonces $R \cap R^{-1}$ es reflexiva, 
+            simétrica y transitiva. % Correcta  
+
+            \choice Sea $R$ una relación binaria sobre un conjunto $A$. 
+            Entonces $R$ es reflexiva si y sólo si $R \subseteq \{(x,x) \; | \; 
+            x \in A\}$. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 16
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Toda relación antisimétrica no es simétrica. 
+
+            \choice Sea $R$ una relación binaria sobre un conjunto $A$. 
+            Entonces $R$ es simétrica si y sólo si $R = R^{-1}$. % Correcta
+
+            \choice Toda relación antirreflexiva sobre un conjunto no vacío no 
+            es reflexiva. % Correcta
+
+            \choice Una relación binaria $R$ sobre un conjunto $A$ puede ser 
+            antisimétrica y asimétrica al mismo tiempo. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 17
+        \question
+        {
+            Sea $A = \{a,b,c,d,e\}$. Definimos la relación $R$ sobre $A$ como 
+            sigue:
+            \begin{equation*}
+                R = \{(a,e), (b,a), (b,d), (c,d), (d,a), (d,c), (e,a), (e,b), 
+                (e,c), (e,e)\}
+            \end{equation*} 
+
+            ¿Cuál o cuáles de las siguientes relaciones son la \textbf{cerradura
+            transitiva} de $R$?
+        }
+        \begin{checkboxes}
+            \choice $R \cup \{(a,a), (a,b), (a,c), (a,e), (b,e), (b,b), (b,c), 
+            (c,a), (c,c), (d,e), (d,b), (d,c), (d,d),$ \\ $(e,e),(e,b), (e,c), 
+            (e,d)\}$
+
+            \choice $R \cup \{(a,a), (a,b), (a,c), (b,e), (b,b), (b,c), (c,a), 
+            (c,c), (d,e), (d,b), (d,c), (d,d), (e,e),$ \\ $(e,b), (e,c), 
+            (e,d)\}$ 
+
+            \choice $R \cup \{(a,a), (a,b), (a,c), (b,e), (b,b), (b,c), (c,a), 
+            (c,c), (d,e), (d,b), (d,c), (d,d), (e,e),$ \\ $(e,b), (e,c)\}$
+
+            \choice $R \cup \{(a,a), (a,b), (a,c), (b,a), (b,e), (b,b), (b,c), 
+            (c,a), (c,c), (d,e), (d,b), (d,c), (d,d),$ \\ $(e,e),(e,b), (e,c), 
+            (e,d)\}$
+            
+            \choice Ninguna de las anteriores. % Correcta
+        \end{checkboxes}
+    \end{questions}
+\end{document}

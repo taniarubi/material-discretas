@@ -1,0 +1,770 @@
+\documentclass[12pt, a4paper]{exam}
+
+% Soporte para cambiar la fecha que sale en el examen
+\usepackage{advdate}
+% Soporte para escribir en varias columnas
+\usepackage{multicol}
+% Soporte para los acentos.
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}    
+% Idioma español.
+\usepackage[spanish,mexico,es-tabla]{babel}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{amsmath,amssymb,amsthm}
+
+% Cambiamos los márgenes del documento. 
+\usepackage[top=1.5cm,left=1.5cm,right=1.5cm]{geometry}
+
+% Pie de página
+\cfoot{Página \thepage\ de \numpages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\thechoice}{\alph{choice}}
+
+\makeatletter
+\renewenvironment{checkboxes}%
+   {\setcounter{choice}{0}\list{\checkbox@char}%
+      {%
+        \settowidth{\leftmargin}{W.\hskip\labelsep\hskip 2.5em}%
+        \def\choice{%
+          \if@correctchoice
+            \color@endgroup \endgroup
+          \fi
+          \stepcounter{choice}
+          \item[\checked@char]
+          \do@choice@pageinfo
+        } % choice
+        \def\CorrectChoice{%
+          \if@correctchoice
+            \color@endgroup \endgroup
+          \fi
+          \ifprintanswers
+            % We can't say \choice here, because that would
+            % insert an \endgroup.
+            % 2016/05/10: We say \color@begingroup in addition to
+            % \begingroup in case \CorrectChoiceEmphasis involves color
+            % and the text exactly fills the line (which would
+            % otherwise create a blank line after this choice):
+            % 2016/05/11: We leave hmode if we're in it,
+            % i.e., if there's no blank line preceding this
+            % \CorrectChoice command.  (Without this, the
+            % \special created by a \color{whatever} command that might
+            % be inserted by \CorrectChoice@Emphasis would be appended 
+            % to the previous \choice, which could cause an extra
+            % (blank) line to be inserted before this \CorrectChoice.)
+            % Since \par and \endgraf seem to cancel \@totalleftmargin
+            % (for reasons I don't understand), we'll do the following:
+            % Motivated by  the def of \leavevmode, 
+            %      \def\leavevmode{\unhbox\voidb@x}
+            % we will now leave hmode (if we're in hmode):
+            \ifhmode \unskip\unskip\unvbox\voidb@x \fi
+            \begingroup \color@begingroup \@correctchoicetrue
+            \CorrectChoice@Emphasis
+            \stepcounter{choice}
+            \item[\checked@char]
+          \else
+            \stepcounter{choice}
+            \item[\checked@char]
+          \fi
+          \do@choice@pageinfo
+        } % CorrectChoice
+        \let\correctchoice\CorrectChoice
+        \labelwidth\leftmargin\advance\labelwidth-\labelsep
+        \topsep=0pt
+        \partopsep=0pt
+        \checkboxeshook
+      }%
+   }%
+   {\if@correctchoice \color@endgroup \endgroup \fi \endlist}
+ \makeatother
+
+% Make checkbox character a circle with the letter
+\checkboxchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=4mm,draw] at (0,0) {\thechoice};}
+% Make checked box character bold WITH surd
+%\checkedchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=8mm,draw] at (0,0) {} node at (0,0) {\thechoice\llap{$\surd$}};}
+% Make checked box character bold
+\checkedchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=4mm,draw] at (0,0) {} node at (0,0) {\thechoice};}
+\printanswers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ENCABEZADO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \centering
+    \hrule \hrule \hrule 
+    \vspace{5mm}
+    \begin{minipage}[c]{0.8\textwidth}
+        \begin{center}
+            {\large\textbf{Mission 04, Start!} \par
+            \large \textbf{Estructuras Discretas} \par
+            \large \textbf{Semestre 2023-1} \par
+            \large \textbf{\today}	\par}
+        \end{center}
+    \end{minipage}
+
+    \vspace{0.2in}
+    \noindent
+    \textbf{Tania Michelle Rubí Rojas}
+    \vspace{2mm}
+    \hrule \hrule \hrule 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \vspace{5mm}
+    \noindent
+    Nombre y número de cuenta: \hrulefill\
+
+    \begin{questions}
+        % Question 01
+        \question
+        {
+            Definimos un conjunto $A$ de manera recursiva como sigue:
+            \begin{itemize}
+                \item $6 \in A$
+                \item Si $a,b \in A$, entonces $a+b \in A$
+                \item Nada pertenece a $A$ a menos que se obtenga del caso base 
+                y la regla recursiva. 
+            \end{itemize}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $A$ es el conjunto de todos los múltiplos enteros de $6$, 
+            exceptuando al cero. 
+
+            \choice La regla recursiva carece del componente \textsc{conexión}.
+
+            \choice La regla de extremo permite que $0 \in A$.
+
+            \choice En la regla recursiva, los valores de $a$ y $b$ tienen que 
+            ser diferentes. 
+            
+            \choice Ninguna de las anteriores. % Correcta
+        \end{checkboxes}
+
+        % Question 02
+        \question
+        {
+            ¿Cuál de las siguientes definiciones recursivas construyen al 
+            conjunto $A = \{2n+1 \; | \; n \in \mathbb{N}\}$?
+        }
+        \begin{checkboxes}
+            \choice Definición:
+            \begin{itemize}
+                \item $3 \in A$
+                \item Si $n \in A$, entonces $n+2 \in A$
+                \item Estos y solo estos son elementos de $A$.
+            \end{itemize}
+
+            \choice Definición:
+            \begin{itemize}
+                \item $1 \in A$
+                \item Si $n \in A$, entonces $n+2 \in A$
+                \item Estos y solo estos son elementos de $A$.
+            \end{itemize} % Correcta
+
+            \choice Definición:
+            \begin{itemize}
+                \item $1,3 \in A$
+                \item Si $n \in A$, entonces $n+4 \in A$
+                \item Estos y solo estos son elementos de $A$.
+            \end{itemize} % Correcta
+
+            \choice Definición:
+            \begin{itemize}
+                \item $1 \in A$
+                \item Si $n \in A$, entonces $n+3 \in A$
+                \item Estos y solo estos son elementos de $A$.
+            \end{itemize}
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 03
+        \question
+        {
+            Definimos un conjunto $A$ de manera recursiva como sigue:
+            \begin{itemize}
+                \item Si $x \in \mathbb{N}$ entonces $x \in A$
+                \item Si $u,v \in \mathbb{N}$ entonces $u \cdot v \in A$
+                \item Nada pertenece a $A$ a menos que se obtenga del caso base
+                y la regla recursiva. 
+            \end{itemize}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice La definición no incluye ninguna regla realmente recursiva.
+            % Correcta 
+
+            \choice El caso base no está definido.
+
+            \choice Una de las reglas recursivas se puede omitir sin alterar
+            la definición del conjunto. % Correcta
+
+            \choice $A \subset \mathbb{N}$
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 04
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Únicamente podemos definir conjuntos de números de manera 
+            recursiva. 
+
+            \choice Una definición recursiva consta de tres partes: caso base, 
+            caso recursivo y conexión.
+
+            \choice No es posible definir de manera recursiva el conjunto de 
+            números reales que son divisibles entre dos. % Correcta
+
+            \choice En un definición recursiva, el caso base construye al 
+            conjunto a partir de dos elementos o más. 
+            
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 05
+        \question
+        {
+            Sea $A$ el conjunto de todas las cadenas de a's y b's. Definimos un 
+            conjunto $B$ de manera recursiva como sigue:
+            \begin{itemize}
+                \item $a,b \in B$
+                \item Si $x \in B$, entonces $ax, bx \in B$ 
+                \item Nada pertenece a $B$ a menos que se obtenga de los casos 
+                base y las reglas recursivas. 
+            \end{itemize}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice La definición no incluye ninguna regla realmente 
+            recursiva. 
+
+            \choice Sea $f(w) = aw$ tal que $w \in A$. Entonces $B = f$.
+
+            \choice $babaaba \in B$ % Correcta
+
+            \choice $A = B$ % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 06
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Una definición recursiva tiene únicamente un caso base. 
+
+            \choice Únicamente podemos definir recursivamente conjuntos 
+            finitos y conjuntos infinitos más pequeños que $\mathbb{N}$. 
+
+            \choice En una definición recursiva, el propósito de la regla 
+            recursiva es construir elementos del conjunto a partir de los 
+            elementos que ya se encuentran en él. % Correcta
+
+            \choice Si una definición recursiva es válida, entonces podemos 
+            omitir la regla de exclusión, pues se sobreentiende que existe. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 07
+        \question
+        {
+            Sea $A$ el conjunto de todas las cadenas de ceros y unos. 
+            Definimos un conjunto $B$ de manera recursiva como sigue:
+            \begin{itemize}
+                \item Para cada $a \in A$, $aa^R \in B$ (donde $a^R$ es $a$ 
+                escrita de atrás hacia adelante).
+                \item Si $v,w$ son cadenas tales que $vv^R, ww^R \in B$, 
+                entonces $wvv^Rw^R \in B$
+                \item Nada pertenece a $A$ a menos que se obtenga de los casos 
+                base y las reglas recursivas. 
+            \end{itemize}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $B$ es el conjunto de todas las cadenas palíndromas en 
+            $A$. 
+
+            \choice La regla recursiva construye los mismos elementos que 
+            el caso base. % Correcta
+
+            \choice Por el caso base, $00,11 \in B$. Si $v = 00 \in B$ y 
+            $w = 11 \in B$, por la regla recursiva, $1001 \in B$. 
+
+            \choice El componente \textsc{conexión} de la regla recursiva está
+            mal escrito. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 08
+        \question
+        {
+            Definimos un conjunto $A$ de manera recursiva como sigue:
+            \begin{itemize}
+                \item $2 \in A$
+                \item Si $s \in A$, entonces $w-2 \in A$
+                \item Si $w \in A$, entonces $s+6 \in A$
+            \end{itemize}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $A$ es el conjunto de todos los múltiplos de $2$. 
+
+            \choice El componente \textsc{conexión} de una de las reglas 
+            recursivas está mal escrito. % Correcta
+
+            \choice El elemento $3$ puede ser un elemento de $A$. % Correcta
+
+            \choice La definición recursiva está incompleta. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 09
+        \question
+        {
+            Sea $A$ el conjunto de todas las cadenas de ceros y unos. Definimos 
+            un conjunto $B$ de manera recursiva como sigue:
+            \begin{itemize}
+                \item $01,10 \in B$
+                \item Si $w \in B$, entonces $10w,1w0,w10,01w,0w1,w01 \in B$
+                \item Nada pertenece a $B$ a menos que se obtenga del caso base
+                y la regla recursiva. 
+            \end{itemize}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $B$ es el conjunto de todas las cadenas de ceros y unos cuya 
+            longitud es par. 
+
+            \choice $B$ es el conjunto de todas las cadenas de ceros y unos que 
+            tienen la misma cantidad de ceros que de unos. % Correcta 
+
+            \choice $B$ es el conjunto de todas las cadenas de ceros y unos que 
+            son palíndromas. 
+
+            \choice $B$ es el conjunto de todas las cadenas de ceros y unos que 
+            terminan en al menos un cero. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 10
+        \question
+        {
+            Sea $A$ el conjunto de todas las cadenas de a's y b's. Definimos un 
+            conjunto $B$ de manera recursiva como sigue:
+            \begin{itemize}
+                \item $aa, bb, ab, ba \in B$
+                \item Si $w \in B$, entonces $ww \in B$
+                \item Nada pertenece a $B$ a menos que se obtenga del caso base
+                y la regla recursiva. 
+            \end{itemize}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $B$ es el conjunto de todas las cadenas de a's y b's que 
+            tienen la misma cantidad de a's que de b's. 
+
+            \choice $B$ es el conjunto de todas las cadenas de a's y b's que 
+            resulta de concatenar una cadena consigo misma. 
+
+            \choice $B$ es el conjunto de todas las cadenas de a's y b's que 
+            son palíndromas. 
+
+            \choice $B$ es el conjunto de todas las cadenas de a's y b's cuya 
+            longitud es par. 
+            
+            \choice Ninguna de las anteriores. % Correcta
+        \end{checkboxes}
+
+        % Question 11
+        \question
+        {
+            ¿Cuál de las siguientes definiciones recursivas construyen al 
+            conjunto, digamos $A$, de las personas que son descendientes 
+            de Shakira?
+        }
+        \begin{checkboxes}
+            \choice Definición:
+            \begin{itemize}
+                \item Si $x$ es hijo de Shakira, entonces $x \in A$.
+                \item Si $y \in A$ y $x$ es hijo de $y$, entonces $x \in A$.
+                \item Ninguna otra persona está en $A$, excepto las definidas 
+                por el caso base y la regla recursiva. 
+            \end{itemize} % Correcta
+
+            \choice Definición:
+            \begin{itemize}
+                \item Los hijos de Shakira pertenecen a $A$. 
+                \item Si una persona $x$ es hijo de la persona $y$, tal que 
+                $x \in A$, entonces $y \in A$.
+                \item Ninguna otra persona está en $A$, excepto las definidas 
+                por el caso base y la regla recursiva. 
+            \end{itemize} 
+
+            \choice Definición:
+            \begin{itemize}
+                \item Shakira está en $A$
+                \item Si $x \in A$ entonces $y \in A$
+                \item Si $y \in A$ y $z$ es hijo de $y$, entonces $z \in A$.
+                \item Ninguna otra persona está en $A$, excepto las definidas 
+                por el caso base y la regla recursiva. 
+            \end{itemize}
+
+            \choice Definición:
+            \begin{itemize}
+                \item Los hijos de Shakira pertenecen a $A$. 
+                \item Si una persona $x$ es hijo de la persona $y$, tal que 
+                $y \in A$, entonces $x \in A$.
+                \item Ninguna otra persona está en $A$, excepto las definidas 
+                por el caso base y la regla recursiva. 
+            \end{itemize} % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 12
+        \question
+        {
+            Sea $A$ el conjunto de todas las cadenas de ceros y unos. Definimos 
+            un conjunto $B$ de manera recursiva como sigue:
+            \begin{itemize}
+                \item $0,1 \in A$
+                \item Si $w \in A$, entonces $w0, w1 \in A$
+                \item Si $w \in A$, entonces $0w, 1w \in A$
+                \item Nada pertenece a $A$ a menos que se obtenga del caso base
+                y la regla recursiva. 
+            \end{itemize}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice El componente \textsc{conexión} de la regla recursiva está
+            mal escrito, pues hay dos reglas recursivas. 
+
+            \choice $010101 \in B$ 
+
+            \choice $101100111000111100001111100000111\ldots \in B$
+
+            \choice Una de las reglas recursivas se puede omitir sin alterar
+            la definición del conjunto. 
+            
+            \choice Ninguna de las anteriores. % Correcta
+        \end{checkboxes}
+
+        % Question 13
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Si una definición recursiva tiene más de una regla 
+            recursiva, entonces está mal definida. 
+
+            \choice Si omitimos escribir la regla de extremo, entonces 
+            cualquier elemento podría pertener al conjunto que queremos 
+            construir. % Correcta
+
+            \choice El componente \textsc{conexión} hace referencia a 
+            que la regla recursiva sea una oración condicional. 
+
+            \choice No es posible definir recursivamente el conjunto de todos 
+            los números enteros que no son divisibles entre $3$.
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 14
+        \question
+        {
+            Sea $A$ es el conjunto de todas las cadenas de a's y b's. Definimos 
+            un conjunto $B$ de manera recursiva como sigue:
+            \begin{itemize}
+                \item $aa, bb \in B$
+                \item Si $w \in B$, entonces $aaw,wbb \in B$
+                \item Nada pertenece a $B$ a menos que se obtenga del caso base
+                y la regla recursiva. 
+            \end{itemize}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $B$ es el conjunto de todas las cadenas de a's y b's que 
+            empiezan con $aa$.
+
+            \choice $B$ es el conjunto de todas las cadenas de a's y b's que 
+            tienen al menos una $b$. 
+
+            \choice $B$ es el conjunto de todas las cadenas de a's y b's que 
+            tienen la misma cantidad de a's que de b's. 
+
+            \choice $B$ es el conjunto de todas las cadenas de a's y b's que 
+            terminan con $bb$.
+            
+            \choice Ninguna de las anteriores. % Correcta
+        \end{checkboxes}
+
+        \newpage
+        % Question 15
+        \question
+        {
+            Sea $A$ el conjunto de todas las cadenas de a's y b's. Además, sean 
+            $B$ el conjunto de todas las cadenas de a's y $C$ el conjunto de 
+            todas las cadenas de b's. Definimos un conjunto $D$ de manera 
+            recursiva como sigue:
+            \begin{itemize}
+                \item $a,b \in D$
+                \item Si $u \in B$ y $v \in C$, entonces $uv \in D$
+                \item Nada pertenece a $D$ a menos que se obtenga del caso base
+                y la regla recursiva. 
+            \end{itemize}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $baba \in D$
+
+            \choice $D$ es el conjunto de todas las cadenas de a's y b's que no 
+            inician con una $b$. 
+
+            \choice $D$ es el conjunto de todas las cadenas de a's y b's que 
+            terminan en al menos una $b$. 
+
+            \choice La definición no incluye ninguna regla realmente recursiva. 
+            % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 16
+        \question
+        {
+            Definimos un conjunto $A$ de manera recursiva como sigue:
+            \begin{itemize}
+                \item La lista vacía pertenece a $A$
+                \item Si $n \in \mathbb{N}$ y $l \in A$, entonces $(n:l) \in A$.
+                \item Nada pertenece a $A$ a menos que se obtenga del caso base
+                y la regla recursiva. 
+            \end{itemize}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $A$ es el conjunto de todas las listas cuyos elementos son 
+            números enteros. 
+
+            \choice La definición no incluye ninguna regla realmente recursiva.
+
+            \choice $(5: (9: (8: []))) \in A$ % Correcta
+
+            \choice $(12: (9: (3: 2))) \in A$
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 17
+        \question
+        {
+            Sea $A$ el conjunto de todas las cadenas de a's y b's. Definimos un 
+            conjunto $B$ de manera recursiva como sigue:
+            \begin{itemize}
+                \item $ab, bab \in B$
+                \item Si $w \in B$, entonces $awb \in B$
+                \item Nada pertenece a $B$ a menos que se obtenga del caso base
+                y la regla recursiva. 
+            \end{itemize}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice Todas las cadenas que pertenecen a $B$ terminan con al menos 
+            una $b$. % Correcta
+
+            \choice $B$ contiene seis cadenas cuya longitud es igual o menor a
+            $7$. % Correcta
+
+            \choice $B$ es el conjunto de todas las cadenas de a's y b's cuya 
+            longitud es impar. 
+
+            \choice La definición no incluye ninguna regla realmente recursiva.
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 18
+        \question
+        {
+            Definimos un conjunto $A$ de manera recursiva como sigue:
+            \begin{itemize}
+                \item $0 \in A$
+                \item Si $n,m \in A$, entonces $n+m \in A$
+                \item Nada pertenece a $A$ a menos que se obtenga del caso base
+                y la regla recursiva. 
+            \end{itemize}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $A$ es un conjunto unitario. % Correcta
+
+            \choice La definición recursiva está incompleta. 
+
+            \choice La regla recursiva construye los mismos elementos que el 
+            caso base. % Correcta
+
+            \choice Sea $f(n,m) = n+m$, tal que $n,m \in \mathbb{N}$. Entonces 
+            $A = f$.
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 19
+        \question
+        {
+            Definimos un conjunto $A$ de manera recursiva como sigue:
+            \begin{itemize}
+                \item Si $u \in \mathbb{Z}$ entonces $u \in A$
+                \item Si $a \in A$, entonces $a \in A$
+                \item Nada pertenece a $A$ a menos que se obtenga del caso base
+                y la regla recursiva. 
+            \end{itemize}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice Una de las reglas recursivas se puede omitir sin alterar
+            la definición del conjunto. % Correcta
+
+            \choice $A \subseteq \mathbb{N}$
+
+            \choice $(A - \mathbb{N}) \cap \{0, -1\} = \varnothing$
+
+            \choice La definición no incluye ninguna regla realmente recursiva. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 20
+        \question
+        {
+            Sea $A$ el conjunto de todas las cadenas de a's y b's. Definimos un 
+            conjunto $B$ de manera recursiva como sigue:
+            \begin{itemize}
+                \item $bb \in B$
+                \item Si $w \in B$ entonces $aw, bw, wa, wb \in B$
+                \item Nada pertenece a $B$ a menos que se obtenga del caso base
+                y la regla recursiva. 
+            \end{itemize}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $B$ es el conjunto de todas las cadenas de a's y b's que 
+            inician y terminan en $b$.
+
+            \choice $A \subseteq B$
+
+            \choice Le falta un componente a la definición recursiva. 
+
+            \choice El componente \textsc{conexión} de la regla recursiva está
+            mal escrito. 
+            
+            \choice Ninguna de las anteriores. % Correcta
+        \end{checkboxes}
+
+        \newpage
+        % Question 21
+        \question
+        {
+            Definimos un conjunto $A$ de manera recursiva como sigue:
+            \begin{itemize}
+                \item $3 \in A$
+                \item Si $n \in A$ entonces $3n \in A$
+                \item Nada pertenece a $A$ a menos que se obtenga del caso base
+                y la regla recursiva. 
+            \end{itemize}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $A \subseteq \{x \; | \; x \text{ es un múltiplo de } 3\}$
+            % Correcta
+
+            \choice $A \subset \{y \; | \; y \text{ es un número primo}\}$
+
+            \choice $A = \{x \; | \; x \text{ es un múltiplo de } 3\}$
+
+            \choice $A$ es un conjunto finito. 
+
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 22
+        \question
+        {
+            ¿Cuál de las siguientes definiciones recursivas construyen al 
+            conjunto $A = \{2n \; | \; n \in \mathbb{N}-\{0\}\}$?
+        }
+        \begin{checkboxes}
+            \choice Definición:
+            \begin{itemize}
+                \item $2,4 \in A$
+                \item Si $n \in A$ entonces $x+4 \in A$
+                \item Estos y solo estos son elementos de $A$.
+            \end{itemize} 
+
+            \choice Definición:
+            \begin{itemize}
+                \item $0 \in A$
+                \item Si $n \in A$, entonces $n+2 \in A$
+                \item Estos y solo estos son elementos de $A$.
+            \end{itemize}
+
+            \choice Definición:
+            \begin{itemize}
+                \item $2 \in A$
+                \item Si $n,m \in A$, entonces $n+m \in A$
+                \item Estos y solo estos son elementos de $A$.
+            \end{itemize} % Correcta
+
+            \choice Definición:
+            \begin{itemize}
+                \item $2 \in A$
+                \item Si $n\in A$, entonces $n+2 \in A$
+                \item Estos y solo estos son elementos de $A$.
+            \end{itemize} % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+    \end{questions}
+\end{document}

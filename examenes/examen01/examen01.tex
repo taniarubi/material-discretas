@@ -1,0 +1,579 @@
+\documentclass[12pt, a4paper]{exam}
+
+% Soporte para cambiar la fecha que sale en el examen
+\usepackage{advdate}
+% Soporte para los acentos.
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}    
+% Idioma español.
+\usepackage[spanish,mexico,es-tabla]{babel}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{amsmath,amssymb,amsthm}
+
+% Cambiamos los márgenes del documento. 
+\usepackage[top=1.5cm,left=1.5cm,right=1.5cm]{geometry}
+
+% Pie de página
+\cfoot{Página \thepage\ de \numpages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\thechoice}{\alph{choice}}
+
+\makeatletter
+\renewenvironment{checkboxes}%
+   {\setcounter{choice}{0}\list{\checkbox@char}%
+      {%
+        \settowidth{\leftmargin}{W.\hskip\labelsep\hskip 2.5em}%
+        \def\choice{%
+          \if@correctchoice
+            \color@endgroup \endgroup
+          \fi
+          \stepcounter{choice}
+          \item[\checked@char]
+          \do@choice@pageinfo
+        } % choice
+        \def\CorrectChoice{%
+          \if@correctchoice
+            \color@endgroup \endgroup
+          \fi
+          \ifprintanswers
+            % We can't say \choice here, because that would
+            % insert an \endgroup.
+            % 2016/05/10: We say \color@begingroup in addition to
+            % \begingroup in case \CorrectChoiceEmphasis involves color
+            % and the text exactly fills the line (which would
+            % otherwise create a blank line after this choice):
+            % 2016/05/11: We leave hmode if we're in it,
+            % i.e., if there's no blank line preceding this
+            % \CorrectChoice command.  (Without this, the
+            % \special created by a \color{whatever} command that might
+            % be inserted by \CorrectChoice@Emphasis would be appended 
+            % to the previous \choice, which could cause an extra
+            % (blank) line to be inserted before this \CorrectChoice.)
+            % Since \par and \endgraf seem to cancel \@totalleftmargin
+            % (for reasons I don't understand), we'll do the following:
+            % Motivated by  the def of \leavevmode, 
+            %      \def\leavevmode{\unhbox\voidb@x}
+            % we will now leave hmode (if we're in hmode):
+            \ifhmode \unskip\unskip\unvbox\voidb@x \fi
+            \begingroup \color@begingroup \@correctchoicetrue
+            \CorrectChoice@Emphasis
+            \stepcounter{choice}
+            \item[\checked@char]
+          \else
+            \stepcounter{choice}
+            \item[\checked@char]
+          \fi
+          \do@choice@pageinfo
+        } % CorrectChoice
+        \let\correctchoice\CorrectChoice
+        \labelwidth\leftmargin\advance\labelwidth-\labelsep
+        \topsep=0pt
+        \partopsep=0pt
+        \checkboxeshook
+      }%
+   }%
+   {\if@correctchoice \color@endgroup \endgroup \fi \endlist}
+ \makeatother
+
+% Make checkbox character a circle with the letter
+\checkboxchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=4mm,draw] at (0,0) {\thechoice};}
+% Make checked box character bold WITH surd
+%\checkedchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=8mm,draw] at (0,0) {} node at (0,0) {\thechoice\llap{$\surd$}};}
+% Make checked box character bold
+\checkedchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=4mm,draw] at (0,0) {} node at (0,0) {\thechoice};}
+\printanswers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ENCABEZADO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \centering
+    \hrule \hrule \hrule 
+    \vspace{5mm}
+    \begin{minipage}[c]{0.8\textwidth}
+        \begin{center}
+            {\large\textbf{Mission 01, Start!} \par
+            \large \textbf{Estructuras Discretas} \par
+            \large \textbf{Semestre 2023-1} \par
+            \large \textbf{\today}	\par}
+        \end{center}
+    \end{minipage}
+
+    \vspace{0.2in}
+    \noindent
+    \textbf{Tania Michelle Rubí Rojas}
+    \vspace{2mm}
+    \hrule \hrule \hrule 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \vspace{5mm}
+    \noindent
+    Nombre y número de cuenta: \hrulefill\
+
+    \vspace{5mm}
+    \noindent
+    \textbf{Notación para el examen:} $\subset \; \text{subconjunto propio} 
+    \quad \quad \subseteq \; \text{subconjunto} \quad \quad - \; 
+    \text{diferencia de conjuntos}$
+
+    \begin{questions}
+        % Question 01
+        \question
+        {
+            Sean los conjuntos
+            \begin{align*}
+                S &= \{\bigstar, \{\bigstar\}, \{\{\bigstar\}\}\} \\ 
+                T &= \{\varnothing, \{\bigstar\}, \{\bigstar, \{\bigstar\}\}\} \\ 
+                U &= \{\bigstar\}
+            \end{align*}
+            
+            tal que $\mathcal{U} = \{\varnothing, \bigstar, \{\bigstar\}, 
+            \{\{\bigstar\}\}, \{\bigstar, \{\bigstar\}\}\}$. ¿Cuáles de las 
+            siguientes expresiones son \textbf{verdaderas}?
+        }
+        
+        \begin{checkboxes}
+            \choice $\varnothing \cap T = \{\varnothing\}$
+            
+            \choice $S^c \cap T = T - \{U\}$ % Correcta 
+
+            \choice $\{\varnothing\} \cap T = \varnothing$
+
+            \choice $S \cap U = \bigstar$
+
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+        
+        % Question 02
+        \question{¿Cuáles de las siguientes expresiones son \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice El conjunto potencia del conjunto $A$ es un conjunto que 
+            está formado por todos los subconjuntos propios de $A$.
+
+            \choice $\{a,b,c\} \supseteq \{a,2,b,3,c,4\}$
+
+            \choice El elemento $0$ pertenece a $\varnothing$.
+
+            \choice $\varnothing = \{\varnothing\}$
+            
+            \choice Ninguna de las anteriores. % Correcta
+        \end{checkboxes}
+
+        % Question 03
+        \question{¿Cuáles de las siguientes expresiones son \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice $\mathcal{P}(\{1\}) = \{\{\{1\}\}, \varnothing\}$
+
+            \choice $|\{\bigstar, \{\bigstar, \bigstar\}\}| = 3$
+
+            \choice $\{x \in \mathbb{N} \; | \; 0 < x \leq 4\} = \{1,4,3,2\}$ 
+            % Correcta
+
+            \choice $\{x \; | \; x \in \text{ es el nombre de un Rey Mago}\} = 
+            \{\text{Melchor, Gaspar y Baltazar}\}$
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 04
+        \question
+        {
+            Sean los conjuntos
+            \begin{align*}
+                R &= \{a,c, \pi, \bullet, m, n\} \\ 
+                S &= \{\{a\}, c, m, n\} 
+            \end{align*}
+            
+            ¿Cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+
+        \begin{checkboxes}
+            \choice $S \subseteq R$
+
+            \choice $a \in R$ % Correcta
+
+            \choice $a \in S$
+
+            \choice $\{a\} \subseteq S$
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 05
+        \question{¿Cuáles de las siguientes expresiones son \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice $\{x \; | \; x \text{ es un número natural mayor a $1945$}\} 
+            = \{1945, 1946, 1947, 1948, \ldots\}$
+
+            \choice Si $A$ es un conjunto cualquiera, entonces $A \cap \varnothing = 
+            \varnothing$ % Correcta
+
+            \choice $\{2,2,2,3,3,4,5,5,5,4\} \neq \{5,3,4,2\}$
+
+            \choice $\{x \; | \; x \text{ es un planeta de nuestro sistema 
+            solar}\} = \{\text{Mercurio, Venus, \ldots, Urano, Neptuno}\}$ % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 06
+        \question
+        {
+            Sean los conjuntos 
+            \begin{align*}
+                A =& \{x \; | \; x \; \text{es una vocal}\} \\ 
+                B =& \{x \; | \; x \; \text{es una letra de la palara alegría}\} \\ 
+                C =& \{x \; | \; x \; \text{es una consonante}\}
+            \end{align*}
+
+            tal que $\mathcal{U} = \{y \; | \; y \; \text{es una letra del 
+            abecedario}\}$. ¿Cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        
+        \begin{checkboxes}
+            \choice $((A-B)^c) \cap C = C$ % Correcta
+
+            \choice $(C \cap B) \cup (A - \{o,u\}) = B$ % Correcta
+
+            \choice $A \cap B \cap C \neq \varnothing$
+
+            \choice $A \cup C = \mathcal{U}$ % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 07
+        \question{¿Cuáles de las siguientes expresiones son \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice $\{x \in \mathbb{Z} \; | \; |x| < 4 \} = \{0,1,2,3\}$
+
+            \choice $\{x \; | \; x \text{ es un estado de la República 
+            Mexicana\}} \neq \{\text{CDMX, Monterrey, \ldots, Oaxaca}\}$
+            % Correcta
+
+            \choice $\{12,2,6,24,8,3,1,4\} = \{x \; | \; x \text{ divide a } 
+            24\}$ % Correcta
+
+            \choice $\{1,3,5,7,9,11,\ldots\} = \{x \in \mathbb{Z}\; | \; 
+            x \text{ es un número impar}\}$
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 08
+        \question
+        {
+            Sean los conjuntos
+            \begin{align*}
+                S &= \{x \in \mathbb{N} \; | \; 1 < x < 50\} \\ 
+                T &= \{x \in \mathbb{Z} \; | \; |x| \geq 25\} 
+            \end{align*}
+
+            ¿Cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $\{0,1,2\} \subseteq S$
+
+            \choice $T \subseteq S$
+
+            \choice $-40 \in T$ % Correcta 
+
+            \choice $S \subset T$
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 09
+        \question{¿Cuáles de las siguientes expresiones son \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice $\{x \in \mathbb{N} \; | \; x \text{ es un número par y } 
+            2 < x < 11\} \neq \{10,4,8,6\}$
+
+            \choice La cardinalidad del conjunto $\{\varnothing\}$ es $0$. 
+
+            \choice $\{0,1,10,11,100,101,110,111,1000,\ldots\} \neq 
+            \{x \; | \; x \text{ es un número natural en su forma binaria}\}$
+
+            \choice $\{x \; | \; x \text{ es el nombre del último presidente de
+            México}\} =  \text{Andrés Manuel López Obrador}$
+            
+            \choice Ninguna de las anteriores. % Correcta
+        \end{checkboxes}
+
+        % Question 10
+        \question{¿Cuáles de las siguientes expresiones son \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Si $S$ es un conjunto cualquiera, entonces $S \cap S \neq S$
+
+            \choice $\varnothing \cap \{\varnothing\} = \varnothing$ % Correcta
+
+            \choice $|\{\varnothing, \{\varnothing, \{\varnothing\}\}, 
+            \{\varnothing, \{\varnothing, \{\varnothing\}\}\}\}| = 3$ % Correcta
+
+            \choice Si $S = \{0,1\}$, entonces $\mathcal{P}(S) = \{\varnothing, 
+            \{0\}, \{1\}, \{0,1\}\}$. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 11
+        \question{¿Cuáles de las siguientes expresiones son \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Sean $A$ y $S$ dos conjuntos cualesquiera tal que $A \subseteq S$. 
+            Entonces $A \cup S = S$ % Correcta
+
+            \choice Bajo ninguna circunstancia puede existir un conjunto de 
+            subconjuntos.
+
+            \choice Un conjunto cuya longitud es infinita no puede ser representado 
+            por extensión.
+
+            \choice Si $S$ es un conjunto cualquiera, entonces $S \cup S \neq S$
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 12
+        \question{¿Cuáles de las siguientes expresiones son \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Para cualquier conjunto $S$, $\mathcal{P}(S)$ siempre tendrá 
+            al menos a los elementos $\varnothing$ y $S$ ya que $\varnothing 
+            \subseteq S$ y $S \subseteq S$ siempre se cumplen. % Correcta
+
+            \choice Sean $A$ y $B$ dos conjuntos cualesquiera. Se cumple que 
+            $A = B \Leftrightarrow A \subset B$ y $B \subset A$.
+
+            \choice Sea $S$ un conjunto cualquiera. Si $|S| = n$, entonces 
+            $S$ tiene $n$ subconjuntos propios.
+
+            \choice Sean $A$ y $B$ dos conjuntos cualesquiera. Se cumple que 
+            $A \cap B \subseteq A$ y $A \cap B \subseteq B$. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 13
+        \question
+        {
+            Sean los conjuntos
+            \begin{align*}
+                R &= \{a,c, \pi, \bullet, m, n\} \\ 
+                S &= \{\{a\}, c, m, n\} \\ 
+                T &= \{a,c, \pi\}
+            \end{align*}
+            
+            ¿Cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $T \subseteq R$ % Correcta
+
+            \choice $S \subseteq \{m,a,n,c\}$
+
+            \choice $T \not \in R$ % Correcta
+
+            \choice $\{a\} \in S$ % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 14
+        \question
+        {
+            Sean los conjuntos
+            \begin{align*}
+                S &= \{p,q,r,s\} \\ 
+                T &= \{r,t,v\} \\ 
+                U &= \{p,s,t,u\}
+            \end{align*}
+            
+            ¿Cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $T-U = \{r,u\}$
+
+            \choice $\mathcal{P}(S \cap U) = \{(S - (T \cup \{q,s\}))\}$
+
+            \choice $S \cap T \cap U = \{r\}$
+
+            \choice $U-T = \{p,s,u\}$ % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 15
+        \question{Sea $S = \{\bigstar, \bullet, a,1\}$. Sean $S_1$ el 
+        conjunto de todos los subconjuntos de $S$ que no tienen como elemento a 
+        $1$ y $S_2$ el conjunto de todos los subconjuntos de $S$ que tienen como 
+        elemento a $1$. ¿Cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice $S_1 = \{\varnothing, \{\bigstar\}, \{\bullet\}, \{a\}, \{\bigstar, 
+            \bullet\}, \{\bigstar, a\}, \{\bullet, a\}, \{\bigstar, \bullet, 
+            a\}\}$ % Correcta
+
+            \choice $|S_1| = |S_2|$ % Correcta
+
+            \choice $|S_1 \cup S_2| = 15$
+
+            \choice $S_1$ y $S_2$ son disjuntos. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 16
+        \question{¿Cuáles de las siguientes expresiones son \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice $\mathcal{P}(\varnothing) = \{\varnothing\}$ % Correcta
+
+            \choice Para todo conjunto $S$ con $n$ elementos, $\mathcal{P}(S)$ 
+            siempre tendrá $n^2$ elementos.
+
+            \choice Bajo ninguna circunstancia puede existir un conjunto de 
+            conjuntos
+
+            \choice Un conjunto cuya longitud es infinita no puede ser representado 
+            por comprensión. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 17 
+        \question
+        {
+            Sean los conjuntos
+            \begin{align*}
+                R &= \{a,c, \pi, \bullet, m, n\} \\ 
+                S &= \{a,c, \pi\} \\ 
+                T &= \{\{a,c,\pi\}, a\} 
+            \end{align*}
+            
+            ¿Cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $a \subseteq T$
+
+            \choice $S \subseteq R$ % Correcta
+
+            \choice $\{a\} \subseteq S$ % Correcta
+
+            \choice $\{\{a\}\} \subseteq T$
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 18
+        \question
+        {
+            Sean los conjuntos
+            \begin{align*}
+                S &= \{\{a\}, c, m, n\} \\ 
+                T &= \{a,c, \pi\} \\
+                U &= \{\{a,c,\pi\}, a\}
+            \end{align*}
+            
+            ¿Cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $T \subseteq U$
+
+            \choice $T \in U$ % Correcta
+
+            \choice $\varnothing \subseteq S$ % Correcta
+
+            \choice $T \subset S$
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 19
+        \question{Sea $S = \{\bigstar, \bullet, a,1\}$. Sean $S_1$ el 
+        conjunto de todos los subconjuntos de $S$ que no tienen como elemento a 
+        $1$ y $S_2$ el conjunto de todos los subconjuntos de $S$ que tienen como 
+        elemento a $1$. ¿Cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice $S_1 - S_2 = \{\bigstar, \bullet, a\}$
+
+            \choice $S_1 \cup S_2 = \mathcal{P}(S)$ % Correcta
+
+            \choice $S_2 = \{\{1\}, \{\bigstar, 1\}, \{\bullet, 1\}, \{a,1\}, \{\bigstar, 
+            \bullet, 1\}, \{\bigstar, a, 1\}, \{\bullet, a, 1\}, \{\bigstar, 
+            \bullet, a,1\}\}$ % Correcta
+
+            \choice $|S_2 - S_1| = 1$
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 20
+        \question{¿Cuáles de las siguientes expresiones son \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Si $S = \{\{\varnothing\}, \{\{\varnothing\}\}\}$, 
+            entonces $\{\{\{\varnothing\}\}\} \subset S$. % Correcta
+
+            \choice $\varnothing \subset \varnothing$
+
+            \choice Si $S = \{\{\varnothing\}, \{\{\varnothing\}\}\}$, 
+            entonces $\{\varnothing\} \not \in S$
+
+            \choice $\varnothing \in \{\varnothing\}$ % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 21
+        \question
+        {
+            Sean los conjuntos
+            \begin{align*}
+                S &= \{p,q,r,s\} \\ 
+                T &= \{r,t,v\} \\ 
+                U &= \{p,s,t,u\}
+            \end{align*}
+            
+            tal que $\mathcal{U} = \{p,q,r,s,t,u,v,w\}$. ¿Cuáles de las 
+            siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $(S \cup T)^c = \{u,v,w\}$
+
+            \choice $(S \cup T) \cap U^c = \{r,s,v\}$ 
+
+            \choice $S^c \cup T^c = S$
+
+            \choice $(S-U)^c = \{p,s,u,v,w\}$
+            
+            \choice Ninguna de las anteriores. % Correcta
+        \end{checkboxes}
+
+        % Question 22
+        \question
+        {
+            Sean los conjuntos
+            \begin{align*}
+                S &= \{\bigstar, \{\bigstar\}, \{\{\bigstar\}\}\} \\ 
+                T &= \{\varnothing, \{\bigstar\}, \{\bigstar, \{\bigstar\}\}\} \\ 
+                U &= \{\bigstar\}
+            \end{align*}
+            
+            tal que $\mathcal{U} = \{\varnothing, \bigstar, \{\bigstar\}, 
+            \{\{\bigstar\}\}, \{\bigstar, \{\bigstar\}\}\}$. ¿Cuáles de las siguientes 
+            expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice $T \cap U^c = (S \cup T \cup U)^c$ 
+
+            \choice $(T \cup U) \cap S = \{\{\{\bigstar\}\},\{\bigstar\}\}$
+
+            \choice $\varnothing \cup T = \{\varnothing\}$
+
+            \choice $S \cup T = \varnothing^c$ % Correcta
+            
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+    \end{questions}
+\end{document}

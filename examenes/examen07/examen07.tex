@@ -1,0 +1,799 @@
+\documentclass[12pt, a4paper]{exam}
+
+% Soporte para cambiar la fecha que sale en el examen
+\usepackage{advdate}
+% Soporte para escribir en varias columnas
+\usepackage{multicol}
+% Soporte para los acentos.
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}    
+% Idioma español.
+\usepackage[spanish,mexico,es-tabla]{babel}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{amsmath,amssymb,amsthm}
+
+% Cambiamos los márgenes del documento. 
+\usepackage[top=1.5cm,left=1.5cm,right=1.5cm]{geometry}
+
+% Pie de página
+\cfoot{Página \thepage\ de \numpages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\thechoice}{\alph{choice}}
+
+\makeatletter
+\renewenvironment{checkboxes}%
+   {\setcounter{choice}{0}\list{\checkbox@char}%
+      {%
+        \settowidth{\leftmargin}{W.\hskip\labelsep\hskip 2.5em}%
+        \def\choice{%
+          \if@correctchoice
+            \color@endgroup \endgroup
+          \fi
+          \stepcounter{choice}
+          \item[\checked@char]
+          \do@choice@pageinfo
+        } % choice
+        \def\CorrectChoice{%
+          \if@correctchoice
+            \color@endgroup \endgroup
+          \fi
+          \ifprintanswers
+            % We can't say \choice here, because that would
+            % insert an \endgroup.
+            % 2016/05/10: We say \color@begingroup in addition to
+            % \begingroup in case \CorrectChoiceEmphasis involves color
+            % and the text exactly fills the line (which would
+            % otherwise create a blank line after this choice):
+            % 2016/05/11: We leave hmode if we're in it,
+            % i.e., if there's no blank line preceding this
+            % \CorrectChoice command.  (Without this, the
+            % \special created by a \color{whatever} command that might
+            % be inserted by \CorrectChoice@Emphasis would be appended 
+            % to the previous \choice, which could cause an extra
+            % (blank) line to be inserted before this \CorrectChoice.)
+            % Since \par and \endgraf seem to cancel \@totalleftmargin
+            % (for reasons I don't understand), we'll do the following:
+            % Motivated by  the def of \leavevmode, 
+            %      \def\leavevmode{\unhbox\voidb@x}
+            % we will now leave hmode (if we're in hmode):
+            \ifhmode \unskip\unskip\unvbox\voidb@x \fi
+            \begingroup \color@begingroup \@correctchoicetrue
+            \CorrectChoice@Emphasis
+            \stepcounter{choice}
+            \item[\checked@char]
+          \else
+            \stepcounter{choice}
+            \item[\checked@char]
+          \fi
+          \do@choice@pageinfo
+        } % CorrectChoice
+        \let\correctchoice\CorrectChoice
+        \labelwidth\leftmargin\advance\labelwidth-\labelsep
+        \topsep=0pt
+        \partopsep=0pt
+        \checkboxeshook
+      }%
+   }%
+   {\if@correctchoice \color@endgroup \endgroup \fi \endlist}
+ \makeatother
+
+% Make checkbox character a circle with the letter
+\checkboxchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=4mm,draw] at (0,0) {\thechoice};}
+% Make checked box character bold WITH surd
+%\checkedchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=8mm,draw] at (0,0) {} node at (0,0) {\thechoice\llap{$\surd$}};}
+% Make checked box character bold
+\checkedchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=4mm,draw] at (0,0) {} node at (0,0) {\thechoice};}
+\printanswers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ENCABEZADO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \centering
+    \hrule \hrule \hrule 
+    \vspace{5mm}
+    \begin{minipage}[c]{0.8\textwidth}
+        \begin{center}
+            {\large\textbf{Mission 07, Start!} \par
+            \large \textbf{Estructuras Discretas} \par
+            \large \textbf{Semestre 2023-1} \par
+            \large \textbf{\today}	\par}
+        \end{center}
+    \end{minipage}
+
+    \vspace{0.2in}
+    \noindent
+    \textbf{Tania Michelle Rubí Rojas}
+    \vspace{2mm}
+    \hrule \hrule \hrule 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \vspace{5mm}
+    \noindent
+    Nombre y número de cuenta: \hrulefill\
+
+    \vspace{5mm}
+    \noindent
+    
+    \textbf{Notación y convenciones para el examen:}
+    {\tiny
+    \begin{multicols}{2}
+    \begin{itemize}\setlength\itemsep{0em}  
+      \item $0\in\mathbb{N}$
+
+      \item \texttt{gcd}$(a,b)$ hace referencia al máximo común divisor de dos 
+      números enteros $a$ y $b$. 
+
+      \item $[x]$ representa la clase de equivalencia de $a$. 
+      
+      \item $A/R$ representa el conjunto cociente de $A$ bajo $R$.
+      
+      \item $\{0,1,00,11,101,000,010,111, \ldots\}$ es el conjunto de todas 
+      las cadenas de ceros y unos. 
+    \end{itemize}
+    \end{multicols}
+    }
+
+    \begin{questions}
+        % Question 01
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Definimos la relación $R$ sobre $\mathbb{Z}$ como sigue:
+            \begin{equation*}
+                xRy \Leftrightarrow \texttt{gcd}(x,y) = 1
+            \end{equation*}
+
+            Entonces $R$ es una relación de equivalencia. 
+
+            \choice Sea $(A, \preceq)$ un conjunto parcialmente ordenado. Sean 
+            $X$ un conjunto diferente del vacío y $h: X \rightarrow A$ una 
+            función inyectiva. Definimos la relación $R$ sobre $X$ como sigue:
+            \begin{equation*}
+                xRy \Leftrightarrow h(x) \preceq h(y)
+            \end{equation*}
+
+            Entonces $(X, R)$ es un conjunto parcialmente ordenado. % Correcta
+
+            \choice Sea $A = \{1,2,3,4,5,6\}$. Definimos la relación $R$ sobre  
+            $A$ como sigue:
+            \begin{align*}
+                \{&(1,1), (6,5), (2,2), (5,6), (3,3), (6,4), (4,4), (4,6), \\ 
+                &(5,5), (5,4), (6,6), (4,5), (2,3), (3,2)\}
+            \end{align*}
+
+            Entonces las clases de equivalencia de $R$ son:
+            \begin{equation*}
+                [1] = \{1\} \quad \quad \quad \quad 
+                [2] = [3] = \{2,3\} \quad \quad \quad \quad   
+                [4] = [5] = [6] = \{4,5,6\} 
+            \end{equation*} % Correcta
+
+            \choice Sea $W$ el conjunto de todas las palabras en español. 
+            Definimos la relación $R$ sobre $W$ como sigue:
+            \begin{equation*}
+                xRy \Leftrightarrow x \text{ tiene el mismo número de letras 
+                que } y
+            \end{equation*}
+
+            Entonces $R$ es una relación de equivalencia cuyo conjunto cociente 
+            es 
+            \begin{align*}
+                A/R = \{
+                        &\{\text{las palabras que tienen una letra}\}, \\ 
+                        &\{\text{las palabras que tienen dos letras}\}, \\ 
+                        &\{\text{las palabras que tienen tres letras}\}, \\  
+                        &\ldots
+                      \}
+            \end{align*} % Correcta 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 02
+        \question
+        {
+            Sea $R$ una relación reflexiva y transitiva sobre un
+            conjunto no vacío $A$. Definimos la relación $S$ como sigue:
+            \begin{equation*}
+                xSy \Leftrightarrow xRy \text{ y } yRx
+            \end{equation*} 
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice Si $wRz, wSa$ y $zSb$ entonces $aRb$. % Correcta 
+
+            \choice $S$ es un orden total. 
+
+            \choice Sea el conjunto cociente $A/S$. Definimos la relación 
+            binaria $T$ sobre $A/S$ de la siguiente manera:
+            \begin{equation*}
+                [x]T[y] \Leftrightarrow xRy
+            \end{equation*}
+
+            Entonces $(A/S, T)$ es un conjunto parcialmente ordenado. 
+            % Correcta
+
+            \choice $S$ es una relación de equivalencia. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 03
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Sea $S$ el conjunto de todas las cadenas de ceros y unos 
+            cuya longitud es mayor o igual a tres. Definimos la relación $R$ 
+            sobre $S$ como sigue:
+            \begin{equation*}
+                xRy \Leftrightarrow x \text{ tiene los primeros tres caracteres 
+                que } y
+            \end{equation*}
+
+            Entonces la clase de equivalencia de $01010101$ y $11111$ es el 
+            conjunto de todas las cadenas que empiezan con $010$ y $111$, 
+            respectivamente.  % Correcta 
+
+            \choice Definimos la relación $R$ sobre $\mathbb{R}$ como sigue:
+            \begin{equation*}
+                R = \{(x,y) \; | \; \lfloor 2x \rfloor = \lfloor 2y \rfloor\}
+            \end{equation*}
+
+            donde $\lfloor 2x \rfloor$ se define como el mayor entero 
+            $i \in \mathbb{Z}$ tal que $i \leq x$. Entonces $R$ es una relación 
+            de equivalencia y las clases de equivalencia de $\frac{1}{4}$ y 
+            $\frac{1}{2}$ son $\{x \in \mathbb{R} \; | \; 0 \leq x < \frac{1}{2}\}$
+            y $\{x \in \mathbb{R} \; | \; \frac{1}{2} \leq x < 1\}$, 
+            respectivamente. % Correcta 
+
+            \choice Definimos la relación binaria $R$ sobre $\mathbb{Z}$ como 
+            sigue:
+            \begin{equation*}
+                xRy \Leftrightarrow x \text{ y } y \text{ tienen la misma 
+                paridad (par o impar)}
+            \end{equation*} 
+            
+            Entonces $R$ \textbf{no} es una relación de equivalencia.
+
+            \choice Sea $A = \{1,2,3,4,5\}$. Definimos la relación $R$ sobre 
+            $A$ como sigue:
+            \begin{align*}
+                R = \{&(1,1), (1,3), (1,4), (2,2), (2,5), (3,1), (3,3), (3,4) \\ 
+                &(4,1), (4,3), (4,4), (5,2), (5,5)\}
+            \end{align*}
+
+            Entonces $\{1,3,4\}$ y $\{2,3,5\}$ son dos clases de equivalencia 
+            de $R$. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 04
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Si $R$ es una relación de equivalencia sobre un conjunto 
+            finito no vacío $A$, entonces todas las clases de equivalencia de 
+            $R$ tienen el mismo número de elementos. 
+
+            \choice Sea $A$ un conjunto. Definimos la relación binaria $R$ sobre 
+            $\mathcal{P}(A)$ como sigue:
+            \begin{equation*}
+                R = \{(X,Y) \; | \; X \text{ tiene la misma cardinalidad que } 
+                Y\}
+            \end{equation*} 
+            
+            Entonces $R$ es de equivalencia % Correcta
+
+            \choice Sea $P$ el conjunto de todas las personas vivas. Definimos
+            la relación $R$ sobre $P$ como sigue:
+            \begin{equation*}
+                R = \{(p,q) \; | \; \text{ la edad de } p \text{ es menor que 
+                la edad de } q\}
+            \end{equation*}
+
+            Entonces $R$ es un orden parcial. 
+            
+            \choice En un conjunto parcialmente ordenado, un elemento maximal 
+            siempre es un elemento máximo. 
+            
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 05
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Sea $R$ una relación de equivalencia sobre un conjunto $A$. 
+            Sean $x,y \in A$. Entonces 
+            \begin{equation*}
+                [x] \neq [y] \Leftrightarrow (x,y) \notin R
+            \end{equation*} % Correcta
+
+            \choice Sean $R$ y $S$ relaciones sobre un conjunto $A$. Si $R$ y 
+            $S$ son relaciones de equivalencia, entonces $R \cap S$ también 
+            lo es. % Correcta
+
+            \choice Sea $(A, \preceq)$ un orden total. Si $A$ tiene un elemento 
+            maximal $m$, entonces $m$ es un elemento máximo. % Correcta
+            
+
+            \choice Sea $R$ una relación binaria sobre un conjunto $A$. Si $R$ 
+            es simétrica y antisimétrica, entonces $R$ también es reflexiva. 
+
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 06
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Definimos la relación $R$ sobre $\mathbb{N}^2$ como sigue:
+            \begin{equation*}
+                ((a,b), (c,d)) \in R \Leftrightarrow a+b = c+d
+            \end{equation*}
+
+            Entonces $R$ \textbf{no} es una relación de equivalencia. 
+
+            \choice Definimos la relación $R$ sobre $\mathbb{N}^2$ como sigue:
+            \begin{equation*}
+                (a,b)R(c,d) \Leftrightarrow b = d
+            \end{equation*}
+
+            Entonces $R$ \textbf{no} es una relación de equivalencia.
+
+            \choice Sean $(A, \preceq)$ un orden parcial y $X \subseteq A$. Si 
+            $X$ tiene dos elementos maximales distintos, entonces $X$ no tiene 
+            máximo. % Correcta
+
+            \choice La relación vacía sobre $\varnothing$ es una relación de 
+            equivalencia y un orden parcial. 
+
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 07
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Un conjunto parcialmente ordenado puede tener más de un 
+            elemento mínimo. 
+
+            \choice Sea $A = \{1,2,3\}$. La partición $P = \{\{1,2\}, \{3\}\}$
+            induce la siguiente relación de equivalencia sobre $A$:
+            \begin{equation*}
+                R = \{(1,1), (1,2), (2,2), (2,1), (3,3)\}
+            \end{equation*} % Correcta 
+
+            \choice La relación vacía sobre un conjunto no vacío $A$ es siempre 
+            una relación de equivalencia. 
+
+            \choice Si $R$ es una relación de equivalencia sobre un conjunto 
+            $A$, entonces $xRy \Leftrightarrow [x] = [y]$. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 08
+        \question
+        {
+            Sea $(A, \preceq)$ un conjunto parcialmente ordenado cuyo diagrama
+            de Hasse es el siguiente:
+            \begin{center}
+                \begin{tikzpicture}
+                    \matrix (A) [matrix of nodes, row sep=0.5cm, 
+                    column sep=0.5cm]
+                    { 
+                        \textcolor{green}{$l$} & & \textcolor{green}{$m$} \\  
+                        $j$ & \textcolor{red}{$k$} & \\
+                        $i$ & $h$ & $g$ \\
+                        \textcolor{red}{$d$} & $e$ & \textcolor{red}{$f$} \\ 
+                        $a$ & $b$ & $c$ \\
+                    };
+                    \draw (A-5-1)--(A-4-1);
+                    \draw (A-4-1)--(A-5-2);
+                    \draw (A-4-1)--(A-3-2);
+                    \draw (A-4-1)--(A-3-1);
+                    \draw (A-5-2)--(A-4-2);
+                    \draw (A-5-3)--(A-4-3);
+                    \draw (A-4-3)--(A-3-3);
+                    \draw (A-4-2)--(A-3-2);
+                    \draw (A-3-1)--(A-2-1);
+                    \draw (A-3-2)--(A-2-1);
+                    \draw (A-3-2)--(A-2-2);
+                    \draw (A-3-3)--(A-2-2);
+                    \draw (A-1-1)--(A-2-1);
+                    \draw (A-1-1)--(A-2-2);
+                    \draw (A-1-3)--(A-2-2);
+                \end{tikzpicture}
+            \end{center}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice Si $B = \{l,m\}$ entonces las cotas inferiores de $B$ en $A$ son 
+            $\{a,b,c,d,e,f,g,h,k\}$ y el ínfimo de $B$ no existe. 
+
+            \choice Si $B = \{d\}$ entonces entonces las cotas superiores de $B$ 
+            en $A$ son $\{h,i,j,k,l,m\}$ y el supremo de $B$ no existe. 
+
+            \choice Si $B = \{d,f,k\}$ entonces el supremo de $B$ es 
+            $k$ y las cotas superiores de $B$ en $A$ son $\{k,l,m\}$. % Correcta
+
+            \choice  $(A, \preceq)$ no tiene elemento mínimo y, si $B = \{d,f,k\}$, entonces supremo de $B$ es $k$. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 09
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Un elemento máximo nunca puede ser un elemento maximal. 
+
+            \choice Todos los elementos de un conjunto parcialmente ordenado 
+            son comparables. 
+
+            \choice Todo orden total es una relación de equivalencia. 
+
+            \choice Definimos la relación $R$ sobre $\mathbb{Z}$ como sigue:
+            \begin{equation*}
+                xRy \Leftrightarrow 2 \text{ divide a } x+y 
+            \end{equation*} 
+
+            Entonces $R$ es una relación de equivalencia cuyo conjunto 
+            cociente es $\mathbb{Z}/R = \{[0], [1]\}$. % Correcta 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 10
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Sea $A \subseteq \mathbb{R}$. Definimos la relación $R$ 
+            sobre $A^2$ como sigue:
+            \begin{equation*}
+                (a,b)R(c,d) \Leftrightarrow a \leq c \text{ y } b \geq d
+            \end{equation*}
+
+            Entonces $R$ \textbf{no} es un orden parcial. 
+
+            \choice Sea $A$ un conjunto no vacío. Sean $R$ y $S$ relaciones de 
+            equivalencia sobre $A$ tales que inducen la misma partición en $A$. 
+            Entonces $R = S$. % Correcta
+
+            \choice Sean $A$ un conjunto no vacío y $f: A \rightarrow A$ una 
+            función. Definimos la relación binaria $R$ sobre $A$ como sigue:
+            \begin{equation*}
+                R = \{(x,y) \; | \; f(x) = f(y)\}
+            \end{equation*} 
+            
+            Entonces $R$ es una relación de equivalencia. % Correcta 
+
+            \choice Sea $P$ el conjunto de todos los planetas. Definimos la 
+            relación $R$ sobre $P \times \mathbb{Z}^+$ como sigue:
+            \begin{equation*}
+                (x,y) \in R \Leftrightarrow x \text{ está a la posición } y 
+                \text{ respecto al Sol}
+            \end{equation*}
+
+            Entonces $R$ es un orden parcial. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 11
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice En un conjunto parcialmente ordenado pueden existir 
+            elementos maximales sin que necesariamente exista un elemento 
+            máximo. % Correcta
+
+            \choice Sea $A \subseteq \mathbb{N}$. Definimos la relación $R$ 
+            sobre $A$ como sigue:
+            \begin{equation*}
+                xRy \Leftrightarrow y = x^k \quad \quad 
+                \text{para alguna } k \in \mathbb{N}
+            \end{equation*}
+
+            Entonces $(A, R)$ es un conjunto totalmente ordenado. 
+
+            \choice Sea $R$ una relación de equivalencia sobre un conjunto $A$. 
+            Sean $x,y \in A$. Entonces
+            \begin{equation*}
+                x \in [y] \Leftrightarrow [x] \cap [y] \neq \varnothing
+            \end{equation*} % Correcta 
+
+            \choice Sea $(A, \preceq)$ un conjunto parcialmente ordenado. Si 
+            $m$ es cota superior de $S \subseteq A$, entonces $m$ es un 
+            elemento maximal de $A$.
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 12
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Un conjunto parcialmente ordenado puede tener más de un 
+            elemento máximo. 
+
+            \choice Sean $A$ un conjunto finito no vacío y
+              $(A, \preceq)$ un COPO. Entonces $(A,\preceq)$ tiene al menos 
+              un elemento maximal y otro minimal. % Correcta
+
+            \choice Sea $R$ una relación reflexiva sobre un conjunto 
+            $A$. Entonces $R$ es una relación de equivalencia si y sólo si 
+            el hecho de que $(x,y), (x,z) \in R$ implica que $(y,z) \in R$. 
+            % Correcta 
+
+            \choice Sea $R$ una relación binaria sobre un conjunto infinito 
+            $A$. Si $R$ es una relación de equivalencia, entonces $R$ tiene una 
+            infinita cantidad de clases de equivalencia. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 13
+        \question
+        {
+            Sea $(A, \preceq)$ un conjunto parcialmente ordenado cuyo diagrama
+            de Hasse es el siguiente:
+            \begin{center}
+                \begin{tikzpicture}
+                    \matrix (A) [matrix of nodes, row sep=0.5cm, 
+                    column sep=0.5cm]
+                    { 
+                        & $h$ & \\  
+                        $f$ & & $g$ \\
+                        $d$ & & $e$\\   
+                        & $c$ & \\ 
+                        \textcolor{red}{$a$} &  & \textcolor{red}{$b$} \\    
+                    };
+                    \draw (A-1-2)--(A-2-1);
+                    \draw (A-1-2)--(A-2-3);
+                    \draw (A-2-1)--(A-3-1);
+                    \draw (A-2-1)--(A-3-3);
+                    \draw (A-2-3)--(A-3-1);
+                    \draw (A-2-3)--(A-3-3);
+                    \draw (A-3-1)--(A-4-2);
+                    \draw (A-3-3)--(A-4-2);
+                    \draw (A-4-2)--(A-5-1);
+                    \draw (A-4-2)--(A-5-3);
+                \end{tikzpicture}
+            \end{center}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice El elemento maximal de $A$ es $h$ y $A$ no tiene 
+            elemento minimal. 
+
+            \choice Si $B = \{a,b\}$, entonces $B$ no tiene cota inferior en 
+            $A$ y la cota superior de $B$ en $A$ es $\{h,f,d,g,e,c\}$. 
+            % Correcta
+
+            \choice Si $B = \{a,b\}$, entonces el supremo de $B$ es $c$ y el 
+            ínfimo de $B$ no existe. % Correcta
+
+            \choice El elemento máximo de $A$ es $h$ y $A$ no tiene 
+            elemento mínimo. % Correcta 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 14
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Definimos la relación $R$ sobre $\mathbb{Z}^+$ como sigue:
+            \begin{equation*}
+                xRy \Leftrightarrow \frac{y}{x} = 2^k \quad \quad \text{con }
+                k \in \{0,1,2,\ldots\}
+            \end{equation*}
+
+            Entonces $R$ es una relación de equivalencia. 
+
+            \choice Sea $S$ el conjunto de todas las cadenas de ceros y unos. 
+            Definimos la relación $R$ sobre $S$ como sigue:
+            \begin{equation*}
+                xRy \Leftrightarrow x \text{ tiene la misma cantidad de ceros 
+                que } y
+            \end{equation*}
+
+            Entonces $R$ es una relación de equivalencia. % Correcta
+
+            \choice Sea $A = \{a,b\}$. Entonces todas las posibles relaciones 
+            de equivalencia sobre $A$ son 
+            \begin{align*}
+                R_1 &= \{(a,a), (b,b)\} \\ 
+                R_2 &= \{(a,a), (a,b), (b,b), (b,a)\}
+            \end{align*} 
+
+            Además, las particiones que inducen son $\{\{a\}, \{b\}\}$ y 
+            $\{\{a,b\}\}$, respectivamente. % Correcta
+
+            \choice Sea $R$ una relación binaria sobre un conjunto $A$. Si $R$ 
+            es simétrica y transitiva, entonces $R$ debe ser reflexiva.
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 15
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Sea $R$ una relación binaria sobre un conjunto $A$. Si 
+            $R$ es un orden parcial y $B \subseteq A$, entonces $R \cap B^2$ 
+            es un orden parcial sobre $B$. % Correcta 
+
+            \choice Sea $R$ una relación de equivalencia definida sobre un 
+            conjunto $A$. Entonces
+            \begin{center}
+                $R = \{(x,x) \; | \; x \in A\}$ si y sólo 
+                si para toda $x \in A$ sucede que $[x] = \{x\}$
+            \end{center} % Correcta
+
+            \choice Sean $R$ y $S$ dos relaciones binarias sobre un conjunto 
+            $A$ tal que $S$ está definida como sigue:
+            \begin{equation*}
+                S = \{(x,y) \; | \; (x,z) \in R \text{ y } (z,y) \in R 
+                \text{ para alguna } z \in A\}
+            \end{equation*} 
+
+            Si $R$ es una relación de equivalencia, entonces $S$ también lo es. 
+            % Correcta 
+
+            \choice Sea $R$ una relación reflexiva y transitiva sobre un 
+            conjunto $A$. Entonces $R \cap R^{-1}$ es una relación de 
+            equivalencia sobre $A$. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 16
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice No existe una relación binaria $R$ sobre un conjunto $A$ tal 
+            que $R$ sea reflexiva, simétrica, transitiva y antisimétrica al mismo 
+            tiempo. 
+
+            \choice Supongamos que $R$ es una relación binaria de orden parcial 
+            sobre un conjunto $A$ y que $B \subseteq A$. Entonces $R$ también 
+            es un orden parcial sobre $B$. % Correcta
+
+            \choice Si $R$ y $S$ son relaciones de equivalencia sobre un conjunto
+            $A$, entonces $R \cup S$ también es una relación de equivalencia. 
+
+            \choice Sea $P$ el conjunto de todas las personas vivas. Definimos 
+            la relación $R$ sobre $P$ como sigue:
+            \begin{equation*}
+                (x,y) \in R \Leftrightarrow x \text{ es al menos tan alto como }
+                y
+            \end{equation*}
+
+            Entonces $R$ es una relación de equivalencia. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 17
+        \question
+        {
+            Sea $(A, \preceq)$ un conjunto parcialmente ordenado cuyo diagrama
+            de Hasse es el siguiente:
+            \begin{center}
+                \begin{tikzpicture}
+                    \matrix (A) [matrix of nodes, row sep=0.95cm, 
+                    column sep=0.5cm]
+                    { 
+                        $8$ & & & &\\  
+                        $4$ & \textcolor{red}{$6$} & & \textcolor{red}{$9$} 
+                        & $10$ \\
+                        \textcolor{red}{$2$} & & \textcolor{red}{$3$} & & 
+                        $5$ & $7$  \\   
+                        & & & $1$ & & \\ 
+                    };
+                    \draw (A-1-1)--(A-2-1);
+                    \draw (A-2-1)--(A-3-1);
+                    \draw (A-3-1)--(A-2-2);
+                    \draw (A-3-1)--(A-4-4);
+                    \draw (A-3-1)--(A-2-5);
+                    \draw (A-3-1)--(A-2-2);
+                    \draw (A-2-2)--(A-3-3);
+                    \draw (A-2-4)--(A-3-3);
+                    \draw (A-3-3)--(A-4-4);
+                    \draw (A-2-5)--(A-3-5);
+                    \draw (A-3-5)--(A-4-4);
+                    \draw (A-3-6)--(A-4-4);
+                \end{tikzpicture}
+            \end{center}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice Si $B = \{2,3,6,9\}$ entonces los elementos maximales de $(A,\preceq)$
+            son $\{6,9\}$ y $B$ no tiene supremo.
+
+            \choice Si $B = \{2,3,6,9\}$ entonces los elementos minimales de $(A,\preceq)$ 
+            son $\{2,3\}$ y $B$ no tiene cota inferior en $A$. 
+
+            \choice Si $B = \{2,3,6,9\}$ entonces el ínfimo de $B$ es $1$. 
+            % Correcta 
+
+            \choice Si $B = \{2,3,6,9\}$ entonces $B$ no tiene elemento máximo 
+            ni mínimo y la cota superior de $B$ en $A$ es $8$.
+
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 18
+        \question
+        {
+            Sea $(A, \preceq)$ un conjunto parcialmente ordenado cuyo diagrama
+            de Hasse es el siguiente:
+            \begin{center}
+                \begin{tikzpicture}
+                    \matrix (A) [matrix of nodes, row sep=0.5cm, 
+                    column sep=0.5cm]
+                    { 
+                        $1$ & & & & $5$ & & & $8$ & & \\  
+                        & $2$ & & $4$ & & $6$ & & & $9$ &\\
+                        & & $3$ & & & & $7$ & & & $10$ \\   
+                        & & & & & & & & $11$ & \\ 
+                        & & & & & & & & & \\    
+                        & & & & & & & & & \\ 
+                        & & & & & & $12$ & & & \\ 
+                    };
+                    \draw (A-1-1)--(A-2-2);
+                    \draw (A-2-2)--(A-3-3);
+                    \draw (A-3-3)--(A-2-4);
+                    \draw (A-2-4)--(A-1-5);
+                    \draw (A-1-5)--(A-2-6);
+                    \draw (A-2-6)--(A-3-7);
+                    \draw (A-3-7)--(A-1-8);
+                    \draw (A-1-8)--(A-2-9);
+                    \draw (A-2-9)--(A-3-10);
+                    \draw (A-3-10)--(A-4-9);
+                    \draw (A-4-9)--(A-7-7);
+                \end{tikzpicture}
+            \end{center}
+
+            ¿Cuál o cuáles de las siguientes expresiones son 
+            \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice El único elemento minimal de $A$ es $12$, lo que implica 
+            que éste es el elemento mínimo de $A$. Por otro lado, los 
+            elementos maximales de $A$ son $\{1,5,8\}$.
+
+            \choice Es cierto que $7 \preceq 12$ y $12 \preceq 7$. 
+
+            \choice El conjunto $A$ no tiene supremo, pero su ínfimo es el 
+            elemento $12$. 
+
+            \choice $A$ no tiene elemento máximo ni mínimo. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+    \end{questions}
+\end{document}

@@ -1,0 +1,1350 @@
+\documentclass[12pt, a4paper]{exam}
+
+% Soporte para cambiar la fecha que sale en el examen
+\usepackage{advdate}
+% Soporte para escribir en varias columnas
+\usepackage{multicol}
+% Soporte para los acentos.
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}    
+% Idioma español.
+\usepackage[spanish,mexico,es-tabla]{babel}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[linguistics]{forest}
+\usepackage{verbatim} % comentarios
+
+% Cambiamos los márgenes del documento. 
+\usepackage[top=1.5cm,left=1.5cm,right=1.5cm]{geometry}
+
+% Pie de página
+\cfoot{Página \thepage\ de \numpages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\thechoice}{\alph{choice}}
+
+\makeatletter
+\renewenvironment{checkboxes}%
+   {\setcounter{choice}{0}\list{\checkbox@char}%
+      {%
+        \settowidth{\leftmargin}{W.\hskip\labelsep\hskip 2.5em}%
+        \def\choice{%
+          \if@correctchoice
+            \color@endgroup \endgroup
+          \fi
+          \stepcounter{choice}
+          \item[\checked@char]
+          \do@choice@pageinfo
+        } % choice
+        \def\CorrectChoice{%
+          \if@correctchoice
+            \color@endgroup \endgroup
+          \fi
+          \ifprintanswers
+            % We can't say \choice here, because that would
+            % insert an \endgroup.
+            % 2016/05/10: We say \color@begingroup in addition to
+            % \begingroup in case \CorrectChoiceEmphasis involves color
+            % and the text exactly fills the line (which would
+            % otherwise create a blank line after this choice):
+            % 2016/05/11: We leave hmode if we're in it,
+            % i.e., if there's no blank line preceding this
+            % \CorrectChoice command.  (Without this, the
+            % \special created by a \color{whatever} command that might
+            % be inserted by \CorrectChoice@Emphasis would be appended 
+            % to the previous \choice, which could cause an extra
+            % (blank) line to be inserted before this \CorrectChoice.)
+            % Since \par and \endgraf seem to cancel \@totalleftmargin
+            % (for reasons I don't understand), we'll do the following:
+            % Motivated by  the def of \leavevmode, 
+            %      \def\leavevmode{\unhbox\voidb@x}
+            % we will now leave hmode (if we're in hmode):
+            \ifhmode \unskip\unskip\unvbox\voidb@x \fi
+            \begingroup \color@begingroup \@correctchoicetrue
+            \CorrectChoice@Emphasis
+            \stepcounter{choice}
+            \item[\checked@char]
+          \else
+            \stepcounter{choice}
+            \item[\checked@char]
+          \fi
+          \do@choice@pageinfo
+        } % CorrectChoice
+        \let\correctchoice\CorrectChoice
+        \labelwidth\leftmargin\advance\labelwidth-\labelsep
+        \topsep=0pt
+        \partopsep=0pt
+        \checkboxeshook
+      }%
+   }%
+   {\if@correctchoice \color@endgroup \endgroup \fi \endlist}
+ \makeatother
+
+% Make checkbox character a circle with the letter
+\checkboxchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=4mm,draw] at (0,0) {\thechoice};}
+% Make checked box character bold WITH surd
+%\checkedchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=8mm,draw] at (0,0) {} node at (0,0) {\thechoice\llap{$\surd$}};}
+% Make checked box character bold
+\checkedchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=4mm,draw] at (0,0) {} node at (0,0) {\thechoice};}
+\printanswers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ENCABEZADO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \centering
+    \hrule \hrule \hrule 
+    \vspace{5mm}
+    \begin{minipage}[c]{0.8\textwidth}
+        \begin{center}
+            {\large\textbf{Mission 08, Start!} \par
+            \large \textbf{Estructuras Discretas} \par
+            \large \textbf{Semestre 2023-1} \par
+            \large \textbf{\today}	\par}
+        \end{center}
+    \end{minipage}
+
+    \vspace{0.2in}
+    \noindent
+    \textbf{Tania Michelle Rubí Rojas}
+    \vspace{2mm}
+    \hrule \hrule \hrule 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \vspace{5mm}
+    \noindent
+    Nombre y número de cuenta: \hrulefill\
+
+    \textbf{Notación y convenciones para el examen:}
+    {\tiny
+    \begin{multicols}{2}
+    \begin{itemize}\setlength\itemsep{0em}  
+      \item En este examen, los antónimos serán complementarios.
+
+      \item Los errores de escritura en las funciones son {\bf intencionales}, 
+      por lo que cualquier afirmación que contenga una expresión mal escrita 
+      es falsa.
+    \end{itemize}
+    \end{multicols}
+    }
+
+    \begin{questions}
+        % Question 01
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Las oportunidades se acaban y las ganas también.''}
+            \end{center} 
+
+            es $p \land q$, donde 
+            \begin{align*}
+                p &= \text{Las oportunidades se acaban} \\ 
+                q &= \text{Las ganas se acaban}
+            \end{align*} % Correcta 
+
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''El backend radica en realizar diversas tareas, no 
+                sólo retornar Json cuando los piden.''}
+            \end{center}
+            
+            es $p \land \neg q$, donde 
+            \begin{align*}
+                p &= \text{El backend radica en realizar diversas tareas} \\ 
+                q &= \text{El backend radica solamente en retornar Json cuando 
+                los piden}
+            \end{align*} % Correcta 
+
+            \choice El enunciado 
+            \begin{center}
+                \textbf{''Las primeras críticas de la serie 1899 son alucinantes, 
+                catalogándola como una especie de Titanic meets Black Mirror con 
+                dosis de terror, ciencia ficción, misterio y puzzles.''}
+            \end{center}
+
+            es una proposición compuesta por $5$ proposiciones atómicas 
+            diferentes.
+ 
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Todos en algún momento tendremos una etapa de 
+                Britney Pelona. No tengo pruebas, pero tampoco dudas. ''}
+            \end{center}
+
+            es $p \land \neg q \land \neg r$
+            \begin{align*}
+                p &= \text{Todos en algún momento tendremos una etapa de 
+                Britney Pelona} \\ 
+                q &= \text{Tengo pruebas} \\ 
+                r &= \text{Tengo dudas}
+            \end{align*} % Correcta
+
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        % Question 02
+        \question{¿Cuál es el resultado de eliminar correctamente todos los 
+        paréntesis superfluos en las siguientes expresiones de acuerdo a su 
+        precedencia y asociatividad de operadores?}
+        \begin{align*}
+            e_1 &= \neg ((p \rightarrow (\neg q)) \lor \neg (r \land (\neg r))) 
+            \land ((p \lor q) \rightarrow (p \land q))\\ 
+            %e_ &= ((\neg p) \lor (\neg q)) \rightarrow \neg ((\neg q) \land r) 
+            %\land \neg (p \rightarrow (\neg q)) \\ 
+            e_2 &= ((\neg p) \land (q \rightarrow p)) \lor ((\neg p) \rightarrow 
+            (q \land r) \lor (p \land (\neg q))) \\ 
+        \end{align*}
+        \begin{checkboxes}
+            \choice Mucho ojo cuate, la respuesta correcta es:
+            \begin{align*}
+                e_1 &= \neg ((p \rightarrow \neg q) \lor \neg (r \land \neg r)) 
+                \land (p \lor q \rightarrow p \land q )\\ 
+                %e_2 &= (\neg p \lor \neg q) \rightarrow \neg (\neg q \land r) 
+                %\land \neg (p \rightarrow \neg q) \\ 
+                e_2 &= \neg p \land (q \rightarrow p) \lor \neg p \rightarrow 
+                q \land r \lor p \land \neg q \\ 
+            \end{align*}
+
+            \choice Mucho ojo cuate, la respuesta correcta es:
+            \begin{align*}
+                e_1 &= \neg ((p \rightarrow \neg q) \lor \neg (r \land \neg r)) 
+                \land (p \lor q) \rightarrow p \land q \\ 
+                %e_2 &= \neg p \lor \neg q \rightarrow \neg (\neg q \land r) 
+                %\land \neg (p \rightarrow \neg q)  \\ 
+                e_2 &= \neg p \land (q \rightarrow p) \lor \neg p \rightarrow 
+                (q \land r) \lor (p \land \neg q)
+            \end{align*}
+
+            \choice Mucho ojo cuate, la respuesta correcta es:
+            \begin{align*}
+                e_1 &= \neg (p \rightarrow \neg q \lor \neg (r \land \neg r)) 
+                \land (p \lor q) \rightarrow p \land q \\ 
+                %e_2 &= \neg p \lor \neg q \rightarrow \neg \neg q \land r 
+                %\land \neg (p \rightarrow \neg q)  \\ 
+                e_2 &= \neg p \land (q \rightarrow p) \lor (\neg p \rightarrow 
+                q \land r \lor p \land \neg q)
+            \end{align*}
+
+            \choice Mucho ojo cuate, la respuesta correcta es:
+            \begin{align*}
+                e_1 &= \neg (p \rightarrow \neg q \lor \neg (r \land \neg r)) 
+                \land (p \lor q \rightarrow p \land q) \\ 
+                %e_2 &= \neg p \lor \neg q \rightarrow \neg (\neg q \land r) 
+                %\land \neg (p \rightarrow \neg q) \\ 
+                e_2 &= \neg p \land (q \rightarrow p) \lor \neg p \rightarrow 
+                (q \land r) \lor (p \land \neg q)
+            \end{align*}
+            
+            \choice Ninguna de las anteriores. % Correcta
+        \end{checkboxes}
+
+        % Question 03
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice El enunciado 
+            \begin{center}
+                \textbf{''Netflix estrena en 4 días la nueva serie de los 
+                creadores de DARK: 1899''}
+            \end{center}
+
+            es una proposición atómica. % Correcta
+
+            \choice El enunciado
+            \begin{center}
+                \textbf{''Todos luchamos nuestras propias guerras privadas.''}
+            \end{center}
+
+            \textbf{no} es una proposición porque contiene la palabra 
+            \texttt{Todos} y la lógica proposicional no alcanza para
+            darle un valor de verdad binario. 
+
+            \choice Una proposición es compuesta si se puede descomponer 
+            en dos o más proposiciones atómicas.  % Correcta
+
+            \choice El enunciado 
+            \begin{center}
+                \textbf{''La falta de comunicación da demasiado espacio para 
+                la imaginación''}
+            \end{center}
+
+            es una proposición atómica. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 04
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Nubecita sabe programar en Python o ella ha 
+                aprendido a programar en C y Java''}
+            \end{center}
+
+            es $p \lor (q \land r)$, donde 
+            \begin{align*}
+                p &: \text{Nubecita sabe programar en Python} \\ 
+                q &: \text{Nubecita ha aprendido a programar en C} \\ 
+                r &: \text{Nubecita ha aprendido a programar en Java}
+            \end{align*} % Correcta
+
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Marco es pobre o es tanto rico como infeliz''}
+            \end{center}
+
+            es $\neg p \lor p \land \neg q$, donde 
+            \begin{align*}
+                p &: \text{Marco es rico} \\ 
+                q &: \text{Marco es feliz}
+            \end{align*} % Correcta 
+
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Les compartiré un Roadmap de SQL que pude armar con 
+                el contenido que he creado o mi lenguaje del amor no es arruinar 
+                mi horario del sueño por hablar un ratito más con Circe''}
+            \end{center}
+
+            es $p \lor \neg q$, donde 
+            \begin{align*}
+                p &: \text{Voy a compartir un Roadmap de SQL que pude armar con 
+                el contenido que he} \\ &\text{creado} \\ 
+                q &: \text{Mi lenguaje del amor es arruinar mi horario del 
+                sueño por hablar un ratito} \\ &\text{más con Circe}
+            \end{align*} % Correcta
+
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Hoy recibí siete cartas tuyas al mismo tiempo y 
+                fue un buen día. Cada una de ellas representaba el inmenso 
+                amor que siento por tí y al mismo tiempo me recorbaban lo 
+                mucho que te extraño.''}
+            \end{center}
+
+            es $(p \land q) \land (r \land s)$, donde 
+            \begin{align*}
+                p &= \text{Hoy recibí siete cartas tuyas al mismo tiempo} \\ 
+                q &= \text{Hoy fue un buen día} \\ 
+                r &= \text{Cada una de tus siete cartas representaba el inmenso 
+                amor que siento por tí} \\ 
+                s &= \text{Cada una de tus siete cartas me recorbaban lo mucho 
+                que te extraño}
+            \end{align*} % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 05
+        \question
+        {
+            ¿Cuál es el resultado de colocar correctamente todos los paréntesis 
+            en las siguientes expresiones de acuerdo a su precedencia y 
+            asociatividad de operadores?
+            \begin{align*}
+                %e_ &= p \land q \lor r \rightarrow s \rightarrow r \\ 
+                e_1 &= p \lor q \rightarrow r \rightarrow s \leftrightarrow t \\ 
+                e_2 &= p \rightarrow q \rightarrow p \lor q \rightarrow q
+            \end{align*}
+        }
+        \begin{checkboxes}
+            \choice Mucho ojo cuate, la respuesta correcta es:
+            \begin{align*}
+                %e_1 &= (((p \land q) \lor r) \rightarrow (s \rightarrow r)) \\ 
+                e_1 &= (((p \lor q) \rightarrow (r \rightarrow s)) \leftrightarrow t) \\ 
+                e_2 &= (p \rightarrow (q \rightarrow ((p \lor q) \rightarrow q)))
+            \end{align*} % Correcta 
+
+            \choice Mucho ojo cuate, la respuesta correcta es:
+            \begin{align*}
+                %e_1 &= ((((p \land q) \lor r) \rightarrow s) \rightarrow r) \\ 
+                e_1 &= ((((p \lor q) \rightarrow r) \rightarrow s) \leftrightarrow t) \\ 
+                e_2 &= (((p \rightarrow q) \rightarrow (p \lor q)) \rightarrow q)
+            \end{align*}
+
+            \choice Mucho ojo cuate, la respuesta correcta es:
+            \begin{align*}
+                %e_1 &= ((((p \land q) \lor r) \rightarrow s) \rightarrow r) \\ 
+                e_1 &= (((p \lor q) \rightarrow (r \rightarrow s)) \leftrightarrow t) \\ 
+                e_2 &= ((p \rightarrow q) \rightarrow ((p \lor q) \rightarrow q))
+            \end{align*}
+
+            \choice Mucho ojo cuate, la respuesta correcta es:
+            \begin{align*}
+                %e_1 &= (((p \land q) \lor r) \rightarrow (s \rightarrow r)) \\ 
+                e_1 &= ((((p \lor q) \rightarrow r) \rightarrow s) \leftrightarrow t)\\ 
+                e_2 &= (p \rightarrow (q \rightarrow ((p \lor q) \rightarrow q)))
+            \end{align*}
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 06
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice El enunciado
+            \begin{center}
+                \textbf{''Cuando era niño despertaba todos los días esperando 
+                que ese fuera el día en que volviera mi mamá, esperé por 
+                quince años.''}
+            \end{center}
+
+            es una proposición compuesta. % Correcta 
+
+            \choice El enunciado
+            \begin{center}
+                \textbf{''Me dijeron <<Arriba las estúpidas>> y volé''}
+            \end{center}
+
+            \textbf{no} es una proposición, pues como no se indica quién 
+            me dijo esa oración, entonces no puedo determinar su valor de 
+            verdad. 
+
+            \choice Una proposición obtenida a partir de otras proposiciones
+            mediante el uso de conectivos lógicos se llama compuesta. % Correcta
+
+            \choice El enunciado
+            \begin{center}
+                \textbf{''Hay veces que el dolor duerme en una canción''}
+            \end{center}
+
+            es una proposición atómica. % Correcta 
+            
+            \choice Ninguna de las anteriores.
+        \end{checkboxes}
+
+        \newpage
+        % Question 07
+        \question
+        {
+            ¿Cuál es el árbol de sintaxis correcto de la siguiente expresión?
+            \begin{equation*}
+                (p \rightarrow q) \land (q \rightarrow r) \rightarrow \neg r 
+                \rightarrow \neg p
+            \end{equation*}
+        }
+        \begin{multicols}{2}
+            \begin{checkboxes}
+                \forestset{
+                    default preamble={
+                    for tree={circle,draw}
+                    }
+                }
+                \choice 
+                \begin{forest}
+                    for tree={dotted}
+                    [$\rightarrow$
+                        [$\land$
+                            [$\rightarrow$ [$p$] [$q$]]
+                            [$\rightarrow$ 
+                                [$\rightarrow$ [$q$] [$r$]]
+                                [$\neg$ [$r$]]
+                            ]
+                        ]
+                        [$\neg$ [$p$]]
+                    ]
+                \end{forest} 
+
+                \vspace*{0.5cm}
+
+                \choice 
+                \begin{forest}
+                    for tree={dotted}
+                    [$\rightarrow$
+                        [$\land$
+                            [$\rightarrow$ 
+                                [$\rightarrow$ [$q$] [$r$]]
+                                [$\neg$ [$r$]]
+                            ]
+                            [$\rightarrow$ [$p$] [$q$]]
+                        ]
+                        [$\neg$ [$p$]]
+                    ]
+                \end{forest} 
+
+                \choice 
+                \begin{forest}
+                    for tree={dotted}
+                    [$\land$
+                        [$\rightarrow$ [$p$] [$q$]]
+                        [$\rightarrow$ 
+                            [$\rightarrow$ [$q$] [$r$]] 
+                            [$\rightarrow$ [$\neg$ [$r$] [$p$]]]
+                        ]
+                    ]
+                \end{forest}
+
+                \vspace*{0.5cm}
+    
+                \choice 
+                \begin{forest}
+                    for tree={dotted}
+                    [$\rightarrow$
+                        [$\land$
+                            [$\rightarrow$ [$p$] [$q$]]
+                            [$\rightarrow$ [$q$] [$r$]]
+                        ]
+                        [$\rightarrow$ [$\neg$ [$r$]] [$\neg$ [$p$]]]
+                    ]
+                \end{forest} % Correcta
+
+                \vspace*{0.2cm}
+                
+                \choice Ninguna de las anteriores. 
+            \end{checkboxes}
+        \end{multicols}
+
+        % Question 08
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice Los enunciados 
+            \begin{align*}
+                &a. \quad  x < 2 \text{ o no es cierto que } 1 < x < 3 \\ 
+                &b. \quad x \leq 1 \text{ o bien } x < 2 \text{ o } x \geq 3
+            \end{align*}
+
+            tienen el mismo valor de verdad. % Correcta
+
+            \choice El enunciado ''$2 + 2 = 5$'' \textbf{no} es una 
+            proposición. 
+
+            \choice El enunciado
+            \begin{center}
+                \textbf{''En las hojas de otoño esconderé mis temores''}
+            \end{center}
+
+            \textbf{no} es una proposición. 
+
+            \choice El enunciado
+            \begin{center}
+                \textbf{''Al contrario del INE, a mí sí tóquenme''}
+            \end{center}
+
+            es una proposición compuesta. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 09
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''No estoy preparado para afrontar otro examen''}
+            \end{center}
+
+            es $\neg p$, donde $p:$ Estoy preparado para afrontar otro examen.
+            % Correcta 
+
+            \choice El enunciado
+            \begin{center}
+                \textbf{''En Corea del Sur, el agua de lluvia se almacena para 
+                luego limpiar las calles a través de un sistema hidráulico.''}
+            \end{center}
+
+            es una proposición atómica. % Correcta 
+
+            \choice La formalización del enunciado (tóxico)
+            \begin{center}
+                \textbf{''Respóndeme o me entierro un cuchillo en el 
+                estómago''}
+            \end{center}
+
+            es $p \lor q$, donde 
+            \begin{align*}
+                p &: \text{Respóndeme} \\ 
+                q &: \text{Me entierro un cuchillo en el estómago}
+            \end{align*}
+
+            \choice La formalización de la proposición 
+            \begin{center}
+                \textbf{''La amistad y el amor siempre brillaron y 
+                hoy también lo harán''}
+            \end{center}
+
+            es $(p \land q) \land (r \land s)$, donde 
+            \begin{align*}
+                p &: \text{ La amistad siempre brilló} \\ 
+                q &: \text{ El amor siempre brilló} \\ 
+                r &: \text{ La amistad brillará hoy} \\ 
+                s &: \text{ El amor brillará hoy}
+            \end{align*} % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 10
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice El enunciado
+            \begin{center}
+                \textbf{''Todo arde si le aplicas la chispa adecuada''}
+            \end{center}
+
+            es una proposición atómica. % Correcta
+
+            \choice El enunciado 
+            \begin{center}
+                \textbf{''Gracias a Ivanna este año fue un poquito mejor''}
+            \end{center}
+
+            es una proposición atómica. % Correcta
+
+            \choice El enunciado 
+            \begin{center}
+                \textbf{''La película más bonita del mundo es también la 
+                más triste''}
+            \end{center}
+
+            es una proposición compuesta. 
+            
+            \choice El enunciado
+            \begin{center}
+                \textbf{''Luciérnaga azul ven y dime qué quieres de mí''}
+            \end{center}
+
+            \textbf{no} es una proposición. % Correcta
+
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 11
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice El enunciado 
+            \begin{center}
+                \textbf{''Cada problema tiene solución. Pero si no hablo, 
+                entonces nadie puede ayudarme''}
+            \end{center}
+
+            \textbf{no} es una proposición ya que a la primera oración no es 
+            posible asignarle un valor de verdad. 
+
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Daniel se fracturó la mano y no pudo presentar su 
+                examen de discretas''}
+            \end{center}
+
+            es $p \land \neg q$, donde 
+            \begin{align*}
+                p &= \text{Daniel se fracturó la mano} \\ 
+                q &= \text{Daniel pudo presentar su examen de discretas}
+            \end{align*} % Correcta
+
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Las cicatrices están sanando y todo está volviendo 
+                a ser normal''}
+            \end{center}
+
+            es $q \land p$, donde 
+            \begin{align*}
+                p &: \text{Las cicatrices están sanando} \\ 
+                q &: \text{Todo está volviendo a ser normal}
+            \end{align*} % Correcta
+
+            \choice El enunciado 
+            \begin{center}
+                \textbf{''El Museo de la Ciudad de Mérida exhibe pinturas de 
+                autores yucatecos, entre los cuales incluyó a Fernando 
+                Castro Pacheco y Rosa María García Ruíz''}
+            \end{center}
+
+            es una proposición compuesta por $3$ proposiciones atómicas
+            diferentes. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 12
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice El enunciado 
+            \begin{center}
+                \textbf{''El olvido recordó y la obscuridad se iluminó. La 
+                risa rompió a llorar''}
+            \end{center}
+
+            es una proposición compuesta. % Correcta
+
+            \choice El enunciado
+            \begin{center}
+                \textbf{''Te quiero Sebastián, te lo he dicho frente al mar. 
+                El cariño no se oxida ante la sal.''}
+            \end{center}
+
+            es una proposición compuesta. % Correcta
+
+            \choice El enunciado 
+            \begin{center}
+                \textbf{''Mi cuerpo está en calma y mi mente en paz''}
+            \end{center}
+
+            es una proposición compuesta. % Correcta
+
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Hoy no he venido a disculparme ni tampoco a 
+                suplicar''}
+            \end{center}
+    
+            no existe pues esta expresión no es una proposición, es más bien 
+            una oración imperativa. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 13
+        \question{¿Cuál es el resultado de eliminar correctamente todos los 
+        paréntesis superfluos en las siguientes expresiones de acuerdo a su 
+        precedencia y asociatividad de operadores?}
+        \begin{align*}
+            %e_1 &= ((p \land q) \lor ((\neg p) \lor (p \land \neg q))) 
+            %\rightarrow p \lor (\neg p) \\ 
+            e_1 &= ((((\neg p) \lor q) \lor (p \land (\neg q))) \land (\neg 
+            (\neg p) \leftrightarrow (s \lor p) \land s)) \\ 
+            e_2 &= (((\neg p) \lor q) \rightarrow s) \land ((p \land (\neg q)) 
+            \lor p) \lor (p \rightarrow (q \lor r))
+        \end{align*}
+        \begin{checkboxes}
+            \choice Mucho ojo cuate, la respuesta correcta es:
+            \begin{align*}
+                %e_1 &= p \land q \lor \neg p \lor p \land \neg q
+                %\rightarrow p \lor \neg p  \\ 
+                e_1 &= (\neg p \lor q \lor p \land \neg q) \land (\neg 
+                \neg p \leftrightarrow (s \lor p) \land s) \\ 
+                e_2 &= \neg p \lor q \rightarrow s \land p \land \neg q 
+                \lor p \lor p \rightarrow q \lor r
+            \end{align*}
+
+            \choice Mucho ojo cuate, la respuesta correcta es:
+            \begin{align*}
+                %e_1 &= ((p \land q) \lor ((\neg p) \lor (p \land \neg q))) 
+                %\rightarrow p \lor (\neg p) \\ 
+                e_1 &= (\neg p \lor q \lor p \land \neg q) \land \neg 
+                \neg p \leftrightarrow (s \lor p) \land s \\ 
+                e_2 &= (\neg p \lor q \rightarrow s) \land p \land \neg q 
+                \lor p \lor (p \rightarrow q \lor r)
+            \end{align*}
+
+            \choice Mucho ojo cuate, la respuesta correcta es:
+            \begin{align*}
+                %e_1 &= (p \land q \lor (\neg p \lor p \land \neg q)) 
+                %\rightarrow p \lor \neg p \\ 
+                e_1 &= (\neg p \lor q \lor p \land \neg q) \land (\neg 
+                \neg p \leftrightarrow (s \lor p) \land s) \\ 
+                e_2 &= (\neg p \lor q \rightarrow s) \land p \land \neg q 
+                \lor p \lor (p \rightarrow q \lor r)
+            \end{align*}
+
+            \choice Mucho ojo cuate, la respuesta correcta es:
+            \begin{align*}
+                %e_1 &= p \land q \lor (\neg p \lor p \land \neg q)
+                %\rightarrow p \lor \neg p \\ 
+                e_1 &= (\neg p \lor q \lor p \land \neg q) \land \neg 
+                \neg p \leftrightarrow (s \lor p) \land s \\ 
+                e_2 &= (\neg p \lor q \rightarrow s) \land (p \land \neg q 
+                \lor p) \lor (p \rightarrow q \lor r)
+            \end{align*} 
+            
+            \choice Ninguna de las anteriores. % Correcta 
+        \end{checkboxes}
+    
+        % Question 14
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}    
+            \choice El enunciado
+            \begin{center}
+                \textbf{''Sacrificar la siesta por ver a alguien me parece 
+                el acto de amor más grande que puedo hacer por alguien''}
+            \end{center}
+    
+            es una proposición atómica. % Correcta
+    
+            \choice El enunciado 
+            \begin{center}
+                \textbf{¿Te queda claro lo que hay que hacer?}
+            \end{center}
+    
+            \textbf{no} es una proposición. % Correcta
+    
+            \choice El enunciado 
+            \begin{center}
+                \textbf{''Se descubrió una población de osos polares que no 
+                depende del todo del hielo antártico para cazar, comer y 
+                reproducirse. Este hallazgo fue en el sureste de Groenlandia. 
+                Esto representa una alternativa para la conservación de la 
+                especie, por el deshielo de los polos''}
+            \end{center}
+    
+            es una proposición compuesta de $5$ proposiciones atómicas 
+            diferentes.
+
+            \choice El enunciado
+            \begin{center}
+                \textbf{''Morirás cada mañana y renacerás al anochecer'}
+            \end{center}
+    
+            es una proposición compuesta. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 15
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''x es un número primo y divisible entre 9''}
+            \end{center}
+    
+            es $p \land q$, donde 
+            \begin{align*}
+                p &: \text{ $x$ es un número primo} \\ 
+                q &: \text{ $x$ es divisible entre $9$}
+            \end{align*} % Correcta
+
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Las últimas semanas han sido duras para el mercado 
+                laboral en el mundo Tech.''}
+            \end{center}
+
+            es una proposición atómica. % Correcta
+
+            \choice El enunciado 
+            \begin{center}
+                \textbf{''En el cuarto hay una mesa pequeña y una silla. 
+                Fuera de la ventana, hay una planicie sin nada. La construcción 
+                es vieja, nadie sabe cuándo fue hecha. Vivo aquí, sola''}
+            \end{center}
+
+            es una proposición compuesta de cinco proposiciones atómicas 
+            diferentes. 
+
+            \choice El enunciado
+            \begin{center}
+                \textbf{''El mundo es hermoso. Aunque estés llena de 
+                tristezas, abre tus ojos. Haz lo que quieras, se quién eres, 
+                y nunca te apures en crecer.''}
+            \end{center}
+
+            es una proposición compuesta. 
+
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 16
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice El enunciado 
+            \begin{center}
+                \textbf{''El infierno se enfrío y el cielo se cubrió de una 
+                telaraña gris, de nubes y dolor''}
+            \end{center}
+
+            es una proposición compuesta que tiene cuatro proposiciones atómicas
+            diferentes. % Correcta  
+
+            \choice El enunciado
+            \begin{center}
+                \textbf{''Si las puertas de la percepción fueran 
+                limpiadas, todo parecería como lo es, infinito''}
+            \end{center}
+
+            es una proposición compuesta. % Correcta 
+
+            \choice El enunciado 
+            \begin{center}
+                \textbf{''El universo es más grande que cualquier cosa que 
+                pueda caber en tu mente.''}
+            \end{center}
+
+            es una proposición atómica. % Correcta
+
+            \choice El enunciado 
+            \begin{center}
+                \textbf{''Existen muchas experiencias humanas que desafían los 
+                límites de nuestro lenguaje. Esa es una de las razones por las 
+                cuales tenemos a la poesía''}
+            \end{center}
+
+            \textbf{no} es una proposición. 
+
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 17
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice La formalización de la proposición
+            \begin{center}
+                \textbf{''Es bonito resignificar en algo nuevo las cosas que 
+                por mucho tiempo me dolieron y me despertaban por las noches.
+                Es bonito que la vida siga''}
+            \end{center}
+
+            es $p \land q \land r$, donde 
+            \begin{align*}
+                p &= \text{Es bonito resignificar en algo nuevo las cosas que 
+                por mucho tiempo} \\ &\text{me dolieron} \\ 
+                q &= \text{Es bonito resignificar en algo nuevo las cosas que 
+                por mucho tiempo} \\ &\text{me despertaban por las noches} \\ 
+                r &= \text{Es bonito que la vida siga}  
+            \end{align*} % Correcta
+
+            \choice El enunciado
+            \begin{center}
+                \textbf{''Hace un año comencé a aprender JavaScript y 
+                sigo sin saber JavaScript''}
+            \end{center}
+
+            es una proposición compuesta. % Correcta
+
+            \choice El enunciado
+            \begin{center}
+                \textbf{''Elon Musk despidió a un programador de Twitter que 
+                lo contradijo en público respecto a por qué la app funciona 
+                lenta en algunos países''}
+            \end{center}
+
+            es una proposición atómica. % Correcta 
+
+            \choice El enunciado
+            \begin{center}
+                \textbf{''Divulgar sobre Open Source, también es hacer Open 
+                Source''}
+            \end{center}
+
+            es una proposición compuesta, pues tiene el conectivo 
+            \texttt{también}. 
+
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 19
+        \question{¿Cuál o cuáles de las siguientes expresiones son 
+        \textbf{verdaderas}?}
+        \begin{checkboxes}
+            \choice La formalización del enunciado
+            \begin{center}
+                \textbf{''Las habilidades necesarias en Data Science no siempre 
+                son fáciles de demostrar en una entrevista''}
+            \end{center}
+
+            es $\neg p$, donde 
+            \begin{align*}
+                p &: \text{Las habilidades necesarias en Data Science siempre 
+                son fáciles de} \\ &\text{demostrar en una entrevista}
+            \end{align*} % Correcta 
+
+            \choice El enunciado
+            \begin{center}
+                \textbf{''Quiero tener un carro para llevar a mis amigas a 
+                toda velocidad y decirles <<ya mi vida no tiene sentido>>''}
+            \end{center}
+
+            \textbf{no} es una proposición.
+
+            \choice El enunciado
+            \begin{center}
+                \textbf{''Si nos pusieramos de acuerdo, hoy mismo podría ser 
+                viernes. Sólo nos falta organización.''}
+            \end{center}
+
+            \textbf{no} es una proposición. 
+
+            \choice El enunciado
+            \begin{center}
+                \textbf{''Hay pequeños detalles y momentos que arreglan grandes 
+                días de mierda. Hoy es un día de esos.''}
+            \end{center}
+
+            es una proposición compuesta por tres proposiciones atómicas 
+            diferentes. % Correcta 
+
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 20
+        \question
+        {
+            ¿Cuál es el árbol de sintaxis correcto de la siguiente expresión?
+            \begin{equation*}
+                \neg p \land q \rightarrow p \land (q \lor \neg r)
+            \end{equation*}
+        }
+        \begin{multicols}{2}
+            \begin{checkboxes}
+                \forestset{
+                    default preamble={
+                    for tree={circle,draw}
+                    }
+                }
+                \choice 
+                \begin{forest}
+                    for tree={dotted}
+                    [$\rightarrow$
+                        [$\land$ 
+                            [$\neg$ [$p$]] 
+                            [$q$]
+                        ]
+                        [$\land$ 
+                            [$p$] 
+                            [$\lor$ [$q$] [$\neg$ [$r$]]]
+                        ]
+                    ]
+                \end{forest} % Correcta
+
+                \choice 
+                \begin{forest}
+                    for tree={dotted}
+                    [$\land$
+                        [$\neg$ [$p$]]
+                        [$\rightarrow$ 
+                            [$q$]
+                            [$\land$ [$p$] [$\lor$ [$q$] [$\neg$ [$r$]]]]]
+                    ]
+                \end{forest}
+    
+                \choice 
+                \begin{forest}
+                    for tree={dotted}
+                    [$\land$
+                        [$\rightarrow$ 
+                            [$\land$ [$\neg$ [$p$]] [$q$]]
+                            [$p$]
+                        ]
+                        [$\lor$ [$q$] [$\neg$ [$r$]]] 
+                    ]
+                \end{forest}
+
+                \choice 
+                \begin{forest}
+                    for tree={dotted}
+                    [$\land$
+                        [$\land$ 
+                            [$\neg$ [$p$]]
+                            [$\rightarrow$ [$q$] [$p$]]
+                        ]
+                        [$\lor$ [$q$] [$\neg$ [$r$]]] 
+                    ]
+                \end{forest}
+
+                \vspace*{1.5cm}
+                
+                \choice Ninguna de las anteriores. 
+            \end{checkboxes}
+        \end{multicols}
+\end{questions}
+\end{document}
+
+    \begin{comment}
+    \question
+    {
+        ¿Cuál es el resultado de colocar correctamente todos los paréntesis 
+        en las siguientes expresiones de acuerdo a su precedencia y 
+        asociatividad de operadores?
+        \begin{align*}
+            e_1 &= \neg p \lor q \rightarrow p \land \neg q \rightarrow 
+            \neg p \lor \neg q \rightarrow \neg p \land \neg q \\ 
+            e_2 &= \neg \neg p \land \neg q \rightarrow s \leftrightarrow 
+            \neg s \rightarrow \neg p \lor q\\ 
+            e_3 &= \neg p \land (\neg p \land q) \lor p \land p \land \neg q
+        \end{align*}
+    }
+    \begin{checkboxes}
+        \choice Mucho ojo cuate, la respuesta correcta es:
+        \begin{align*}
+            e_1 &= (((\neg p) \lor q) \rightarrow (((p \land (\neg q)) \rightarrow 
+            ((\neg p) \lor (\neg q))) \rightarrow ((\neg p) \land (\neg q)))) \\ 
+            e_2 &= (((((\neg \neg p) \land (\neg q)) \rightarrow s) \leftrightarrow 
+            (\neg s)) \rightarrow ((\neg p) \lor q)) \\ 
+            e_3 &= (((\neg p) \land ((\neg p)) \land q) \lor ((p \land p) \land (\neg q)))
+        \end{align*}
+
+        \choice Mucho ojo cuate, la respuesta correcta es:
+        \begin{align*}
+            e_1 &= (((\neg p) \lor q) \rightarrow ((p \land (\neg q)) \rightarrow 
+            (((\neg p) \lor (\neg q)) \rightarrow ((\neg p) \land (\neg q))))) \\ 
+            e_2 &= ((((\neg (\neg p)) \land (\neg q)) \rightarrow s) \leftrightarrow 
+           ( (\neg s) \rightarrow ((\neg p) \lor q))) \\ 
+            e_3 &= (((\neg p) \land ((\neg p) \land q)) \lor ((p \land p) \land (\neg q)))
+        \end{align*} % Correcta
+
+        \choice Mucho ojo cuate, la respuesta correcta es:
+        \begin{align*}
+            e_1 &= (((((\neg p) \lor q) \rightarrow (p \land (\neg q))) \rightarrow 
+            ((\neg p) \lor (\neg q))) \rightarrow ((\neg p) \land (\neg q))) \\ 
+            e_2 &= (((\neg \neg p) \land (\neg q)) \rightarrow (s \leftrightarrow 
+            ((\neg s) \rightarrow ((\neg p) \lor q))))  \\ 
+            e_3 &= (((\neg p) \land (\neg p \land q)) \lor ((p \land p) \land (\neg q)))
+        \end{align*}
+
+        \choice Mucho ojo cuate, la respuesta correcta es:
+        \begin{align*}
+            e_1 &= (((\neg p) \lor q) \rightarrow (p \land (\neg q))) \rightarrow 
+            (((\neg p) \lor (\neg q)) \rightarrow ((\neg p) \land (\neg q)))\\ 
+            e_2 &= (((\neg (\neg p)) \land (\neg q)) \rightarrow s) \leftrightarrow 
+            ((\neg s) \rightarrow ((\neg p) \lor q)) \\ 
+            e_3 &= (((((\neg p) \land ((\neg p) \land q)) \lor p) \land p) \land (\neg q))
+        \end{align*}
+        
+        \choice Ninguna de las anteriores. 
+    \end{checkboxes}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \question
+    {
+        ¿Cuál es el resultado de colocar correctamente los paréntesis en 
+        las siguientes expresiones de acuerdo a su precedencia y 
+        asociatividad de los operadores?
+        \begin{align*}
+            e_1 &= p \leftrightarrow q \land r \leftrightarrow p \leftrightarrow 
+            p \leftrightarrow q \land r \leftrightarrow q \land p \rightarrow 
+            q \land r \land \neg p \rightarrow s\\ 
+            e_2 &= p \lor q \land \neg p \land \neg q \land \neg p \lor q \rightarrow 
+            p \land r \leftrightarrow s \land t \rightarrow u \lor p\\ 
+            e_3 &= p \lor q \lor r \land \neg (r \lor \neg s) \land s \leftrightarrow t 
+            \land p \rightarrow \neg t \land q \rightarrow p \lor \neg t
+        \end{align*}
+    }
+    \begin{checkboxes}
+        \choice Mucho ojo cuate, la respuesta correcta es:
+        \begin{align*}
+            e_1 &= p \leftrightarrow (q \land r) \leftrightarrow p \leftrightarrow 
+            p \leftrightarrow (q \land r) \leftrightarrow (q \land p) \rightarrow 
+           ( (q \land r) \land \neg p) \rightarrow s \\ 
+            e_2 &= p \lor q \land \neg p \land \neg q \land \neg p \lor q \rightarrow 
+            p \land r \leftrightarrow s \land t \rightarrow u \lor p\\ 
+            e_3 &= p \lor q \lor r \land \neg (r \lor \neg s) \land s \leftrightarrow t 
+            \land p \rightarrow \neg t \land q \rightarrow p \lor \neg t
+        \end{align*}
+
+        \choice Mucho ojo cuate, la respuesta correcta es:
+        \begin{align*}
+            e_1 &= p \leftrightarrow (q \land r) \leftrightarrow p \leftrightarrow 
+            p \leftrightarrow (q \land r) \leftrightarrow (q \land p) \rightarrow 
+           ( (q \land r) \land \neg p) \rightarrow s  \\ 
+            e_2 &= p \lor q \land \neg p \land \neg q \land \neg p \lor q \rightarrow 
+            p \land r \leftrightarrow s \land t \rightarrow u \lor p\\ 
+            e_3 &= p \lor q \lor r \land \neg (r \lor \neg s) \land s \leftrightarrow t 
+            \land p \rightarrow \neg t \land q \rightarrow p \lor \neg t
+        \end{align*} % Correcta
+
+        \choice Mucho ojo cuate, la respuesta correcta es:
+        \begin{align*}
+            e_1 &= (((((p \leftrightarrow (q \land r)) \leftrightarrow p) \leftrightarrow 
+            p) \leftrightarrow (q \land r)) \leftrightarrow (q \land p)) \rightarrow 
+            (((q \land r) \land \neg p) \rightarrow s)\\ 
+            e_2 &= ((((((((p \lor q) \land \neg p) \land \neg q) \land \neg p) \lor q) 
+            \rightarrow (p \land r)) \leftrightarrow (s \land t)) \rightarrow (u \lor p)) \\ 
+            e_3 &= (((((p \lor q) \lor r) \land \neg (r \lor \neg s)) \land s) 
+            \leftrightarrow ((t \land p) \rightarrow ((\neg t \land q) \rightarrow (p \lor \neg t))))
+        \end{align*}
+
+        \choice Mucho ojo cuate, la respuesta correcta es:
+        \begin{align*}
+            e_1 &= (p \leftrightarrow ((q \land r) \leftrightarrow (p \leftrightarrow 
+            (p \leftrightarrow ((q \land r) \leftrightarrow ((q \land p) \rightarrow 
+            ((q \land (r \land \neg p)) \rightarrow s))))))) \\ 
+            e_2 &= ((((p \lor (((q \land \neg p) \land \neg q) \land \neg p)) \lor q) 
+            \rightarrow (p \land r)) \leftrightarrow ((s \land t) \rightarrow (u \lor p)))\\ 
+            e_3 &= (((p \lor q) \lor ((r \land \neg (r \lor \neg s)) \land s)) \leftrightarrow ((t 
+            \land p) \rightarrow ((\neg t \land q) \rightarrow (p \lor \neg t))))
+        \end{align*}
+        
+        \choice Ninguna de las anteriores. 
+    \end{checkboxes}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \question
+    {
+        ¿Cuál es el resultado de colocar correctamente todos los paréntesis 
+        en las siguientes expresiones de acuerdo a su precedencia y 
+        asociatividad de operadores?
+        \begin{align*}
+            e_1 &= p \rightarrow q \rightarrow p \lor q \rightarrow q \lor \neg p 
+            \lor q \rightarrow r \\ 
+            e_2 &= p \rightarrow q \leftrightarrow \neg q \rightarrow \neg p 
+            \lor p \land q \land r \rightarrow p \\ 
+            e_3 &= p \rightarrow q \land r \rightarrow s \rightarrow p 
+            \rightarrow s \lor p \rightarrow q \land q \rightarrow p 
+        \end{align*}
+    }
+    \begin{checkboxes}
+        \choice Mucho ojo cuate, la respuesta correcta es:
+        \begin{align*}
+            e_1 &= (p \rightarrow (q \rightarrow ((p \lor q) \rightarrow 
+            (((q \lor (\neg p)) \lor q) \rightarrow r)))) \\ 
+            e_2 &= ((p \rightarrow q) \leftrightarrow ((\neg q) \rightarrow (((\neg p) 
+            \lor ((p \land q) \land r)) \rightarrow p))) \\ 
+            e_3 &= (p \rightarrow ((q \land r) \rightarrow (s \rightarrow (p 
+            \rightarrow ((s \lor p) \rightarrow ((q \land q) \rightarrow p)))))) 
+        \end{align*} % Correcta
+
+        \choice Mucho ojo cuate, la respuesta correcta es:
+        \begin{align*}
+            e_1 &= ((((p \rightarrow q) \rightarrow (p \lor q)) \rightarrow 
+            ((q \lor (\neg p)) \lor q)) \rightarrow r) \\ 
+            e_2 &= ((p \rightarrow q) \leftrightarrow (((\neg q) \rightarrow 
+            ((((\neg p) \lor p) \land q) \land r)) \rightarrow p)) \\
+            e_3 &= ((((((p \rightarrow (q \land r)) \rightarrow s) \rightarrow p) 
+            \rightarrow (s \lor p)) \rightarrow (q \land q)) \rightarrow p)
+        \end{align*}
+
+        \choice Mucho ojo cuate, la respuesta correcta es:
+        \begin{align*}
+            e_1 &= ((((p \rightarrow q) \rightarrow (p \lor q)) \rightarrow ((q \lor \neg p) 
+            \lor q)) \rightarrow r) \\ 
+            e_2 &= ((p \rightarrow q) \leftrightarrow (\neg q \rightarrow ((\neg p 
+            \lor ((p \land q) \land r)) \rightarrow p)))\\ 
+            e_3 &= (p \rightarrow ((q \land r) \rightarrow (s \rightarrow (p 
+            \rightarrow ((s \lor p) \rightarrow ((q \land q) \rightarrow p)))))) 
+        \end{align*}
+
+        \choice Mucho ojo cuate, la respuesta correcta es:
+        \begin{align*}
+            e_1 &= ((((p \rightarrow q) \rightarrow (p \lor q)) \rightarrow ((q \lor \neg p) 
+            \lor q)) \rightarrow r) \\ 
+            e_2 &= (p \rightarrow (q \leftrightarrow ((\neg q) \rightarrow (((((\neg p) 
+            \lor p) \land q) \land r) \rightarrow p)))) \\ 
+            e_3 &= ((((((p \rightarrow (q \land r)) \rightarrow s) \rightarrow p) 
+            \rightarrow (s \lor p)) \rightarrow (q \land q)) \rightarrow p)
+        \end{align*}
+        
+        \choice Ninguna de las anteriores. 
+    \end{checkboxes}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \question
+        {
+            ¿Cuál es el árbol de sintaxis correcto de la siguiente expresión?
+            \begin{equation*}
+                \neg p \land q \rightarrow p \land (q \lor \neg r)
+            \end{equation*}
+        }
+        \begin{multicols}{2}
+            \begin{checkboxes}
+                \forestset{
+                    default preamble={
+                    for tree={circle,draw}
+                    }
+                }
+                \choice 
+                \begin{forest}
+                    for tree={dotted}
+                    [$\rightarrow$
+                        [$\land$ 
+                            [$\neg$ [$p$]] 
+                            [$q$]
+                        ]
+                        [$\land$ 
+                            [$p$] 
+                            [$\lor$ [$q$] [$\neg$ [$r$]]]
+                        ]
+                    ]
+                \end{forest} % Correcta
+
+                \choice 
+                \begin{forest}
+                    for tree={dotted}
+                    [$\land$
+                        [$\neg$ [$p$]]
+                        [$\rightarrow$ 
+                            [$q$]
+                            [$\land$ [$p$] [$\lor$ [$q$] [$\neg$ [$r$]]]]]
+                    ]
+                \end{forest}
+    
+                \choice 
+                \begin{forest}
+                    for tree={dotted}
+                    [$\land$
+                        [$\rightarrow$ 
+                            [$\land$ [$\neg$ [$p$]] [$q$]]
+                            [$p$]
+                        ]
+                        [$\lor$ [$q$] [$\neg$ [$r$]]] 
+                    ]
+                \end{forest}
+
+                \choice 
+                \begin{forest}
+                    for tree={dotted}
+                    [$\land$
+                        [$\land$ 
+                            [$\neg$ [$p$]]
+                            [$\rightarrow$ [$q$] [$p$]]
+                        ]
+                        [$\lor$ [$q$] [$\neg$ [$r$]]] 
+                    ]
+                \end{forest}
+
+                \vspace*{1.5cm}
+                
+                \choice Ninguna de las anteriores. 
+            \end{checkboxes}
+        \end{multicols}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            \question
+        {
+            ¿Cuál es el resultado de colocar correctamente todos los paréntesis 
+            en las siguientes expresiones de acuerdo a su precedencia y 
+            asociatividad de operadores?
+            \begin{align*}
+                &p \rightarrow q \land q \rightarrow p \lor \neg p \land q\\ 
+                &p \land q \rightarrow q \lor q \rightarrow r \land q
+            \end{align*}
+        }
+        \begin{checkboxes}
+            \choice Mucho ojo cuate, la respuesta correcta es:
+            \begin{align*}
+                &(p \rightarrow ((q \land q) \rightarrow ((p \lor (\neg p)) \land q)))\\ 
+                &(((p \land q) \rightarrow (q \lor q)) \rightarrow (r \land q))
+            \end{align*}
+
+            \choice Mucho ojo cuate, la respuesta correcta es:
+            \begin{align*}
+                &((p \rightarrow (q \land q)) \rightarrow ((p \lor (\neg p)) \land q))\\ 
+                &((p \land q) \rightarrow ((q \lor q) \rightarrow (r \land q)))
+            \end{align*}
+
+            \choice Mucho ojo cuate, la respuesta correcta es:
+            \begin{align*}
+                &((p \rightarrow (q \land q)) \rightarrow (p \lor ((\neg p) \land q)))\\ 
+                &(((p \land q) \rightarrow (q \lor q)) \rightarrow (r \land q))
+            \end{align*}
+
+            \choice Mucho ojo cuate, la respuesta correcta es:
+            \begin{align*}
+                &(p \rightarrow ((q \land q) \rightarrow (p \lor ((\neg p) \land q))))\\ 
+                &((p \land q) \rightarrow ((q \lor q) \rightarrow (r \land q)))
+            \end{align*} % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{comment}

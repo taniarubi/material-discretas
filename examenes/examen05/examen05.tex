@@ -1,0 +1,1013 @@
+\documentclass[12pt, a4paper]{exam}
+
+% Soporte para cambiar la fecha que sale en el examen
+\usepackage{advdate}
+% Soporte para escribir en varias columnas
+\usepackage{multicol}
+% Soporte para los acentos.
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}    
+% Idioma español.
+\usepackage[spanish,mexico,es-tabla]{babel}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{amsmath,amssymb,amsthm}
+
+% Cambiamos los márgenes del documento. 
+\usepackage[top=1.5cm,left=1.5cm,right=1.5cm]{geometry}
+
+% Pie de página
+\cfoot{Página \thepage\ de \numpages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\thechoice}{\alph{choice}}
+
+\makeatletter
+\renewenvironment{checkboxes}%
+   {\setcounter{choice}{0}\list{\checkbox@char}%
+      {%
+        \settowidth{\leftmargin}{W.\hskip\labelsep\hskip 2.5em}%
+        \def\choice{%
+          \if@correctchoice
+            \color@endgroup \endgroup
+          \fi
+          \stepcounter{choice}
+          \item[\checked@char]
+          \do@choice@pageinfo
+        } % choice
+        \def\CorrectChoice{%
+          \if@correctchoice
+            \color@endgroup \endgroup
+          \fi
+          \ifprintanswers
+            % We can't say \choice here, because that would
+            % insert an \endgroup.
+            % 2016/05/10: We say \color@begingroup in addition to
+            % \begingroup in case \CorrectChoiceEmphasis involves color
+            % and the text exactly fills the line (which would
+            % otherwise create a blank line after this choice):
+            % 2016/05/11: We leave hmode if we're in it,
+            % i.e., if there's no blank line preceding this
+            % \CorrectChoice command.  (Without this, the
+            % \special created by a \color{whatever} command that might
+            % be inserted by \CorrectChoice@Emphasis would be appended 
+            % to the previous \choice, which could cause an extra
+            % (blank) line to be inserted before this \CorrectChoice.)
+            % Since \par and \endgraf seem to cancel \@totalleftmargin
+            % (for reasons I don't understand), we'll do the following:
+            % Motivated by  the def of \leavevmode, 
+            %      \def\leavevmode{\unhbox\voidb@x}
+            % we will now leave hmode (if we're in hmode):
+            \ifhmode \unskip\unskip\unvbox\voidb@x \fi
+            \begingroup \color@begingroup \@correctchoicetrue
+            \CorrectChoice@Emphasis
+            \stepcounter{choice}
+            \item[\checked@char]
+          \else
+            \stepcounter{choice}
+            \item[\checked@char]
+          \fi
+          \do@choice@pageinfo
+        } % CorrectChoice
+        \let\correctchoice\CorrectChoice
+        \labelwidth\leftmargin\advance\labelwidth-\labelsep
+        \topsep=0pt
+        \partopsep=0pt
+        \checkboxeshook
+      }%
+   }%
+   {\if@correctchoice \color@endgroup \endgroup \fi \endlist}
+ \makeatother
+
+% Make checkbox character a circle with the letter
+\checkboxchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=4mm,draw] at (0,0) {\thechoice};}
+% Make checked box character bold WITH surd
+%\checkedchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=8mm,draw] at (0,0) {} node at (0,0) {\thechoice\llap{$\surd$}};}
+% Make checked box character bold
+\checkedchar{\tikz[baseline={([yshift=-.8ex]current bounding box.center)}]\node[shape=circle,minimum size=4mm,draw] at (0,0) {} node at (0,0) {\thechoice};}
+\printanswers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ENCABEZADO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \centering
+    \hrule \hrule \hrule 
+    \vspace{5mm}
+    \begin{minipage}[c]{0.8\textwidth}
+        \begin{center}
+            {\large\textbf{Mission 05, Start!} \par
+            \large \textbf{Estructuras Discretas} \par
+            \large \textbf{Semestre 2023-1} \par
+            \large \textbf{\today}	\par}
+        \end{center}
+    \end{minipage}
+
+    \vspace{0.2in}
+    \noindent
+    \textbf{Tania Michelle Rubí Rojas}
+    \vspace{2mm}
+    \hrule \hrule \hrule 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \vspace{5mm}
+    \noindent
+    Nombre y número de cuenta: \hrulefill\
+
+    \vspace{5mm}
+    \noindent
+    
+    \textbf{Notación y convenciones para el examen:}
+    {\tiny
+    \begin{multicols}{2}
+    \begin{itemize}\setlength\itemsep{0em}  
+      \item $0\in\mathbb{N}$
+      \item El operador $\texttt{++}$ concatena dos listas. Ejemplo: 
+      \begin{equation*}
+        [a_1, \ldots, a_n] \texttt{ ++ } [b_1, \ldots, b_n] = 
+        [a_1, \ldots, a_n, b_1, \ldots, b_n]
+      \end{equation*}
+
+      \item La longitud de una lista $l$ es el número de elementos que tiene 
+      $l$. 
+      
+      \item Las variables atómicas de una fórmula proposicional $F \in 
+      \texttt{LPROP}$ son \texttt{false, true} y cualquier variable 
+      proposicional. 
+
+      \item En un árbol binario, una hoja es un nodo cuyo subárbol derecho e 
+      izquierdo son vacíos (\texttt{void}). 
+
+      \item En un árbol binario, un nodo interno es cualquier nodo en el árbol 
+      que no sea una hoja. 
+
+      \item Los errores de escritura en las funciones son {\bf intencionales}, 
+      por lo que cualquier afirmación que contenga una expresión mal escrita 
+      es falsa.
+    \end{itemize}
+
+    Sea $\mathcal{L}_A$ el conjunto de listas con elementos en el conjunto $A$, 
+    definido de la siguiente manera: 
+    \begin{itemize}
+        \item $[] \in \mathcal{L}_A$
+        \item Si $a \in A$ y $l \in \mathcal{L}(A)$, entonces $(a:l) \in 
+        \mathcal{L}_A$. 
+        \item Estos y sólo estos elementos pertenecen a $\mathcal{L}_A$.  
+    \end{itemize}
+
+    \columnbreak
+
+    Sea $\mathcal{A}_S$ el conjunto de árboles binarios con todos los nodos 
+    etiquetados por elementos de un conjunto $S$, definido de la siguiente 
+    manera:
+    \begin{itemize}
+        \item $\texttt{void} \in \mathcal{A}_S$, es decir, el árbol vacío 
+        es un árbol binario. 
+        \item Si $T_1$ y $T_2$ son árboles binarios y $r$ es un elemento 
+        de $S$, entonces \texttt{tree}$(T_1, r, T_2) \in \mathcal{A}_S$, 
+        donde $T_1$ es el subárbol izquierdo y $T_2$ es el subárbol derecho.
+        Al nodo etiquetado con $r$ se le llama raíz del árbol. 
+        \item Estos y sólo estos elementos pertenecen a $\mathcal{A}_S$. 
+    \end{itemize}
+
+    Sea $\mathcal{LPROP}$ el conjunto de fórmulas bien construidas de la 
+    lógica proposicional, definido como sigue: 
+    \begin{itemize}
+        \item Una variable proposicional pertenece a $\mathcal{LPROP}$. 
+        \item Las constantes lógicas \texttt{true} y \texttt{false} 
+        pertenecen a $\mathcal{LPROP}$. 
+        \item Si $A, B \in \mathcal{LPROP}$, entonces $(\lnot A), (A \land B), 
+          (A \lor B), (A \rightarrow B) \in \mathcal{LPROP}$
+        \item Estos y sólo estos elementos pertenecen a $\mathcal{LPROP}$.
+    \end{itemize}
+    \end{multicols}
+    }
+
+    \begin{questions}
+        % Question 01
+        \question
+        {
+            Sea \texttt{mist}$: \texttt{LPROP} \rightarrow \mathbb{Z}^+$ una 
+            función recursiva que recibe una fórmula proposicional $F$, definida 
+            de la siguiente manera:
+            \begin{align*}
+                \texttt{mist}(\texttt{true}) &= 1 \\ 
+                \texttt{mist}(\texttt{false}) &= 1 \\ 
+                \texttt{mist}(p) &= 1
+                && \text{con $p$ una variable proposicional} \\ 
+                \texttt{mist}((\neg A)) &= 1 + \texttt{mist}(A) \\ 
+                \texttt{mist}((A \land B)) &= 1 + \texttt{mist}(A) +
+                \texttt{mist}(B) \\ 
+                \texttt{mist}((A \lor B)) &= 1 + \texttt{mist}(A) +
+                \texttt{mist}(B) \\ 
+                \texttt{mist}((A \rightarrow B)) &= 1 + \texttt{mist}(A) +
+                \texttt{mist}(B) 
+            \end{align*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{mist} no es una función inyectiva. % Correcta
+
+            \choice \texttt{mist} regresa el número de conectivos lógicos que 
+            tiene la fórmula $F$.
+
+            \choice \texttt{mist} no es realmente una función recursiva. 
+
+            \choice \texttt{mist} regresa el número de subfórmulas proposicionales
+            que tiene la fórmula $F$. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 02
+        \question
+        {
+            Sea \texttt{mist}$: \mathbb{N} \times \mathbb{N} \rightarrow 
+            \mathcal{L}_\mathbb{N}$ una función recursiva que recibe dos 
+            números naturales $n$ y $m$, definida de la siguiente manera:
+            \begin{align*}
+                \texttt{mist}(0,m) &= [] \\ 
+                \texttt{mist}(n, m) &= (a:\texttt{mist}(n-1,m))
+            \end{align*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{mist}$(2,3) = (a : \texttt{mist}(1, 3)) = 
+            (a : (a : \texttt{mist}(0,3))) = (a : (a : [])) = [a]$
+
+            \choice La imagen de \texttt{mist} es el conjunto de listas de 
+            números enteros. 
+
+            \choice \texttt{mist}$(3,2) = (a: \texttt{mist}(2,2)) = 
+            (a : \texttt{mist}(1,2)) = (a : (a : \texttt{mist}(0,2))) = 
+            (a : (a : [])) = [a,a]$
+
+            \choice \texttt{mist} es una función que está mal definida. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 03
+        \question
+        {
+            Sea \texttt{mist}$: \mathbb{Z} \times \mathcal{L}_\mathbb{Z} 
+            \rightarrow \mathbb{N}$ una función recursiva que recibe un 
+            número entero $n$ y una lista de números enteros $l$, definida de 
+            la siguiente manera:
+            \[
+                \texttt{mist}(n, l) =  
+                \begin{cases} 
+                0 & \text{si } l = [] \\
+                1 + \texttt{mist}(n,xs) & \text{si } l = (x:xs) \text{ y } n = x \\
+                \texttt{mist}(n,xs) & \text{si } l = (x:xs) \text{ y } n \neq x \\
+                \end{cases}
+            \]
+
+            ¿Qué hace la función \texttt{mist}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{mist} regresa la longitud de la lista $l$.
+
+            \choice \texttt{mist} regresa el número de elementos repetidos que 
+            existen en la lista $l$. 
+
+            \choice \texttt{mist} regresa el número de apariciones del elemento 
+            $n$ en la lista $l$. % Correcta 
+
+            \choice \texttt{mist} regresa el número de elementos que son 
+            diferentes al elemento $n$ en la lista $l$.  
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 04
+        \question
+        {
+            Sea \texttt{mist}$:\mathbb{N} \times \mathbb{N} \times 
+            \mathcal{L}_\mathbb{Z} \rightarrow \mathcal{L}_\mathbb{Z}$ una 
+            función que recibe un número natural $n$, un número entero $m$ y 
+            una lista de números enteros $l$, definida de la siguiente manera:
+            \begin{align*}
+                \texttt{mist}(n, m, []) &= [] \\ 
+                \texttt{mist}(0, m, (x:xs)) &= (m:xs) \\ 
+                \texttt{mist}(n, m, (x:xs)) &= (x:\texttt{mist}(n-1, m, xs))
+            \end{align*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{mist} regresa la lista resultante de eliminar el 
+            elemento $m$ de la lista $l$. 
+
+            \choice Si la longitud de la lista $l$ es $k$, entonces \texttt{mist}
+            regresa una lista cuya longitud es $k+1$. 
+
+            \choice \texttt{mist} regresa la lista resultante de agregar al 
+            elemento $n$ en la $m-$ésima posición de la lista $l$. 
+
+            \choice \texttt{mist} es una función que realmente no es recursiva. 
+            
+            \choice Ninguna de las anteriores. % Correcta
+        \end{checkboxes}
+
+        % Question 05
+        \question
+        {
+            Sea \texttt{mist}$: \mathbb{N} \times \mathcal{L}_\mathbb{Z} 
+            \rightarrow \mathcal{L}_\mathbb{Z}$ una función recursiva que 
+            recibe un número natural $n$ y una lista de números enteros 
+            $l$, definida de la siguiente manera:
+            \begin{align*}
+                \texttt{mist}(n, []) &= [] \\
+                \texttt{mist}(0, (x:xs)) &= (x:xs) \\  
+                \texttt{mist}(n, (x:xs)) &= \texttt{mist}(n-1, xs)
+            \end{align*}
+
+            ¿Qué hace la función \texttt{mist}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{mist} regresa la lista resultante de restar una 
+            unidad a cada uno de los elementos de $l$.
+
+            \choice \texttt{mist} es una función identidad. 
+
+            \choice \texttt{mist} regresa la lista resultante de eliminar 
+            los primeros $n$ elementos de la lista $l$. % Correcta
+
+            \choice \texttt{mist} regresa la lista resultante de eliminar 
+            los últimos $n$ elementos de la lista $l$. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 06
+        \question
+        {
+            Sea \texttt{mist}$: \mathcal{L}_\mathbb{Z} \rightarrow 
+            \mathcal{L}_\mathbb{Z}$ una función que recibe una lista de números 
+            enteros $l$, definida de la siguiente manera:
+            \begin{align*}
+                \texttt{mist}([]) &= [[]] \\ 
+                \texttt{mist}((x:xs)) &= (x:xs)\texttt{ ++ }\texttt{mist}(xs)
+            \end{align*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice Si la longitud de la lista $l$ es $k$, entonces \texttt{mist} 
+            regresa la lista resultante de concatenar la lista $l$ un número de 
+            $k$ veces. 
+
+            \choice \texttt{mist} es una función que está mal definida. % Correcta
+
+            \choice \texttt{mist} es una función suprayectiva. 
+
+            \choice \texttt{mist}$([1]) = [1] \texttt{ ++ mist}([]) = [1] 
+            \texttt{ ++ } [] = [1]$
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 07
+        \question
+        {
+            Sea \texttt{mist}$: \mathcal{L}_{\mathbb{Z}} \times 
+            \mathcal{L}_{\mathbb{Z}} \rightarrow \mathcal{L}_{\mathbb{Z}}$ 
+            una función que recibe dos listas de números enteros $l_1$ y 
+            $l_2$, definida de la siguiente manera:
+            \begin{align*}
+                \texttt{mist}([], []) &= [] \\ 
+                \texttt{mist}([], ys) &= ys \\ 
+                \texttt{mist}(xs, []) &= xs \\ 
+                \texttt{mist}((x:xs), (y:ys)) &= (y : \texttt{mist}((x:xs), ys))
+            \end{align*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{mist} regresa la lista resultante de concatenar el 
+            primer elemento de la lista $l_2$ con $l_1$.
+
+            \choice \texttt{mist} regresa la lista resultante de concatenar la 
+            lista $l_2$ con la lista $l_1$. % Correcta
+
+            \choice \texttt{mist} es una función inyectiva. 
+
+            \choice El dominio de la función \texttt{mist} es $
+            \mathcal{L}_{\mathbb{Z}}$
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 08
+        \question
+        {
+            Sea \texttt{mist}$: \mathbb{Z} \times \mathcal{L}_{\mathbb{Z}} 
+            \rightarrow \mathcal{L}_{\mathbb{Z}}$ una función que recibe un 
+            número entero $n$ y una lista de números enteros $l$, definida 
+            de la siguiente manera:
+            \[
+                \texttt{mist}(n, l) =  
+                \begin{cases} 
+                [n] & \text{si } l = [] \\
+                n : (x : xs) & \text{si } l = (x:xs) \text{ y } n \leq x \\
+                (x : \texttt{mist}(n,xs)) & \text{si } l = (x:xs) \text{ y } 
+                n > x 
+                \end{cases}
+            \]
+
+            ¿Cuál o cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{mist} no es realmente una función recursiva. 
+
+            \choice \texttt{mist} regresa la lista resultante de sustituir 
+            al $n$-ésimo elemento de la lista $l$ por el elemento $n$. 
+
+            \choice \texttt{mist} regresa la lista resultante de agregar al 
+            elemento $n$ una posición atrás del primer elemento en $l$ que sea 
+            mayor o igual a $n$. % Correcta
+
+            \choice \texttt{mist} regresa la lista resultante de ordenar de 
+            manera ascendente todos los elementos de la lista $l$. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 09
+        \question
+        {
+            ¿Cuál o cuáles de las siguientes funciones recursivas reciben un 
+            árbol binario $T$ y regresan una lista de números naturales $l$ 
+            correspondiente al recorrido del árbol $T$ donde primero visitamos 
+            el subárbol izquierdo, luego el subárbol derecho y finalmente la 
+            raíz de $T$? 
+        }
+        \begin{checkboxes}
+            \choice 
+            \begin{align*}
+                \texttt{mist}: \mathcal{A}_\mathbb{N} &\rightarrow 
+                \mathcal{L}_\mathbb{N} \\ 
+                \texttt{mist}(\texttt{void}) &= [] \\ 
+                \texttt{mist}(\texttt{tree}(T_1,c,T_2)) &= 
+                [c]\texttt{ ++ }\texttt{mist}(T_1)\texttt{ ++ }\texttt{mist}(T_2)
+            \end{align*}
+
+            \choice
+            \begin{align*}
+                \texttt{mist}: \mathcal{A}_\mathbb{N} &\rightarrow 
+                \mathcal{L}_\mathbb{N} \\ 
+                \texttt{mist}(\texttt{void}) &= [] \\ 
+                \texttt{mist}(\texttt{tree}(T_1,c,T_2)) &= 
+                \texttt{mist}(T_2)\texttt{ ++ }\texttt{mist}(T_1)\texttt{ ++ }[c]
+            \end{align*} 
+
+            \choice
+            \begin{align*}
+                \texttt{mist}: \mathcal{A}_\mathbb{N} &\rightarrow 
+                \mathcal{L}_\mathbb{N} \\ 
+                \texttt{mist}(\texttt{void}) &= [] \\ 
+                \texttt{mist}(\texttt{tree}(T_1,c,T_2)) &= 
+                \texttt{mist}(T_1)\texttt{ ++ }[c]\texttt{ ++ }\texttt{mist}(T_2)
+            \end{align*}
+
+            \choice
+            \begin{align*}
+                \texttt{mist}: \mathcal{A}_\mathbb{N} &\rightarrow 
+                \mathcal{L}_\mathbb{N} \\ 
+                \texttt{mist}(\texttt{void}) &= [] \\ 
+                \texttt{mist}(\texttt{tree}(T_1,c,T_2)) &= 
+                \texttt{mist}(T_1)\texttt{ ++ }\texttt{mist}(T_2)\texttt{ ++ }[c]
+            \end{align*} % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 10
+        \question
+        {
+            Sea \texttt{mist}$: \texttt{LPROP} \rightarrow 
+            \mathcal{L}_{\texttt{LPROP}}$ una función recursiva que 
+            recibe una fórmula proposicional $F$, definida de la siguiente 
+            manera:
+            \begin{align*}
+                \texttt{mist}(\texttt{true}) &= [] \\ 
+                \texttt{mist}(\texttt{false}) &= [] \\ 
+                \texttt{mist}(p) &= [p]
+                && \text{con $p$ una variable proposicional} \\ 
+                \texttt{mist}((\neg A)) &= \texttt{mist}(A) \texttt{ ++ } [] \\ 
+                \texttt{mist}((A \land B)) &= \texttt{mist}(A) \texttt{ ++ } 
+                \texttt{mist}(B) \\ 
+                \texttt{mist}((A \lor B)) &= \texttt{mist}(A) \texttt{ ++ } 
+                \texttt{mist}(B) \\ 
+                \texttt{mist}((A \rightarrow B)) &= \texttt{mist}(A) 
+                \texttt{ ++ } \texttt{mist}(B) 
+            \end{align*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{mist} es una función inyectiva. 
+
+            \choice \texttt{mist} regresa una lista con todas las variables 
+            atómicas que están presenten en $F$. 
+
+            \choice \texttt{mist}$(\texttt{mist}((p \land q) \lor r)) = 3$
+
+            \choice \texttt{mist}$((p \rightarrow q) \land (p \rightarrow r)) 
+            = \texttt{mist}((p \rightarrow q)) \texttt{ ++ } 
+            \texttt{mist}((p \rightarrow r)) $ \\ 
+            $= \texttt{mist}(p) \texttt{ ++ }
+            \texttt{mist}(q) \texttt{ ++ } \texttt{mist}(p) \texttt{ ++ }
+            \texttt{mist}(r) = [p] \texttt{ ++ } [q] \texttt{ ++ } [p] 
+            \texttt{ ++ } [r] = [p,q,p,r]$ % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 11
+        \question
+        {
+            Sea \texttt{mist}$: \mathcal{L}_\mathbb{Z} \times 
+            \mathcal{L}_\mathbb{Z} \rightarrow \mathcal{L}_\mathbb{Z}$ una 
+            función recursiva que recibe dos listas de números enteros $l_1$ 
+            y $l_2$, definida de la siguiente manera:
+            \begin{align*}
+                \texttt{mist}([], (y:ys)) &= (y:ys) \\ 
+                \texttt{mist}((x:xs), ys) &= \texttt{mist}(xs, (x:ys))
+            \end{align*}
+
+            ¿Qué hace la función \texttt{mist}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{mist} regresa una lista cuyo único elemento es el 
+            último elemento de $l_2$.
+
+            \choice \texttt{mist} regresa la lista resultante de concatenar la 
+            reversa de la lista $l_1$ con la lista $l_2$. % Correcta
+
+            \choice \texttt{mist} regresa la lista resultante de concatenar la 
+            lista $l_1$ con la lista $l_2$. 
+
+            \choice \texttt{mist} regresa la lista resultante de reemplazar 
+            todos los elementos de la lista $l_2$ por todos los elementos de la 
+            lista $l_1$. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 12
+        \question
+        {
+            Sea \texttt{mist}$: \mathcal{L}_{\mathcal{L}_\mathbb{Z}} 
+            \rightarrow \mathcal{L}_\mathbb{Z}$ una función recursiva que 
+            recibe una lista de listas de números enteros $l$, definida de la 
+            siguiente manera:
+            \begin{align*}
+                \texttt{mist}([]) &= [] \\ 
+                \texttt{mist}((xs:xss)) &= xs \texttt{ ++ mist}(xss)
+            \end{align*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{mist} regresa exactamente la misma lista que le 
+            pasamos como parámetro.  
+
+            \choice \texttt{mist} regresa la lista resultante de sumar todos 
+            los elementos de la lista $l$.
+
+            \choice \texttt{mist} regresa la lista resultante de concatenar las 
+            listas que son elementos de $l$. % Correcta
+
+            \choice El dominio de la función \texttt{mist} es el conjunto de
+            todas las listas de números enteros. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 13
+        \question
+        {
+            Sea $T = \{(a, b) \; | \; a, b \in \mathbb{Z}\}$. Sea, además, 
+            \texttt{mist}$: \mathcal{L}_{\mathbb{Z}} \times 
+            \mathcal{L}_{\mathbb{Z}} \rightarrow \mathcal{L}_T$ una función 
+            recursiva que recibe dos listas de números enteros $l_1$ y 
+            $l_2$, definida de la siguiente manera:
+            \begin{align*}
+                \texttt{mist}([], []) &= [] \\
+                \texttt{mist}([], ys) &= [] \\
+                \texttt{mist}(xs, []) &= [] \\  
+                \texttt{mist}((x:xs), (y:ys)) &= ((x,y) : \texttt{mist}(xs, ys))
+            \end{align*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{mist}$([1,2],[3,4]) = ((1,3) : \texttt{mist}([2], [4]))
+            = ((1, 3) : ((2,4) : \texttt{mist}([],[]))) $ \\ 
+            $= ((1, 3) : ((2,4) : [])) = [(1,3), (2,4)]$ % Correcta
+
+            \choice Si $n$ y $m$ son las longitudes de las listas $l_1$ y $l_2$, 
+            respectivamente, de tal forma que $n < m$, entonces \texttt{mist} 
+            regresa una lista cuya longitud es $n$. % Correcta
+
+            \choice Si $n$ y $m$ son las longitudes de las listas $l_1$ y $l_2$, 
+            respectivamente, de tal forma que $n < m$, entonces \texttt{mist} 
+            regresa una lista cuya longitud es $m$.
+
+            \choice \texttt{mist} no es una función inyectiva. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 14
+        \question
+        {
+            Sea \texttt{mist}$: \mathbb{N} \times \mathcal{L}_\mathbb{Z} 
+            \rightarrow \mathcal{L}_\mathbb{Z}$ una función recursiva que 
+            recibe un número natural $n$ y una lista de números enteros $l$, 
+            definida de la siguiente manera:
+            \begin{align*}
+                \texttt{mist}(n, []) &= [] \\  
+                \texttt{mist}(0, xs) &= xs \\
+                \texttt{mist}(n, (x:xs)) &= x : \texttt{mist}(n-1, xs)
+            \end{align*}
+
+            ¿Qué hace la función \texttt{mist}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{mist} regresa la lista resultante de eliminar los 
+            primeros $n$ elementos de la lista $l$. 
+
+            \choice \texttt{mist} es una función que está mal definida. 
+
+            \choice \texttt{mist} regresa la lista resultante de concatenar 
+            todos los elementos de la lista $l$. 
+
+            \choice \texttt{mist} regresa la lista que tiene como elementos 
+            a los primeros $n$ elementos de la lista $l$. 
+            
+            \choice Ninguna de las anteriores. % Correcta
+        \end{checkboxes}
+
+        % Question 15
+        \question
+        {
+            Sea \texttt{mist}$: \mathbb{Z} \times \mathcal{L}_\mathbb{Z} 
+            \rightarrow \mathcal{L}_\mathbb{Z}$ una función recursiva que 
+            recibe un número entero $n$ y una lista de números enteros $l$, 
+            definida de la siguiente manera:
+            \begin{align*}
+                \text{mist}(n, []) &= [n] \\ 
+                \text{mist}(n, (x:xs)) &= (x:\text{mist}(n,xs))
+            \end{align*}
+
+            ¿Qué hace la función \texttt{mist}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{mist} regresa la lista resultante de multiplicar 
+            todos los elementos de $l$ por el número $n$. 
+
+            \choice \texttt{mist} regresa la lista $l \texttt{++} [n]$. 
+            % Correcta
+
+            \choice \texttt{mist} regresa la lista $(l:n)$
+
+            \choice \texttt{mist} regresa la misma lista que le pasamos como 
+            parámetro. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+        
+        \newpage
+        % Question 16
+        \question
+        {
+            Sea \texttt{mist}$: \mathbb{N} \rightarrow \mathbb{N}$ una función 
+            recursiva que recibe un número natural $n$, definida de la siguiente 
+            manera:
+            \begin{align*}
+                \texttt{mist}(0) &= 0 \\ 
+                \texttt{mist}(n) &= \frac{n(n+1)(2n+1)}{6} 
+            \end{align*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{mist} es una función recursiva que regresa la suma 
+            de los primeros $n$ números naturales elevados al cuadrado. 
+
+            \choice \texttt{mist} regresa la suma de los primeros $n$ números 
+            naturales. 
+
+            \choice \texttt{mist} regresa la multiplicación de los primeros 
+            $n$ números naturales. 
+
+            \choice \texttt{mist} regresa la suma de los primeros $n$ números 
+            naturales que son impares. 
+            
+            \choice Ninguna de las anteriores. % Correcta
+        \end{checkboxes}
+
+        % Question 17
+        \question
+        {
+            Sea \texttt{mist}$: \mathcal{A}_\mathbb{Z} \rightarrow 
+            \mathcal{A}_\mathbb{Z}$ una función recursiva que recibe un árbol 
+            binario $T$, definida de la siguiente manera:
+            \begin{align*}
+                \texttt{mist}(\texttt{void}) &= \texttt{void} \\
+                \texttt{mist}(\texttt{tree}(\texttt{void}, c, 
+                \texttt{void})) &= c \\ 
+                \texttt{mist}(\texttt{tree}(T_1,c,T_2)) &= 
+                \texttt{mist}(T_1) \\ 
+                \texttt{mist}(\texttt{tree}(T_1,c,\texttt{void})) &= 
+                \texttt{mist}(T_1) \\ 
+                \texttt{mist}(\texttt{tree}(\texttt{void},c,T_2)) &= 
+                \texttt{mist}(T_2)
+            \end{align*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{mist} regresa la hoja más a la izquierda en un 
+            árbol binario. 
+
+            \choice \texttt{mist} regresa el nodo interno más a la izquierda 
+            en un árbol binario. 
+
+            \choice La función \texttt{mist} está mal definida. % Correcta
+
+            \choice \texttt{mist} regresa la hoja más a la derecha en un 
+            árbol binario. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 18
+        \question
+        {
+            Sea \texttt{mist}$: \mathcal{A}_\mathbb{N} \rightarrow \mathbb{N}$ 
+            una función recursiva que recibe un árbol binario $T$, definida de 
+            la siguiente manera:
+            \begin{align*}
+                \texttt{mist}(\texttt{void}) &= 0 \\ 
+                \texttt{mist}(\texttt{tree}(T_1,c,T_2)) &= 
+                \texttt{mist}(T_1) + c + \texttt{mist}(T_2)
+            \end{align*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{mist} es una función inyectiva.
+
+            \choice $\texttt{mist}(\texttt{tree}(\texttt{tree}(\texttt{void},1,
+            \texttt{void}),5,\texttt{tree}(\texttt{void},0,\texttt{void})))$ \\ 
+            $= \texttt{mist}(\texttt{tree}(\texttt{void}, 1, \texttt{void}) + 5 + 
+            \texttt{mist}(\texttt{tree}(\texttt{void}, 0, \texttt{void})))$ \\ 
+            $= 1 + 5 + 0 = 6$ 
+
+            \choice \texttt{mist} es una función suprayectiva. 
+
+            \choice La función \texttt{mist} está mal definida. % Correcta 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 19
+        \question
+        {
+            Sea \texttt{mist}$: \texttt{LPROP} \rightarrow 
+            \mathcal{L}_{\texttt{LPROP}}$ una función recursiva que 
+            recibe una fórmula proposicional $F$, definida de la siguiente 
+            manera:
+            \begin{align*}
+                \texttt{mist}(\texttt{true}) &= [\texttt{true}] \\ 
+                \texttt{mist}(\texttt{false}) &= [\texttt{false}] \\ 
+                \texttt{mist}(p) &= [p]
+                && \text{con $p$ una variable proposicional} \\ 
+                \texttt{mist}((\neg A)) &= ((\neg A) : \texttt{mist}(A)) \\ 
+                \texttt{mist}((A \land B)) &= ((A \land B) : (\texttt{mist}(A)
+                \texttt{ ++ } \texttt{mist}(B))) \\ 
+                \texttt{mist}((A \lor B)) &= ((A \lor B) : (\texttt{mist}(A)
+                \texttt{ ++ } \texttt{mist}(B))) \\
+                \texttt{mist}((A \rightarrow B)) &= ((A \rightarrow B) : 
+                (\texttt{mist}(A) \texttt{ ++ } \texttt{mist}(B))) \\  
+            \end{align*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice La función \texttt{mist} está mal definida. 
+
+            \choice \texttt{mist} regresa la lista resultante de concatenar 
+            la fórmula $F$ con todas sus variables atómicas. 
+
+            \choice \texttt{mist}$(p \land q) = (p \land q) : \texttt{mist}
+            (p) \texttt{ ++ mist}(q) = (p \land q) : [p] \texttt{ ++ } [q]
+            = (p \land q) : [p,q] $ \\ $= [(p \land q), p, q]$ % Correcta
+
+            \choice La función \texttt{mist} es suprayectiva. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 20
+        \question
+        {
+            Sea \texttt{mist}$: \mathbb{Z} \times \mathcal{L}_\mathbb{Z} 
+            \rightarrow \{\texttt{true, false}\}$ una función recursiva que 
+            recibe un número entero $n$ y una lista de números enteros $l$, 
+            definida de la siguiente manera:
+            \[
+                \texttt{mist}(n, l) =  
+                \begin{cases} 
+                \texttt{false} & \text{si } l = [] \\
+                \texttt{true} & \text{ si } l = (n:xs) \\ 
+                \texttt{mist}(n,xs) & \text{si } l = (x:xs) \text{ y } 
+                n \neq x \\
+                \end{cases}
+            \]
+
+            ¿Cuál o cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{mist} no es una función suprayectiva. 
+
+            \choice Si el elemento $n$ pertenece a la lista $l$, entonces 
+            \texttt{mist} regresa \texttt{true}. En caso contrario, regresa 
+            \texttt{false}. % Correcta
+
+            \choice Si el elemento $n$ se encuentra repetido en la lista $l$, 
+            entonces \texttt{mist} regresa \texttt{true}. En caso contrario, 
+            regresa \texttt{false}. 
+
+            \choice \texttt{mist} es una función inyectiva. 
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        \newpage
+        % Question 21
+        \question
+        {
+            Sea \texttt{mist}$: \mathcal{L}_\mathbb{Z} \times 
+            \mathcal{L}_\mathbb{Z} \rightarrow \{\texttt{true, false}\}$ una 
+            función recursiva que recibe dos listas de números enteros $l_1$ 
+            y $l_2$, definida de la siguiente manera:
+            \begin{align*}
+                \texttt{mist}([], []) &= \texttt{true} \\ 
+                \texttt{mist}([], (y:ys)) &= \texttt{false} \\ 
+                \texttt{mist}((x:xs), []) &= \texttt{false} \\
+                \texttt{mist}((x:xs), (y:ys)) &= \texttt{mist}(xs, ys)
+            \end{align*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice La función \texttt{mist} está mal definida.   
+
+            \choice Si las listas $l_1$ y $l_2$ tienen los mismos elementos (no 
+            importa el orden), entonces \texttt{mist} regresa \texttt{true}. 
+            En caso contrario, regresa \texttt{false}.  
+
+            \choice Si los elementos y la longitud de las listas $l_1$ y $l_2$
+            son iguales, entonces \texttt{mist} regresa \texttt{true}. En caso 
+            contrario, regresa \texttt{false}. 
+
+            \choice Si la longitud de las listas $l_1$ y $l_2$ es igual, 
+            entonces \texttt{mist} regresa \texttt{true}. En caso contrario, 
+            regresa \texttt{false}. % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+
+        % Question 22
+        \question
+        {
+            ¿Cuál es de las siguientes funciones recursivas \texttt{mist} 
+            reciben un número entero $n$ y regresan el número $n$ elevado 
+            al cuadrado?
+        }
+        \begin{checkboxes}
+            \choice 
+            \begin{align*}
+                \texttt{mist}: \mathbb{Z} &\rightarrow \mathbb{N} \\ 
+                \texttt{mist}(0) &= 0 \\ 
+                \texttt{mist}(n) &= n \cdot n
+            \end{align*}
+
+            \choice
+            \begin{align*}
+                \texttt{mist}: \mathbb{Z} &\rightarrow \mathbb{N} \\ 
+                \texttt{mist}(0) &= 1 \\ 
+                \texttt{mist}(n) &= n \cdot \texttt{mist}(n-1)
+            \end{align*}
+
+            \choice
+            \begin{align*}
+                \texttt{mist}: \mathbb{Z} &\rightarrow \mathbb{N} \\ 
+                \texttt{mist}(0) &= 0 \\ 
+                \texttt{mist}(n) &= n \cdot \texttt{mist}(n-1)
+            \end{align*}
+
+            \choice
+            \begin{align*}
+                \texttt{mist}: \mathbb{Z} &\rightarrow \mathbb{N} \\ 
+                \texttt{mist}(0) &= 0 \\ 
+                \texttt{mist}(n+1) &= (n+1) \cdot (n+1)
+            \end{align*}
+            
+            \choice Ninguna de las anteriores. % Correcta
+        \end{checkboxes}
+
+        % Question 23
+        \question
+        {
+            Sea \texttt{mist}$:\mathcal{A}_\mathbb{Z} \rightarrow 
+            \mathcal{A}_\mathbb{Z}$ una función que recibe un árbol binario 
+            $T$, definida de la siguiente manera:
+            \begin{align*}
+                \texttt{mist}(\texttt{void}) &= \texttt{void} \\
+                \texttt{mist}(\texttt{tree}(T_1,c,T_2)) &= 
+                \texttt{tree}(c, \texttt{mist}(T_2), \texttt{mist}(T_1))
+            \end{align*}
+
+            ¿Cuál o cuáles de las siguientes expresiones son \textbf{verdaderas}?
+        }
+        \begin{checkboxes}
+            \choice \texttt{mist}$(\texttt{tree}(\texttt{void}, 5, 
+            \texttt{void})) = \texttt{tree}(5, \texttt{mist}(\texttt{void}), 
+            \texttt{mist}(\texttt{void})) = \texttt{mist}(\texttt{void}, 5, 
+            \texttt{void})$
+
+            \choice \texttt{mist} regresa el árbol $T$ que le pasamos como 
+            parámetro. 
+
+            \choice La función \texttt{mist} nunca llega a ninguno de sus 
+            casos base. 
+
+            \choice \texttt{mist} regresa el árbol $T$ pero reemplazando cada 
+            subárbol derecho por el subárbol izquierdo y viceversa.
+            
+            \choice Ninguna de las anteriores. % Correcta
+        \end{checkboxes}
+
+        % Question 24
+        \question
+        {
+            ¿Cuál o cuáles de las siguientes funciones recursivas reciben dos 
+            listas de números enteros $l_1$ y $l_2$ y regresan la concatenación 
+            de $l_1$ con $l_2$?
+        }
+        \begin{checkboxes}
+            \choice 
+            \begin{align*}
+                \texttt{mist}: \mathcal{L}_\mathbb{Z} &\rightarrow 
+                \mathcal{L}_\mathbb{Z} \\ 
+                \texttt{mist}([], ys) &= ys \\ 
+                \texttt{mist}((x:xs), ys) &= x : \texttt{mist}(xs, ys)
+            \end{align*}
+
+            \choice $\texttt{mist}: \mathcal{L}_\mathbb{Z} \times 
+            \mathcal{L}_\mathbb{Z} \rightarrow \mathcal{L}_\mathbb{Z}$
+            \[
+                \texttt{mist}(l_1, l_2) =  
+                \begin{cases} 
+                l_2 & \text{si } l_1 = [] \\
+                [x] \texttt{ ++ mist}(xs, ys) & \text{si } l_1 = (x:xs), 
+                l_2 = ys \text{ y } x \leq x \\
+                \texttt{mist}(xs, ys) & \text{en otro caso}
+                \end{cases} % Correcta
+            \]
+
+            \choice $\texttt{mist}: \mathcal{L}_\mathbb{Z} \times 
+            \mathcal{L}_\mathbb{Z} \rightarrow \mathcal{L}_\mathbb{Z}$
+            \[
+                \texttt{mist}(l_1, l_2) =  
+                \begin{cases} 
+                l_2 & \text{si } l_1 = [] \\
+                x : \texttt{mist}(xs, ys) & \text{si } l_1 = (x:xs), 
+                l_2 = ys \text{ y } x > x \\
+                \texttt{mist}(xs, ys) & \text{en otro caso}
+                \end{cases}
+            \]
+
+            \choice
+            \begin{align*}
+                \texttt{mist}: \mathcal{L}_\mathbb{Z} \times 
+                \mathcal{L}_\mathbb{Z} &\rightarrow \mathcal{L}_\mathbb{Z} \\ 
+                \texttt{mist}([], xs) &= xs \\ 
+                \texttt{mist}((y:ys), xs) &= [y] \texttt{ ++ mist}(ys, xs)
+            \end{align*} % Correcta
+            
+            \choice Ninguna de las anteriores. 
+        \end{checkboxes}
+    \end{questions}
+\end{document}
